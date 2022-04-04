@@ -12,3 +12,6 @@ class Vendor:
         except ValueError:
             return False
         return item
+
+    def get_by_category(self, category_name):
+        return [item for item in self.inventory if item.category == category_name]
