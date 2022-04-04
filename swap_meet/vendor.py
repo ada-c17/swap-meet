@@ -24,3 +24,14 @@ class Vendor:
         swap_vendor.inventory.remove(their_item)
         swap_vendor.inventory.append(my_item)
         return True
+
+    def swap_first_item(self,swap_vendor):
+        if self.inventory == [] or swap_vendor.inventory == []:
+            return False
+        my_item = self.inventory[0]
+        their_item = swap_vendor.inventory[0]
+        self.inventory.append(their_item)
+        swap_vendor.inventory.append(my_item)
+        del self.inventory[0]
+        del swap_vendor.inventory[0]
+        return True
