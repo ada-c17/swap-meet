@@ -1,5 +1,5 @@
 class Vendor:
-     """
+    """
     A class to represent a vendor.
 
     ...
