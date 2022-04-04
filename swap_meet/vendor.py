@@ -15,3 +15,8 @@ class Vendor:
             return self.inventory.pop(item_index)
         except ValueError:
             return False
+
+    def get_by_category(self, category):
+        # Returns a list of Items in the inventory with that category
+        items_by_category = [item for item in self.inventory if item.category == category]
+        return items_by_category
