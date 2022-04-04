@@ -19,6 +19,10 @@ class Vendor:
         Removes an item from the inventory list.
         Returns item.
         If item not in list, returns False.
+
+    get_by_category(category):
+        Creates list of items whose category attribute matches the input category.
+        Returns list. 
     """
 
 
@@ -71,3 +75,26 @@ class Vendor:
             return item
         except ValueError:
             return False
+    
+    def get_by_category(self, category):
+        """
+        Creates a list of items from inventory whose category attributes match the input category. 
+
+        If no items from inventory are of the category passed as an argument, returns empty list.
+
+        Parameters
+        ----------
+        category : str
+
+        Returns
+        -------
+        items: list
+        """
+        # items = []
+        # for item in self.inventory:
+        #     if item.category == category:
+        #         items.append(item)
+        # return items
+
+        return [item for item in self.inventory if item.category == category]
+
