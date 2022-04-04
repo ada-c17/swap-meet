@@ -23,6 +23,12 @@ class Vendor:
     get_by_category(category):
         Creates list of items whose category attribute matches the input category.
         Returns list. 
+
+    swap_items(vendor_to_swap_with, item_vendor_swaps, item_vendor_gets):
+        Removes item_vendor_swaps from vendor.inventory list and appends item_vendor_gets to list.
+        Removes item_vendor_gets from vendor_to_swap_with.inventory list and appends.item_vendor_swaps to list
+        Returns vendor's list.
+
     """
 
 
@@ -97,4 +103,42 @@ class Vendor:
         # return items
 
         return [item for item in self.inventory if item.category == category]
+    
+    def swap_items(self, vendor_to_swap_with, item_vendor_swaps, item_vendor_gets):
+        """
+        Removes and appends 2nd and 3rd parameters from vendor's inventory respectively.
 
+        Appends and removes 2nd and 3rd parameters from vendor_to_swap_with 's inventory respectively.
+
+        Parameters
+        -------
+        vendor_to_swap_with: composite object
+        item_vendor_swaps: component object item_vendor_gets: component object
+
+        Returns
+        -------
+        self.inventory: object
+        
+        """
+        if item_vendor_swaps in self.inventory and item_vendor_gets in vendor_to_swap_with.inventory:
+            self.inventory.remove(item_vendor_swaps) 
+            self.inventory.append(item_vendor_gets)            
+            vendor_to_swap_with.inventory.remove(item_vendor_gets)       
+            vendor_to_swap_with.inventory.append(item_vendor_swaps) 
+
+            return self.inventory
+        else:
+            return None
+        # try:
+        #     item_vendor_swaps in self.inventory and item_vendor_gets in vendor_to_swap_with.inventory
+        # except ValueError:
+        #     return None
+        # finally:
+        #     self.inventory.remove(item_vendor_swaps) 
+            
+        #     vendor_to_swap_with.inventory.remove(item_vendor_gets)            
+        #     self.inventory.append(item_vendor_gets)
+        
+        #     vendor_to_swap_with.inventory.append(item_vendor_swaps)
+            
+        #     return self.inventory
