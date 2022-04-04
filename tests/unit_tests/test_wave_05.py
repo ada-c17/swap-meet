@@ -3,13 +3,13 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_clothing_has_default_category_and_to_str():
     cloth = Clothing()
     assert cloth.category == "Clothing"
     assert str(cloth) == "The finest clothing you could wear."
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_decor_has_default_category_and_to_str():
     decor = Decor()
     assert decor.category == "Decor"
