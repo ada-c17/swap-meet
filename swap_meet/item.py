@@ -1,5 +1,3 @@
-from .vendor import Vendor
-
 class Item:
     
     def __init__(self, category=""):
