@@ -7,6 +7,7 @@ from swap_meet.item import Item
 def test_integration_wave_01_02_03():
     # make a vendor  
     vendor = Vendor()
+    print(vendor.inventory)
     assert len(vendor.inventory) == 0
 
     # add an item
@@ -39,10 +40,16 @@ def test_integration_wave_01_02_03():
     assert len(items) == 0
 
     other_vendor = Vendor()
+    print(vendor.inventory)
+    print(other_vendor.inventory)
 
     # swap items
     item3 = Item(category="Decor")
     other_vendor.add(item3)
+    print("LEN")
+    print(len(other_vendor.inventory))
+    print(other_vendor.inventory[0])
+    print(other_vendor.inventory[1])
 
     vendor.swap_items(other_vendor, item2, item3)
 
