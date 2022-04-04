@@ -15,3 +15,15 @@ class Vendor:
 
     def get_by_category(self, category):
         return [item for item in self.inventory if item.category == category]
+
+    def swap_items(self, other, my_item, their_item):
+
+        if my_item not in self.inventory or their_item not in other.inventory:
+            return False
+            
+        self.add(their_item)
+        self.remove(my_item)
+        other.add(my_item)
+        other.remove(their_item)
+        return True
+
