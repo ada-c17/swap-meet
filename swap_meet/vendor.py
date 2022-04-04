@@ -12,3 +12,6 @@ class Vendor:
             del self.inventory[self.inventory.index(item)]
             return item
         return False
+
+    def get_by_category(self, category):
+        return [item for item in self.inventory if item.category == category]
