@@ -117,3 +117,62 @@ class Vendor:
         self.inventory.append(other_vender.inventory.pop(0))
         other_vender.inventory.append(self.inventory.pop(0))
         return True
+
+    def get_best_by_category(self, best_category):
+        """
+        Gets the first item with the highest condition within the category given.
+
+        If there are no items within the given category, returns None.
+
+        Parameters
+        ----------
+        best_category: str
+            The instance of the class Vendor
+
+        Returns
+        -------
+        None/best_item
+        """
+        available_items = self.get_by_category(best_category)
+        item_hash = {}
+        index = 0
+
+        if not available_items:
+            return None
+
+        while index < len(available_items):
+            for item in available_items:
+                item_hash[item.condition] = index
+                index += 1
+
+        best_item_condition = max(item_hash)
+        item_index = item_hash[best_item_condition]
+        best_item = available_items[item_index]
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """
+        Swaps the respective best_items from the given categories from self and other instances.
+
+        If there is no item for the given category, returns False.
+
+        Parameters
+        ----------
+        other: Vender instance object
+            An instance of the class Vendor
+        my_priority: str
+            string of the category wanted by self
+        their_priority: str
+            string of the category wanted by other
+            
+        Returns
+        -------
+        True/False
+        """
+        item_for_them = self.get_best_by_category(their_priority)
+        item_for_me = other.get_best_by_category(my_priority) 
+
+        if not item_for_me or not item_for_them:
+            return False
+
+        return self.swap_items(other, item_for_them, item_for_me)

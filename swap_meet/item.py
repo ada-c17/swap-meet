@@ -23,6 +23,7 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
+        """ Returns a description based on the score of the instance's condition. """
         if self.condition == 0:
             return "This is a hot mess. Run!"
         elif self.condition == 1:
