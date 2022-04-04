@@ -22,12 +22,7 @@ class Vendor:
 
     def __init__(self, inventory = None):
         """
-        Constructs all the necessary attributes for the person object.
-
-        Parameters
-        ----------
-            inventory : list
-                list of vendor items
+        Constructs all the necessary attributes for the vender object.
         """
         if not inventory:
             self.inventory = []
@@ -48,6 +43,20 @@ class Vendor:
             return False
 
     def get_by_category(self, category):
+        """
+        Returns list of items with a given category. 
+
+        If there are no items with the given category, it returns an empty list.
+
+        Parameters
+        ----------
+        category : str
+            string of the category each item must match to be added to the list
+
+        Returns
+        -------
+        category items list
+        """
         category_items = []
         # try:
         for item in self.inventory:
@@ -57,3 +66,35 @@ class Vendor:
         # except ValueError:
             # pass
             # return category_items
+
+    def swap_items(self, other_vender, my_item, their_item):
+        """
+        Returns True if items have been swapped between two inventory lists of two objects. 
+
+        If the vendor's inventory or other vender's invenory is an empty list, returns False.
+        If either of the items to be swapped not in appropriate lists, returns False
+
+        Parameters
+        ----------
+        other_vender: Vender instance object
+            The instance of the class Vendor
+        my_item: var
+            Item instance with given cateogry to be removed from self.inventory and appended to other_vender
+        their_item: var
+            Item instance with given cateogry to be removed from other_vender.inventory and appended to self.inventory
+
+
+        Returns
+        -------
+        True/False
+        """
+        if my_item not in self.inventory or their_item not in other_vender.inventory:
+            return False
+        elif not self.inventory or not other_vender.inventory:
+            return False
+        self.inventory.remove(my_item)
+        other_vender.inventory.remove(their_item)
+
+        self.inventory.append(their_item)
+        other_vender.inventory.append(my_item)
+        return True
