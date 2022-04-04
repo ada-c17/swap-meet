@@ -1,3 +1,4 @@
+from operator import attrgetter
 class Vendor:
     def __init__(self, inventory =[]):
         self.inventory = inventory
@@ -32,5 +33,17 @@ class Vendor:
         my_item =self.inventory[0]    
         their_item=friend.inventory[0]
         self.swap_items(friend,my_item, their_item)
+        return True
+
+    def get_best_by_category(self, category):
+        matching_category=self.get_by_category(category)
+        return max(matching_category, key =attrgetter('condition'), default=None)
+
+    def swap_best_by_category(self,other,my_priority, their_priority):
+        my_best_item=self.get_best_by_category(their_priority)
+        their_best_item=other.get_best_by_category(my_priority)
+        if my_best_item is None or their_best_item is None:
+            return False
+        self.swap_items(other, my_best_item, their_best_item)
         return True
 
