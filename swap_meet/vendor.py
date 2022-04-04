@@ -13,3 +13,10 @@ class Vendor:
         except ValueError:
             return False
         return item
+    
+    def get_by_category(self, category):
+        items_in_category = []
+        for item in self.inventory:
+            if item.category == category:
+                items_in_category.append(item)
+        return items_in_category
