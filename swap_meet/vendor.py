@@ -11,10 +11,21 @@ class Vendor:
 
 
     def remove(self, item):
-        if item in self.inventory:
-            del self.inventory[self.inventory.index(item)]
-            return item
-        return False
+        item_index = self.get_item_index(item)
+
+        if item_index == -1:
+            return False
+
+        del self.inventory[item_index]
+
+        return item
+
+
+    def get_item_index(self, item):
+        try:
+            return self.inventory.index(item)
+        except ValueError:
+            return -1
 
 
     def get_by_category(self, category):
