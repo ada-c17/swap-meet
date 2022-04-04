@@ -5,3 +5,7 @@ class Vendor:
     def add(self, item):
         self.inventory.append(item)
         return item
+
+    def remove(self, item):
+        self.inventory.remove(item)
+        return item
