@@ -24,5 +24,13 @@ class Vendor:
     def get_by_category(self,category):
         return [item for item in self.inventory 
                     if item.category == category]
-
+    
+    def swap_items(self,other_vendor,current_item,exchange_item):
+        if (current_item not in self.inventory or
+            exchange_item not in other_vendor.inventory):
+            return False
+        handoff = self.remove(current_item),other_vendor.remove(exchange_item)
+        self.add(handoff[1])
+        other_vendor.add(handoff[0])
+        return True
 
