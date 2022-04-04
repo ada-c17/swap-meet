@@ -1,6 +1,8 @@
-from swap_meet.item import Item
+from .item import Item
 class Vendor:
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
+        if inventory is None:
+            inventory = []
         self.inventory = inventory
     
     def add(self, new_item):
@@ -20,12 +22,23 @@ class Vendor:
     
     def get_by_category(self, category_string):
         """Return list of items from inventory of a certain category"""
-        
+
         item_list = []
         for item in self.inventory:
             if item.category == category_string:
                 item_list.append(item)
-        if not item_list:
-            return None
+        return item_list
+    
+    def swap_items(self, Vendor, my_item, their_item):
+        """Swaps items betwen self and another vendor's inventory"""
+        # check valid input
+        if my_item not in self.inventory or their_item not in Vendor.inventory:
+            return False
         else:
-            return item_list
+            # remove items from inventory
+            my_swap_item = self.remove(my_item)
+            their_swap_item = Vendor.remove(their_item)
+            # add items to new inventory 
+            self.add(their_swap_item)
+            Vendor.add(my_swap_item)
+            return True
