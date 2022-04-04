@@ -17,24 +17,24 @@ class Vendor:
         result = [item for item in self.inventory if item.category is category]
         return result
 
-    def swap_items(self, vendor, my_item, their_item):
+    def swap_items(self, other_vendor, my_item, their_item):
         if (my_item in self.inventory and
-                their_item in vendor.inventory):
+                their_item in other_vendor.inventory):
             self.remove(my_item)
             self.add(their_item)
-            vendor.remove(their_item)
-            vendor.add(my_item)
+            other_vendor.remove(their_item)
+            other_vendor.add(my_item)
         else:
             return False
         return True
     
-    def swap_first_item(self, vendor):
-        if not self.inventory or not vendor.inventory:
+    def swap_first_item(self, other_vendor):
+        if not self.inventory or not other_vendor.inventory:
             return False
         else:
             my_first = self.inventory.pop(0)
-            their_first = vendor.inventory.pop(0)
+            their_first = other_vendor.inventory.pop(0)
             self.add(their_first)
-            vendor.add(my_first)
+            other_vendor.add(my_first)
         return True
         
