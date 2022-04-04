@@ -3,7 +3,9 @@ from swap_meet.item import Item
 class Vendor:
     
     # constructor for class Vendor
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
+        if not inventory:
+            inventory = []
         self.inventory = inventory
 
     # method to add item to inventory
@@ -21,7 +23,6 @@ class Vendor:
 
     # method to return list of items by item category
     def get_by_category(self, category):
-        item = Item()
         items = []
         for item in self.inventory:
             if item.category == category:
