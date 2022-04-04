@@ -40,3 +40,19 @@ class Vendor:
             return False
         return self.swap_items(other_vendor,self.inventory[0],other_vendor.inventory[0])
     
+    def get_best_by_category(self,category):
+        items = self.get_by_category(category)
+        if len(items) == 0:
+            return None
+        ratings = [item.condition for item in items]
+        return items[ratings.index(max(ratings))]
+    
+    def swap_best_by_category(self,**kwargs):
+        try:
+            own_item = self.get_best_by_category(kwargs['their_priority'])
+            swap_item = kwargs['other'].get_best_by_category(kwargs['my_priority'])
+        except KeyError:
+            return False
+        if not (own_item and swap_item):
+            return False
+        return self.swap_items(kwargs['other'],own_item,swap_item)
