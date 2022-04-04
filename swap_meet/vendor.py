@@ -1,5 +1,3 @@
-from .item import Item
-
 class Vendor:
     """
     A class to represent a vendor.
@@ -83,7 +81,6 @@ class Vendor:
         their_item: var
             Item instance with given cateogry to be removed from other_vender.inventory and appended to self.inventory
 
-
         Returns
         -------
         True/False
@@ -97,4 +94,26 @@ class Vendor:
 
         self.inventory.append(their_item)
         other_vender.inventory.append(my_item)
+        return True
+
+    def swap_first_item(self, other_vender):
+        """
+        Swaps the first item in self.inventory and other_vendor.inventory
+
+        If the vendor's inventory or other vender's invenory is an empty list, returns False.
+
+        Parameters
+        ----------
+        other_vender: Vender instance object
+            The instance of the class Vendor
+
+        Returns
+        -------
+        True/False
+        """
+        if not self.inventory or not other_vender.inventory:
+            return False
+
+        self.inventory.append(other_vender.inventory.pop(0))
+        other_vender.inventory.append(self.inventory.pop(0))
         return True
