@@ -13,3 +13,10 @@ class Vendor:
             return item
         # Wave 1 directions
         return False
+
+    def get_by_category(self, category):
+        items = []
+        for item in self.inventory:
+            if item.category == category:
+                items.append(item)
+        return items
