@@ -6,5 +6,6 @@ class Vendor:
     #   add - takes in one item and adds to inventory, returns item added
     #   remove - takes in one item and removes from inventory, returns item removed
 
-    def __init__(self):
-        self.inventory = []
+    def __init__(self, inventory=[]):
+        self.inventory = inventory
+    
