@@ -25,3 +25,9 @@ class Vendor:
             return None 
 
         # categorized_list if len(categorized_list) >= 1 else None 
+
+    def swap_items(self, friend, my_item, their_item):
+        if my_item not in self.inventory or their_item not in friend.inventory:
+            return False 
+        
+        
