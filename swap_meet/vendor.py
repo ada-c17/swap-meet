@@ -7,5 +7,9 @@ class Vendor:
         return item
 
     def remove(self, item):
-        self.inventory.remove(item)
+        try:
+            self.inventory.remove(item)
+        except ValueError as err:
+            print(f"An error occured. Details: {err}")
+            return False
         return item
