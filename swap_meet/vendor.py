@@ -1,5 +1,7 @@
 class Vendor:
-    def __init__(self, inventory=[]):
+    def __init__(self, inventory=None):
+        if not inventory:
+            inventory = []
         self.inventory = inventory
     
     def add(self, item):
@@ -12,3 +14,10 @@ class Vendor:
             return item
         else:
             return False
+    
+    def get_by_category(self,category):
+        filtered_items = []
+        for item in self.inventory:
+            if item.category == category:
+                filtered_items.append(item)
+        return filtered_items
