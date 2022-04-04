@@ -7,7 +7,7 @@ def test_items_have_blank_default_category():
     item = Item()
     assert item.category == ""
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_get_items_by_category():
     item_a = Item(category="clothing")
     item_b = Item(category="electronics")

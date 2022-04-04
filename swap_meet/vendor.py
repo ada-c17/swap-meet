@@ -12,3 +12,7 @@ class Vendor:
             return item
         else:
             return False
+
+    def get_by_category(self, category):
+        result = [item for item in self.inventory if item.category is category]
+        return result
