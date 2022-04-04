@@ -20,3 +20,9 @@ class Vendor:
                 return False
             self.inventory.remove(item)
         return items[0] if len(items) == 1 else items
+    
+    def get_by_category(self,category):
+        return [item for item in self.inventory 
+                    if item.category == category]
+
+
