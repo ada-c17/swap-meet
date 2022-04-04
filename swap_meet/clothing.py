@@ -5,7 +5,3 @@ class Clothing(Item):
 
     def __str__(self):
         return "The finest clothing you could wear."
-
-
-thing = Clothing()
-print(thing.condition)

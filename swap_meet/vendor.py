@@ -1,3 +1,6 @@
+from operator import itemgetter
+
+
 class Vendor:
 
     def __init__(self, inventory=[]):
@@ -42,3 +45,16 @@ class Vendor:
         self.add(vendor.inventory[0])
         vendor.remove(vendor.inventory[0])
         return True
+    
+    def get_best_by_category(self, category):
+        item_list = self.get_by_category(category)
+        
+        if item_list:
+            best_item = item_list[0]
+            for item in item_list:
+                if item.condition > best_item.condition:
+                    best_item = item
+        else:
+            return None
+
+        return best_item
