@@ -21,11 +21,7 @@ class Vendor:
     def remove(self, item_to_remove):
         
         if item_to_remove in self.inventory:
-            # print(self.inventory.remove(item_to_remove))
-            # print(item_to_remove)
-            # print("MATCH")
             self.inventory.remove(item_to_remove)
-            # print("WORKED")
             return item_to_remove
         else:
             return False
