@@ -1,5 +1,10 @@
+from operator import inv
+
+
 class Vendor:
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
+        if inventory == None: 
+            inventory = []
         self.inventory = inventory
     
     def add(self, item_added):
