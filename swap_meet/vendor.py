@@ -33,4 +33,10 @@ class Vendor:
         self.add(handoff[1])
         other_vendor.add(handoff[0])
         return True
-
+    
+    def swap_first_item(self,other_vendor):
+        if (not self.inventory or 
+            not other_vendor.inventory):
+            return False
+        return self.swap_items(other_vendor,self.inventory[0],other_vendor.inventory[0])
+    
