@@ -1,3 +1,5 @@
+from .item import Item
+
 class Vendor:
     """
     A class to represent a vendor.
@@ -27,7 +29,7 @@ class Vendor:
             inventory : list
                 list of vendor items
         """
-        if inventory == None:
+        if not inventory:
             self.inventory = []
         else:
             self.inventory = inventory
@@ -44,3 +46,14 @@ class Vendor:
             return item
         except ValueError:
             return False
+
+    def get_by_category(self, category):
+        category_items = []
+        # try:
+        for item in self.inventory:
+            if item.category == category:
+                category_items.append(item)
+        return category_items
+        # except ValueError:
+            # pass
+            # return category_items
