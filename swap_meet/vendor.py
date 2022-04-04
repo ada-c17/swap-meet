@@ -20,3 +20,18 @@ class Vendor:
                 category_items.append(item)
 
         return category_items
+    
+    def swap_items(self, other_vendor, my_item, their_item):
+        try:
+            if my_item not in self.inventory or their_item not in other_vendor.inventory:
+                raise ValueError
+            self.remove(my_item)
+            other_vendor.remove(their_item)
+
+            other_vendor.add(my_item)
+            self.add(their_item)
+            
+        except ValueError:
+            return False
+
+        return True
