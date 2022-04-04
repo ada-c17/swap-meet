@@ -1,16 +1,19 @@
+from swap_meet.item import Item
+from operator import attrgetter
+
 class Vendor:
     
     def __init__(self, inventory = []):
         self.inventory = inventory
     
-    def add(self, item):
-        self.inventory.append(item)
-        return item
+    def add(self, it):
+        self.inventory.append(it)
+        return it
     
-    def remove(self, item):
-        if item in set(self.inventory):
-            self.inventory.remove(item)
-            return item
+    def remove(self, it):
+        if it in set(self.inventory):
+            self.inventory.remove(it)
+            return it
         else:
             return False
     
@@ -42,6 +45,29 @@ class Vendor:
             self.remove(self.inventory[0])
             self.add(other.inventory[0])
             other.remove(other.inventory[0])
+            return True
+        else:
+            return False
+    
+    def get_best_by_category(self, category):
+        items_in_category = self.get_by_category(category)
+        if len(items_in_category) < 1:
+            return None
+        best_condition = 0
+        for i in items_in_category:
+            if i.condition > best_condition:
+                best_condition = i.condition
+                best_item = i
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_choice = other.get_best_by_category(my_priority)
+        their_choice = self.get_best_by_category(their_priority)
+        if my_choice and their_choice:
+            self.remove(their_choice)
+            other.remove(my_choice)
+            other.add(their_choice)
+            self.add(my_choice)
             return True
         else:
             return False
