@@ -2,7 +2,7 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_item_overrides_to_string():
     item = Item()
 
@@ -10,7 +10,7 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_items_returns_true():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")

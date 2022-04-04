@@ -30,4 +30,9 @@ class Vendor:
         if my_item not in self.inventory or their_item not in friend.inventory:
             return False 
         
-        
+        needs_to_add_to_self = friend.inventory.remove(their_item)
+        needs_to_add_to_friend = self.inventory.remove(my_item)
+        updated_self = self.inventory.append(needs_to_add_to_self)
+        updated_friend = friend.inventory.append(needs_to_add_to_friend)
+
+        return True
