@@ -1,5 +1,8 @@
 #from .item import Item
 
+from typing import ByteString
+
+
 class Vendor:
     
     def __init__(self, inventory=None):
@@ -39,4 +42,15 @@ class Vendor:
             self.inventory[0] , friend.inventory[0] = friend.inventory[0] , self.inventory[0]
             return True
         return False
+    
+    def get_best_by_category(self, category):
+        condition = 0
+        best_item = ""
+        for item in self.inventory:
+            if item.category == category:
+                if item.condition > condition:
+                    best_item = item
+                    condition = item.condition
+        if best_item:
+            return best_item
 
