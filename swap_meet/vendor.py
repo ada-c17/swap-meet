@@ -2,10 +2,10 @@ from inspect import trace
 from .item import Item
 
 class Vendor:
-    # Additional attribute trait is added for the optional swap_by_newest function.
+    # Additional attribute "trait" is added for the optional swap_by_newest function.
     # Trait can be Good or Evil, by default it is Good.
     # When there is an age tie for swap_by_newest, Good venodr swaps the item with the best condition,
-    # While Evil vendor sawps the item with the worst condition
+    # While Evil vendor sawps the item with the worst condition.
     def __init__(self, inventory=None, trait="Good"):
         if inventory is None:
             inventory = []
@@ -70,8 +70,9 @@ class Vendor:
         return False
 
     # OPTIONAL
-    # returns the newest item (item.age is the smallest number) in the category
-    # if no item in the category, return None
+    # Returns the newest item (item.age is the smallest number) in the category
+    # If no item in the category, return None
+    # If tie, check vendor.trait, Good vendor swaps best condition, Evil vendor swaps worst condition
     # This is a helper function for swap_by_newest()
     def get_newest_by_category(self, category):
         category_list = self.get_by_category(category)
@@ -100,10 +101,3 @@ class Vendor:
             self.swap_items(other, my_newest, their_newest)
             return True
         return False
-
-
-
-
-
-
-

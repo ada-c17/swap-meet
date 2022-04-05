@@ -9,15 +9,15 @@ class Item:
 
     def condition_description(self):
         description = ""
-        if self.condition == 5.0:
+        if 4.5 < self.condition <= 5.0:
             description = "EXCELLENT"
-        elif self.condition == 4.0:
+        elif 4.0 < self.condition <= 4.5:
             description = "VERY GOOD"
-        elif self.condition == 3.0:
+        elif 3.0 < self.condition <= 4.0:
             description = "GOOD"
-        elif self.condition == 2.0:
+        elif 2.0 < self.condition <= 3.0:
             description = "FAIR"
-        elif self.condition == 1.0:
+        elif 1.0 < self.condition <= 2.0:
             description = "POOR"
         else:
             description = "VERY POOR"
