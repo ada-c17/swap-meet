@@ -52,3 +52,30 @@ class Vendor:
         # is it best practice to return a function like this?
         # swap_items already returns t/f, so i thought, why repeat that here?
         return self.swap_items(other, my_item, their_item)
+
+
+    # Implement a Vendor method named swap_by_newest
+    # My logic:
+    # swap whatever the newest item is in each inventory
+    # doesn't matter category or what vendors "want"
+    # both items must have an age
+    # if one inventory list has no age attributes for any items, return False
+    # return True if can swap
+    # tie will go to first item in inventory
+    # (tests in new file, unit tests-wave 7)
+    def swap_by_newest(self, other):
+        my_newest_item = None
+        my_low_age = 1000
+        for item in self.inventory:
+            if item.age and item.age < my_low_age:
+                my_low_age = item.age
+                my_newest_item = item
+
+        their_newest_item = None
+        their_low_age = 1000
+        for item in other.inventory:
+            if item.age and item.age < their_low_age:
+                their_low_age = item.age
+                their_newest_item = item
+
+        return self.swap_items(other, my_newest_item, their_newest_item)
