@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
@@ -17,3 +18,27 @@ def test_vendor_inventory_is_read_only():
 
     with pytest.raises(AttributeError):
         tai.inventory = [item_a]
+
+
+def test_ValueError_raised_if_item_condition_less_than_0():
+    with pytest.raises(ValueError):
+        item = Decor(condition=-10)
+
+    with pytest.raises(ValueError):
+        item_a = Clothing(condition=-2)
+
+
+def test_ValueError_raised_if_item_condition_larger_than_5():
+    with pytest.raises(ValueError):
+        item = Electronics(condition=10)
+    
+    with pytest.raises(ValueError):
+        item = Item(condition=10)
+
+
+def test_ValueError_raised_if_item_age_not_larger_than_0():
+    with pytest.raises(ValueError):
+        item = Decor(age=0)
+        
+    with pytest.raises(ValueError):
+        item_a = Electronics(age=-2)

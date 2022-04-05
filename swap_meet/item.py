@@ -1,3 +1,6 @@
+from re import I
+
+
 class Item:
 
     CONDITION_RATINGS = {
@@ -10,13 +13,40 @@ class Item:
     }
 
     def __init__(self, category="", condition=0, age=None):
+        
         self.category = category
         self.condition = condition
         self.age = age
+
+
+    @property
+    def condition(self):
+        return self._condition
+    
+    @condition.setter
+    def condition(self, new_condition):
+        if 0 <= new_condition <= 5:
+            self._condition = new_condition
+        else:
+            raise ValueError("Item rating must be from 0 to 5.")
+    
+    
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, new_age=None):
+        if new_age is None or new_age > 0:
+            self._age = new_age
+        else:
+            raise ValueError("Age must be larger than 0.")
+
 
     @staticmethod
     def __str__():
         return "Hello World!"
     
+
     def condition_description(self):
-        return Item.CONDITION_RATINGS.get(self.condition, None)
+        return Item.CONDITION_RATINGS.get(int(self.condition), None)
