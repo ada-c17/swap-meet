@@ -26,8 +26,6 @@ class Vendor:
         for i in self.inventory:
             if category == i.category:
                 same_category_items.append(i)
-            # else:
-            #     continue
         return same_category_items
     
     
@@ -35,13 +33,13 @@ class Vendor:
     def swap_items(self, o_vendor, my_item, their_item):
         if my_item not in self.inventory or their_item not in o_vendor.inventory:
             return False
-        print(str(self.inventory))
+        
         if my_item in self.inventory or their_item in o_vendor.inventory: 
             self.inventory.remove(my_item) #O(n)
             o_vendor.add(my_item) #O(1)
             o_vendor.remove(their_item) #O(n)
             self.inventory.append(their_item) #O(1)
-        print(str(self.inventory))
+        
         return True
        
     
@@ -59,12 +57,13 @@ class Vendor:
         if len(same_category) == 0: #if not same_category
             return None
     
-        conditions = [cond.condition for cond in same_category]
-        highest_condition = max(conditions)
-       
-        for cond in same_category:
-            if cond.condition >= highest_condition:
-                return cond 
+        best_condition = 0
+        best_item = None
+        for item in same_category:
+            if item.condition >= best_condition:
+                best_condition = item.condition
+                best_item = item
+        return best_item
             
         
     def swap_best_by_category(self, other, my_priority, their_priority):
@@ -77,13 +76,10 @@ class Vendor:
         for my_item in self.inventory:
             if their_priority == my_item.category:
                 they_prefered = self.get_best_by_category(their_priority)
-            # else:
-            #     continue :when we have no element left, this will still run the function, throw error
+ 
         for their_item in other.inventory:
             if my_priority != their_item.category:
                 we_prefered = other.get_best_by_category(my_priority)
-            # else:
-            #     continue
         
         return self.swap_items(other, they_prefered, we_prefered)
     
