@@ -1,10 +1,14 @@
 class Item:
     def __init__(self, category=None, condition=0):
-        if category or condition:
-            self.category = category
-            self.condition = condition
-        else:
-            self.category = ""
+        self.category = category if category is not None else ""
+        self.condition = condition if condition is not 0 else 0
+        
+        # without ternary
+        # if category or condition:
+        #     self.category = category
+        #     self.condition = condition
+        # else:
+        #     self.category = ""
 
 
     def __str__(self):

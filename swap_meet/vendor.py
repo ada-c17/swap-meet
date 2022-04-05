@@ -1,9 +1,13 @@
 class Vendor:
     def __init__(self, inventory=None):
-        if inventory:
-            self.inventory = inventory
-        else:
-            self.inventory = []
+        
+        self.inventory = inventory if inventory is not None else []
+
+        # without ternary
+        # if inventory:
+        #     self.inventory = inventory
+        # else:
+        #     self.inventory = []
 
     def add(self, item):
         self.inventory.append(item)
@@ -46,10 +50,10 @@ class Vendor:
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
 
-        self.remove(my_item)
-        vendor.add(my_item)
-        vendor.remove(their_item)
-        self.add(their_item)
+        # self.remove(my_item)
+        vendor.add(self.remove(my_item))
+        # vendor.remove(their_item)
+        self.add(vendor.remove(their_item))
 
         return True
 
@@ -76,7 +80,6 @@ class Vendor:
         best_item = max(items_list, key = lambda x: x.condition)
        
         # without using max
-
         # best_condition = 0
         # best_item = None
 
