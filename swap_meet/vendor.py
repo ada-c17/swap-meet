@@ -1,4 +1,4 @@
-from swap_meet.item import Item
+# from swap_meet.item import Item
 
 class Vendor:
     #insert doc strings
@@ -36,4 +36,18 @@ class Vendor:
             if category == item.category:
                 category_list.append(item)
         return category_list
+
+    def swap_items(self, vendor, my_item, their_item):
+        '''
+        Swaps (removes/appends) items from instance inventory and vendor inventory; returns True.
+        '''
+        if my_item not in self.inventory or their_item not in vendor.inventory:
+            return False
+        
+        self.inventory.remove(my_item)
+        vendor.inventory.remove(their_item)
+        self.inventory.append(their_item)
+        vendor.inventory.append(my_item)
+
+        return True
         
