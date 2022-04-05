@@ -22,6 +22,32 @@ class Vendor:
             if item.category == category:
                 items.append(item)
         return items
+    
+    # best_item = tai.get_best_by_category("Clothing")
+    def get_best_by_category(self, category):
+        items = self.get_by_category(category)
+
+        if items == []:
+            return None
+        else:
+            best_item = items[0]
+            for item in items:
+                if item.condition > best_item.condition:
+                    best_item = item
+            return best_item
+    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        their_category_item = self.get_best_by_category(their_priority)
+        my_priority_item = other.get_best_by_category(my_priority)
+
+        if not their_category_item or not my_priority_item:
+            return None
+        else:
+            self.add(my_priority_item)
+            self.remove(their_category_item)
+            other.add(their_category_item)
+            other.remove(my_priority_item)
+            return True
 
     #  result = fatimah.swap_items(jolie, item_b, item_d)
     # passing in instance of Vendor, instance of Item, instance of Item
