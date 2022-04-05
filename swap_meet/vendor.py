@@ -39,13 +39,18 @@ class Vendor:
 
     def get_best_by_category(self, best_cat):
         cat_list = self.get_by_category(best_cat)
+        # max goes through cat_list, where each element is passed through the lambda func
+        # lambda func returns the float value from condition attr.
+        # based on that value, max finds the max and returns the element
+        # How does it know to return the element and not x.condition value
         best_item = max(cat_list, default=None, key=lambda x: x.condition)
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
-        if self.get_by_category(their_priority) and other.get_by_category(my_priority):
-            my_item = self.get_best_by_category(their_priority)
-            their_item = other.get_best_by_category(my_priority)
-            self.swap_items(other, my_item, their_item)
-            return True
-        return False
+        my_item = self.get_best_by_category(their_priority)
+        their_item = other.get_best_by_category(my_priority)
+        # if my_item and their_item:
+        #     self.swap_items(other, my_item, their_item)
+        #     return True
+        # return False
+        return self.swap_items(other, my_item, their_item)
