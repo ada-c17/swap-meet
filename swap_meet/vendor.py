@@ -22,7 +22,7 @@ class Vendor:
     
     def get_by_category(self, category_string):
         """Return list of items from inventory of a certain category"""
-
+### refactor this?? check first if any items match category??
         item_list = []
         for item in self.inventory:
             if item.category == category_string:
@@ -54,3 +54,20 @@ class Vendor:
             self.add(vendor_first_item)
             Vendor.add(my_first_item)
             return True
+    
+    def get_best_by_category(self, desired_category):
+        """Returns item in best condition within a certain category"""
+        # get list of items of category
+        potential_items = self.get_by_category(desired_category)
+        if not potential_items:
+            return None
+        elif len(potential_items) == 1:
+            return potential_items[0]
+        else:
+            best_item = max(potential_items, key = lambda item: item.condition)
+            return best_item
+
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """Swap best items in provided categories between self and another vendor"""
+        pass
