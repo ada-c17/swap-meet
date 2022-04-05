@@ -1,3 +1,10 @@
+'''
+Item class represents objects for trade at the swap meet, and instances of it make up the 'inventory' attribute for the Vendor class. 
+Attributes include category (string), condition (float), and age(float), all optional.
+Includes condition_description method which returns a string description associated with the numeric rating given for the item's condition.
+'''
+
+
 class Item:
 
     def __init__(self, category="", condition=0, age=None):
