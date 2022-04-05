@@ -1,8 +1,11 @@
 from swap_meet.item import Item
 
 class Vendor:
-    def __init__(self, inventory=[]):
+    def __init__(self, inventory=None):
         """we can optionally pass in a list with the keyword argument inventory"""
+        #refresh each instantiation with different object, otherwise updating on global variable
+        if not inventory:
+            inventory = []
         self.inventory = inventory
         
     def add(self, item):
@@ -15,7 +18,7 @@ class Vendor:
         else:
             return False
         return item
-    
+ 
     #wave 2
     def get_by_category(self, category):
         same_category_items = []
@@ -32,13 +35,13 @@ class Vendor:
     def swap_items(self, o_vendor, my_item, their_item):
         if my_item not in self.inventory or their_item not in o_vendor.inventory:
             return False
-        
-        if my_item in self.inventory:
+        print(str(self.inventory))
+        if my_item in self.inventory or their_item in o_vendor.inventory: 
             self.inventory.remove(my_item) #O(n)
             o_vendor.add(my_item) #O(1)
-        if their_item in o_vendor.inventory:    
             o_vendor.remove(their_item) #O(n)
             self.inventory.append(their_item) #O(1)
+        print(str(self.inventory))
         return True
        
     
