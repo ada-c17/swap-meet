@@ -1,5 +1,5 @@
 class Vendor:
-    def __init__(self, inventory=None):  # default value can't be mutable type
+    def __init__(self, inventory=None):  # mutable type can't be used as default value
         if inventory is None:
             inventory = []
         self.inventory = inventory
@@ -29,3 +29,24 @@ class Vendor:
         if self.inventory == [] or vendor.inventory == []:
             return False
         return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+
+    def get_best_by_category(self, category):
+        items = self.get_by_category(category)
+        if not items:
+            return None
+
+        condition, output = -1, None
+        for item in items:
+            if item.condition > condition:
+                condition = item.condition
+                output = item
+        return output
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_item = self.get_best_by_category(their_priority)
+        their_item = other.get_best_by_category(my_priority)
+
+        if my_item is None or their_item is None:
+            return False
+        
+        return self.swap_items(other, my_item, their_item)
