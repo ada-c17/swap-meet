@@ -3,6 +3,7 @@ from swap_meet.vendor import Vendor
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
+from swap_meet.item import Item
 
 
 def test_best_by_category():
@@ -247,3 +248,58 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert item_d in jesse.inventory
     assert item_e in jesse.inventory
     assert item_f in jesse.inventory
+
+
+def test_swap_by_newest():
+    item_a = Item(age=12)
+    item_b = Item(age=3)
+    item_c = Item(age=5)
+    fatimah = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    item_d = Item(age=3)
+    item_e = Item(age=6)
+    jolie = Vendor(
+        inventory=[item_d, item_e]
+    )
+
+    result = fatimah.swap_by_newest(jolie)
+
+    assert len(fatimah.inventory) == 3
+    assert item_b not in fatimah.inventory
+    assert item_a in fatimah.inventory
+    assert item_c in fatimah.inventory
+    assert item_d in fatimah.inventory
+    assert len(jolie.inventory) == 2
+    assert item_d not in jolie.inventory
+    assert item_e in jolie.inventory
+    assert item_b in jolie.inventory
+    assert result
+
+
+def test_swap_by_newest_missing_age_returns_false():
+    item_a = Item()
+    item_b = Item(age=3)
+    item_c = Item(age=5)
+    fatimah = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    item_d = Item(age=3)
+    item_e = Item(age=6)
+    jolie = Vendor(
+        inventory=[item_d, item_e]
+    )
+
+    result = fatimah.swap_by_newest(jolie)
+
+    assert len(fatimah.inventory) == 3
+    assert item_a in fatimah.inventory
+    assert item_b in fatimah.inventory
+    assert item_c in fatimah.inventory
+    assert item_d not in fatimah.inventory
+    assert len(jolie.inventory) == 2
+    assert item_d in jolie.inventory
+    assert item_e in jolie.inventory
+    assert not result
