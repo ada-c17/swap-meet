@@ -1,6 +1,8 @@
 from operator import attrgetter
 class Vendor:
-    def __init__(self, inventory =[]):
+    def __init__(self, inventory =None):
+        if inventory is None:
+            inventory =[]
         self.inventory = inventory
     
     def add(self, item):
