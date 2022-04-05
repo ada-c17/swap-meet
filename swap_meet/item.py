@@ -11,17 +11,17 @@ class Item:
     
     def condition_description(self):
         if self.condition == 0:
-            self.condition = "Poor"
+            return "Poor"
         elif self.condition == 1:
-            self.condition = "Could be better"
+            return "Could be better"
         elif self.condition == 2:
-            self.condition = "So so"
+            return "So so"
         elif self.condition == 3:
-            self.condition = "Quite good"
+            return "Quite good"
         elif self.condition == 4:
-            self.condition = "Good"
+            return "Good"
         else:
-            self.condition = "Excellent"
-        return self.condition
+            return "Excellent"
+            
 
 

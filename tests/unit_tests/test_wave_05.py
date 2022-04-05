@@ -3,6 +3,7 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
+
 #@pytest.mark.skip
 def test_clothing_has_default_category_and_to_str():
     cloth = Clothing()
@@ -38,6 +39,7 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         Decor(condition=5),
         Electronics(condition=5)
     ]
+
     five_condition_description = items[0].condition_description()
     assert isinstance(five_condition_description, str)
     for item in items:
@@ -52,3 +54,17 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+def test_condition_descriptions_are_correct():
+    # added an additional test to make sure all descriptions are accurate 
+        
+    clothing_1 = Clothing(condition=0)
+    clothing_2 = Clothing(condition=2)
+    decor = Decor(condition=3)
+    electronics = Electronics(condition=4)
+
+    assert clothing_1.condition_description() == "Poor"
+    assert clothing_2.condition_description() == "So so"
+    assert decor.condition_description() == "Quite good"
+    assert electronics.condition_description() == "Good"
+        
