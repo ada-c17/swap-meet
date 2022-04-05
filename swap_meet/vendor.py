@@ -50,6 +50,7 @@ class Vendor:
             return items_list
         return []
 
+
     # Wave 3
     def swap_items(self, vendor, my_item, their_item):
         """
@@ -68,7 +69,12 @@ class Vendor:
         return False
             
 
-    
+    # Wave 4
+    def swap_first_item(self, vendor):
+        if len(self.inventory) > 0 and len(vendor.inventory) > 0:
+            self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
+            return True
+        return False
 
 
 
