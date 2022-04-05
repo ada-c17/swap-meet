@@ -6,7 +6,6 @@ class Item:
     
     def __str__(self):
         return "Hello World!"
-        #return f"{self.category}"
 
     def condition_description(self):
         if self.condition <= 1:
