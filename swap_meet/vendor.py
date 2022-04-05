@@ -26,8 +26,8 @@ class Vendor:
         for i in self.inventory:
             if category == i.category:
                 same_category_items.append(i)
-            else:
-                continue
+            # else:
+            #     continue
         return same_category_items
     
     
@@ -56,7 +56,7 @@ class Vendor:
     #wave 6
     def get_best_by_category(self, category):
         same_category = self.get_by_category(category)
-        if not same_category:
+        if len(same_category) == 0: #if not same_category
             return None
     
         conditions = [cond.condition for cond in same_category]
@@ -64,7 +64,7 @@ class Vendor:
        
         for cond in same_category:
             if cond.condition >= highest_condition:
-                return cond #should we return list contains multible?
+                return cond 
             
         
     def swap_best_by_category(self, other, my_priority, their_priority):
@@ -77,12 +77,13 @@ class Vendor:
         for my_item in self.inventory:
             if their_priority == my_item.category:
                 they_prefered = self.get_best_by_category(their_priority)
-            else:
-                continue
+            # else:
+            #     continue :when we have no element left, this will still run the function, throw error
         for their_item in other.inventory:
             if my_priority != their_item.category:
                 we_prefered = other.get_best_by_category(my_priority)
-            else:
-                continue
+            # else:
+            #     continue
         
         return self.swap_items(other, they_prefered, we_prefered)
+    
