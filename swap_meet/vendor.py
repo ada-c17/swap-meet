@@ -9,6 +9,7 @@ class Vendor:
     methods : add and remove
     """
 
+    # Wave 1
     def __init__(self, inventory = None):
         """Inventory is keyword argument that optionally pass in."""
         # assign empty list to inventory when the if statement is falsy. 
@@ -16,8 +17,7 @@ class Vendor:
         if not inventory:
             inventory = []
         self.inventory = inventory
-        # self.obj_item = Item()
-
+        
         
     def add(self, item):
         """Adding new item into inventory and returns the added item."""
@@ -33,6 +33,7 @@ class Vendor:
         return False
 
 
+    # Wave 2
     def get_by_category(self, category):
         """
         - Adding item object into a list if category is in vendor's inventory
@@ -48,4 +49,27 @@ class Vendor:
                     items_list.append(item)
             return items_list
         return []
+
+    # Wave 3
+    def swap_items(self, vendor, my_item, their_item):
+        """
+        If my item is in my inventory and their item is in friend's inventory:
+            - remove my item from my inventory and add it to friend's inventory
+            - remove their item from friend's inventory and add it to my inventory
+            - return True
+        Otherwise return False
+        """
+        if my_item in self.inventory and their_item in vendor.inventory:
+            self.inventory.remove(my_item)
+            self.inventory.append(their_item)
+            vendor.inventory.append(my_item)
+            vendor.inventory.remove(their_item)
+            return True
+        return False
+            
+
+    
+
+
+
         
