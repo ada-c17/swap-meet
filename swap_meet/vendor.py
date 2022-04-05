@@ -28,6 +28,9 @@ class Vendor:
         return False
 
     def get_by_category(self, category):
+        '''
+        Returns list of items from inventory whose attribute category equals input category string.
+        '''
         category_list = []
         for item in self.inventory:
             if category == item.category:
