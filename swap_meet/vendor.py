@@ -3,7 +3,6 @@ class Vendor:
         self.inventory = inventory
         if inventory is None:
             self.inventory = []
-       
 
     def add(self, new_item):
         self.inventory.append(new_item)
@@ -22,8 +21,6 @@ class Vendor:
         for item in self.inventory:
             if item.category == category:
                 items.append(item)
-            if items == []:
-                return False
         return items
 
     #  result = fatimah.swap_items(jolie, item_b, item_d)
@@ -35,32 +32,23 @@ class Vendor:
             ouptut: True or False (False if items that should be swapped are not within their vendor's inventory)
         '''
         if my_item in self.inventory and their_item in vendor_friend.inventory:
-            #vendor_friend.inventory.append(my_item)
             vendor_friend.add(my_item)
-            #self.inventory.remove(my_item)
             self.remove(my_item)
-            #self.inventory.append(their_item)
             self.add(their_item)
-            #vendor_friend.inventory.remove(their_item)
             vendor_friend.remove(their_item)
             return True
         else: 
             return False
 
-# Here, both instances are called into the function:
-
-# def test_get_student_with_more_classes_student_a():
-#     charles = Student("Charles Babbage", "senior", ["mechanical engineering"])
-#     ada = Student(
-#         "Ada Lovelace",
-#         "sophomore",
-#         ["mathematics", "foundations of computing"]
-#     )
-#     # act
-#     student_a = charles.get_student_with_more_classes(ada, charles)
-#     assert student_a == ada    
-
-# def get_student_with_more_classes(self, student_a, student_b):
-#         if student_a.get_num_classes() > student_b.get_num_classes():
-#             return student_a
-#         return student_b
+# result = fatimah.swap_first_item(jolie)
+    def swap_first_item(self, vendor_friend):
+        if self.inventory == [] or vendor_friend.inventory == []: 
+            return False
+        else: 
+            my_first_item = self.inventory[0]
+            their_first_item = vendor_friend.inventory[0]
+            self.add(their_first_item)
+            vendor_friend.add(my_first_item)
+            self.remove(my_first_item)
+            vendor_friend.remove(their_first_item)
+            return True
