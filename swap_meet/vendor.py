@@ -38,6 +38,7 @@ class Vendor:
         return False
 
     def swap_first_item(self, second_person):
+        # Refactor to use swap_items???
         if len(self.inventory) > 0 and len(second_person.inventory) > 0:
             second_person.add(self.inventory.pop(0))
             self.add(second_person.inventory.pop(0))
