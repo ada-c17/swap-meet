@@ -48,3 +48,6 @@ class Vendor:
         self.add(friend_first_item)
 
         return True
+
+    # def get_best_by_category(self, category):
+
