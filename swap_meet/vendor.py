@@ -67,6 +67,39 @@ class Vendor:
             return False
 
         self.swap_items(other, friend_swap, self_swap)
-        
+
         return True
+
+    def swap_by_newest(self, other):
+        # self_newest = min(self.inventory.age)
+        # friend_newest = min(other.inventory.age)
+
+        self_newest = 100000.0
+        self_newest_item = None
+        friend_newest = 100000.0
+        friend_newest_item = None
+
+        print(self_newest)
+        print(friend_newest)
+        print(self.inventory)
+        print(other.inventory)
+
+        for item in self.inventory:
+            print(item.age)
+            if item.age < self_newest:
+                self_newest = item.age
+                self_newest_item = item 
+        
+        for item in other.inventory:
+            if item.age < friend_newest:
+                friend_newest = item.age
+                friend_newest_item = item
+
+        print(self_newest)
+        print(friend_newest)
+        
+        return self.swap_items(other, self_newest_item, friend_newest_item)
+
+        
+
 
