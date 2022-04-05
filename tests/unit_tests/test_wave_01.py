@@ -50,4 +50,4 @@ def test_removing_not_found_is_false():
     result = vendor.remove(item)
 
     assert len(vendor.inventory) == 3
-    assert result == item
+    assert result == False
