@@ -17,7 +17,7 @@ class Item:
             2: "This might be nice in the corner on a shelf somewhere.",
             3: "It's better than nothing!",
             4: "I used it but I didn't really use it",
-            5: "Just as good as the store but you pay less",
+            5: "Just as good as the store but it'll cost you less",
         }
 
         return descriptions[self.condition]
