@@ -27,20 +27,22 @@ class Vendor:
         if my_item not in self.inventory or their_item not in other.inventory:
             return False
         else:
-            self.inventory.remove(my_item)
+            # self.inventory.remove(my_item)
+            # self.inventory.append(their_item)
+            # other.inventory.remove(their_item)
+            # other.inventory.append(my_item)
             self.inventory.append(their_item)
-            other.inventory.remove(their_item)
             other.inventory.append(my_item)
+            self.inventory.remove(my_item)
+            other.inventory.remove(their_item)
             return True
 
     def swap_first_item(self, other):
         if not self.inventory or not other.inventory:
             return False
         else:
-            self.inventory.insert(1, other.inventory[0])
-            other.inventory.insert(1, self.inventory[0])
-            self.inventory.pop(0)
-            other.inventory.pop(0)
+            self.swap_items(other, self.inventory[0], other.inventory[0])
+            # Why does this work even though we are mutating list ordering mid function?
             return True
 
     def get_best_by_category(self, category):
