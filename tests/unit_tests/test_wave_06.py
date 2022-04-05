@@ -87,7 +87,8 @@ def test_swap_best_by_category():
     assert result
     assert tai.get_best_by_category("Decor").category == "Decor"
     assert jesse.get_best_by_category("Clothing").category == "Clothing"
-    assert len(tai.inventory) == 3 and len(jesse.inventory) == 3
+    assert len(tai.inventory) == 3 
+    assert len(jesse.inventory) == 3
     assert item_a in tai.inventory
     assert item_b in tai.inventory
     assert item_f in tai.inventory
