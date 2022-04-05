@@ -9,12 +9,12 @@ class Vendor:
             inventory = []
         self.inventory = inventory
 
-    # method to add item to inventory
+    # add item to inventory
     def add(self, item):
         self.inventory.append(item)
         return item
     
-    # method to remove item from inventory
+    # remove item from inventory
     def remove(self, item):
         if item in self.inventory:
             self.inventory.remove(item)
@@ -22,7 +22,7 @@ class Vendor:
         else:
             return False
 
-    # method to return list of items by item category
+    # return list of items by item category
     def get_by_category(self, category):
         items = []
         for item in self.inventory:
@@ -30,29 +30,36 @@ class Vendor:
                 items.append(item)
         return items
 
-    # method to swap from vendor's inventory to friend's inventory
-    def swap_items(self, other_vendor, my_item, their_item):
-        if my_item in self.inventory and their_item in other_vendor.inventory:
+    # swap from vendor's inventory to another vendor's inventory
+    def swap_items(self, other, my_item, their_item):
+        if my_item in self.inventory and their_item in other.inventory:
             self.remove(my_item)
             self.add(their_item)
-            other_vendor.remove(their_item)
-            other_vendor.add(my_item)
+            other.remove(their_item)
+            other.add(my_item)
             return True
         return False
 
-    # method to swap first item
-    def swap_first_item(self, other_vendor):
-        if self.inventory and other_vendor.inventory:
+    # swap vendor's first item in inventory with another vendor's first item
+    def swap_first_item(self, other):
+        if self.inventory and other.inventory:
             my_item = self.inventory[0]
-            their_item = other_vendor.inventory[0]
+            their_item = other.inventory[0]
             # using swap_items method
-            self.swap_items(other_vendor, my_item, their_item)
+            self.swap_items(other, my_item, their_item)
             return True
         return False
 
-    # method to get item with best condition in a certain category
+    # get item with best condition in a certain category
     def get_best_by_category(self, category):
+        # using get_by_category method
         best_item_list = self.get_by_category(category)
         if best_item_list:
             return max(best_item_list, key=attrgetter("condition"))
         return None
+
+    # swap best item of certain categories with another vendor's best item
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_best_item = self.get_best_by_category(their_priority) # items from my inventory with their priority category
+        their_best_item = other.get_best_by_category(my_priority) # items from their invenroy with my priority category
+        return self.swap_items(other, my_best_item, their_best_item)
