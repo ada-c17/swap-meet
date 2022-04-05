@@ -1,3 +1,5 @@
+from swap_meet.item import Item
+
 class Vendor:
     # Each Vendor will have an attribute named 'inventory' which is an empty list by default
     # When Vender is instantiated, optionally pass in a list with the keyword argument 'inventory'
@@ -25,3 +27,20 @@ class Vendor:
             return item_to_remove
         else:
             return False
+
+    # Instances of Vendor have an instance method named 'get_by_category'
+
+    def get_by_category(self, category=""):
+        """
+        Input: ""
+        Output: list of items ['Computer', 'Calculator']
+        """
+        found_items = []
+
+        for ele in self.inventory:
+            # Loop through the inventory list in Vendor
+            if category == ele.category:
+                # If the category input string matches the inventory list element's category, add to list of 'found items'
+                found_items.append(ele)
+
+        return found_items
