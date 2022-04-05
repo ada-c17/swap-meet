@@ -67,7 +67,33 @@ class Vendor:
 
         my_inventory.append(friends_first_item)
         friends_inventory.append(my_first_item) 
-        return True             
+        return True    
+
+    def get_best_by_category(self, category):
+        matching_category_item_list=[]
+
+        for i in self.inventory:
+            if category==i.category:
+                matching_category_item_list.append(i)
+
+        if len(matching_category_item_list) == 0:
+            return None
+        
+        best_item_in_category=matching_category_item_list[0]
+       
+        for e in matching_category_item_list:
+            if e.condition>best_item_in_category.condition:
+                best_item_in_category = e
+
+        return best_item_in_category
+
+    def swap_best_by_category(self,other,my_priority,their_priority):
+        what_I_want = other.get_best_by_category(my_priority)
+        what_they_want = self.get_best_by_category(their_priority)
+
+        return self.swap_items(other, what_they_want, what_I_want) #to reduce the amount of code i am using swap_items method that has the same logic
+
+
 
 
 
