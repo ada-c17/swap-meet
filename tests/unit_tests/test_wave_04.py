@@ -2,7 +2,7 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-# Test 15
+# Test 16
 #@pytest.mark.skip
 def test_swap_first_item_returns_true():
     item_a = Item(category="clothing")
@@ -31,7 +31,7 @@ def test_swap_first_item_returns_true():
     assert item_a in jolie.inventory
     assert result
 
-# Test 16
+# Test 17
 #@pytest.mark.skip
 def test_swap_first_item_from_my_empty_returns_false():
     fatimah = Vendor(
@@ -50,7 +50,7 @@ def test_swap_first_item_from_my_empty_returns_false():
     assert len(jolie.inventory) == 2
     assert not result
 
-# Test 17
+# Test 18
 #@pytest.mark.skip
 def test_swap_first_item_from_their_empty_returns_false():
     item_a = Item(category="clothing")
