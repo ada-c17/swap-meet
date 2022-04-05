@@ -1,4 +1,5 @@
 from operator import invert
+from tokenize import maybe
 
 from swap_meet.item import Item
 
@@ -47,6 +48,26 @@ class Vendor:
 
         return True
                         
+
+    def swap_first_item(self,friend):
+        my_inventory=self.inventory
+        friends_inventory=friend.inventory
+
+        if my_inventory==[]:
+            return False
+        
+        if friends_inventory==[]:
+            return False   
+
+        my_first_item=my_inventory[0]  
+        friends_first_item=friends_inventory[0]  
+
+        my_inventory.remove(my_first_item)
+        friends_inventory.remove(friends_first_item)  
+
+        my_inventory.append(friends_first_item)
+        friends_inventory.append(my_first_item) 
+        return True             
 
 
 
