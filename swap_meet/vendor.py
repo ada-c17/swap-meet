@@ -39,3 +39,12 @@ class Vendor:
             self.add(second_person.inventory.pop(0))
             return True
         return False
+
+    def get_best_by_category(self, best_cat):
+        highest_rating = 0
+        best_item = None
+        for item in self.inventory:
+            if item.category == best_cat and item.condition > highest_rating:
+                highest_rating = item.condition
+                best_item = item
+        return best_item
