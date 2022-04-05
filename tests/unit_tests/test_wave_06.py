@@ -90,7 +90,7 @@ def test_swap_best_by_category():
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_reordered():
     # Arrange
     item_a = Decor(condition=2.0)
@@ -114,6 +114,11 @@ def test_swap_best_by_category_reordered():
         their_priority="Decor"
     )
     
+    #Assert
+    assert result
+    assert (len(tai.inventory) and len(jesse.inventory)) == 3
+    assert (item_f and item_a and item_b) in tai.inventory
+    assert (item_c and item_d and item_e) in jesse.inventory
     
     # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
@@ -124,7 +129,7 @@ def test_swap_best_by_category_reordered():
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_no_inventory_is_false():
     tai = Vendor(
         inventory=[]
@@ -150,7 +155,7 @@ def test_swap_best_by_category_no_inventory_is_false():
     assert item_b in jesse.inventory
     assert item_c in jesse.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_no_other_inventory_is_false():
     item_a = Clothing(condition=2.0)
     item_b = Decor(condition=4.0)
@@ -176,7 +181,7 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     assert item_b in tai.inventory
     assert item_c in tai.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_no_match_is_false():
     # Arrange
     item_a = Decor(condition=2.0)
@@ -200,7 +205,9 @@ def test_swap_best_by_category_no_match_is_false():
         their_priority="Clothing"
     )
 
-    raise Exception("Complete this test according to comments below.")
+    #Assert
+
+    # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
