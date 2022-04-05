@@ -6,7 +6,6 @@ def test_items_have_blank_default_category():
     item = Item()
     assert item.category == ""
 
-@pytest.mark.skip
 def test_get_items_by_category():
     item_a = Item(category="clothing")
     item_b = Item(category="electronics")
@@ -22,7 +21,6 @@ def test_get_items_by_category():
     assert item_c in items
     assert item_b not in items
 
-@pytest.mark.skip
 def test_get_no_matching_items_by_category():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -33,7 +31,8 @@ def test_get_no_matching_items_by_category():
 
     items = vendor.get_by_category("electronics")
 
-    raise Exception("Complete this test according to comments below.")
+    # raise Exception("Complete this test according to comments below.")
+    assert items == []
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
