@@ -18,18 +18,12 @@ class Vendor:
     def get_by_category(self, category):
         categorized_list = []
 
-        if self.inventory and len(self.inventory) > 0:
-            for item in self.inventory:
-                if item.category == category:
-                    categorized_list.append(item)
-        
-        # return categorized_list
-            if len(categorized_list) >= 1:
-                return categorized_list
-            else: 
-                return None 
+        for item in self.inventory:
+            print(item.category)
+            if item.category == category:
+                categorized_list.append(item)
 
-        # categorized_list if len(categorized_list) >= 1 else None 
+        return categorized_list
 
     def swap_items(self, friend, my_item, their_item):
         if my_item not in self.inventory or their_item not in friend.inventory:

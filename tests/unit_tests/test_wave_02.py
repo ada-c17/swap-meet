@@ -38,4 +38,4 @@ def test_get_no_matching_items_by_category():
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
-    assert items == None
+    assert len(items) == 0
