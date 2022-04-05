@@ -8,7 +8,7 @@ class Vendor:
 
 
     def add(self, item):
-
+        
         self.inventory.append(item)
         return item
 
@@ -34,7 +34,7 @@ class Vendor:
     def get_by_category(self, category):
         return [item for item in self.inventory if item.category == category]
 
-
+    
     def swap_items(self, other, my_item, their_item):
 
         my_item_index = self.get_item_index(my_item)
@@ -80,3 +80,26 @@ class Vendor:
         
         else:
             return self.swap_items(other, my_item, their_item)
+    
+
+    def get_newest_item(self):
+        newest_item = None
+        smallest_age = None
+
+        for item in self.inventory:
+            if item.age and (not smallest_age or item.age < smallest_age):
+                newest_item = item
+                smallest_age = item.age
+        
+        return newest_item
+
+
+    def swap_by_newest(self, other):
+
+        my_newest = self.get_newest_item()
+        their_newest = other.get_newest_item()
+
+        if not my_newest or not their_newest:
+            return False
+
+        return self.swap_items(other, my_newest, their_newest)
