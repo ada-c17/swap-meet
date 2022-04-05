@@ -2,14 +2,18 @@ class Vendor:
 
     def __init__(self, inventory=None):
         if inventory is None:
-            self.inventory = []
+            self._inventory = []
         else:
-            self.inventory = inventory
+            self._inventory = inventory
+
+
+    @property
+    def inventory(self):       # make inventory a read-only attribute
+        return self._inventory
 
 
     def add(self, item):
-        
-        self.inventory.append(item)
+        self._inventory.append(item)
         return item
 
 
@@ -19,20 +23,20 @@ class Vendor:
         if item_index == -1:
             return False
 
-        del self.inventory[item_index]
+        del self._inventory[item_index]
 
         return item
 
 
     def get_item_index(self, item):
         try:
-            return self.inventory.index(item)
+            return self._inventory.index(item)
         except ValueError:
             return -1
 
 
     def get_by_category(self, category):
-        return [item for item in self.inventory if item.category == category]
+        return [item for item in self._inventory if item.category == category]
 
     
     def swap_items(self, other, my_item, their_item):
@@ -43,17 +47,17 @@ class Vendor:
         if my_item_index == -1 or their_item_index == -1:
             return False
         
-        self.inventory[my_item_index], other.inventory[their_item_index] = their_item, my_item
+        self._inventory[my_item_index], other._inventory[their_item_index] = their_item, my_item
         
         return True
 
     
     def swap_first_item(self, other):
 
-        if not self.inventory or not other.inventory:
+        if not self._inventory or not other._inventory:
             return False
         
-        return self.swap_items(other, self.inventory[0], other.inventory[0])
+        return self.swap_items(other, self._inventory[0], other._inventory[0])
 
 
     def get_best_by_category(self, category):
@@ -86,7 +90,7 @@ class Vendor:
         newest_item = None
         smallest_age = None
 
-        for item in self.inventory:
+        for item in self._inventory:
             if item.age and (not smallest_age or item.age < smallest_age):
                 newest_item = item
                 smallest_age = item.age
