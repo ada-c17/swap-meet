@@ -1,6 +1,7 @@
 class Vendor:
 
     def __init__(self, inventory=None):
+
         if inventory is None:
             self._inventory = []
         else:
@@ -8,16 +9,21 @@ class Vendor:
 
 
     @property
-    def inventory(self):       # make inventory a read-only attribute
+    def inventory(self):       
+        # make inventory a read-only attribute
+        # changes to inventory should only be done via add() & remove()
+        
         return self._inventory
 
 
     def add(self, item):
+
         self._inventory.append(item)
         return item
 
 
     def remove(self, item):
+
         item_index = self.get_item_index(item)
 
         if item_index == -1:
@@ -29,6 +35,7 @@ class Vendor:
 
 
     def get_item_index(self, item):
+
         try:
             return self._inventory.index(item)
         except ValueError:
@@ -36,6 +43,7 @@ class Vendor:
 
 
     def get_by_category(self, category):
+
         return [item for item in self._inventory if item.category == category]
 
     
@@ -87,6 +95,7 @@ class Vendor:
     
 
     def get_newest_item(self):
+        
         newest_item = None
         smallest_age = None
 
