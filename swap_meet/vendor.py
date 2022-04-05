@@ -9,6 +9,7 @@ class Vendor:
         self.inventory.append(item)
         return item
 
+
     # Removes the matching item from the inventory
     def remove(self, item):
         if item not in self.inventory:
@@ -16,6 +17,7 @@ class Vendor:
         else:
             self.inventory.remove(item)
             return item
+
 
     # Takes one argument: a string, representing a category
     # Returns a list of Items in the inventory with that category
@@ -25,7 +27,10 @@ class Vendor:
         for item in self.inventory:
             if item.category == category:
                 item_list.append(item)
+
+
         return item_list
+
 
     # removes my_item from this Vendor's inventory
     # adds my_item to the other Vendor's inventory
@@ -44,6 +49,11 @@ class Vendor:
 
         return True
 
+
+    #removes first item from this Vendor's inventory
+    # adds the other Vendor's first item
+    # removes first item from other Vendor's inventory
+    # adds this Vendor's first item
     def swap_first_item(self, vendor):
         if len(self.inventory) == 0 or len(vendor.inventory) == 0:
             return False
@@ -54,6 +64,24 @@ class Vendor:
         vendor.remove(vendor.inventory[0])
 
         return True
+
+
+    #gets the item with the best condition in a certain category
+    def get_best_by_category(self, category):
+
+        category_inventory = self.get_by_category(category)
+
+        if len(category_inventory) == 0:
+            return None
+        
+        highest_rated = category_inventory[0]
+        
+        for item in category_inventory:
+    
+            if (item.condition) > (highest_rated.condition):
+                highest_rated = item
+                
+        return highest_rated
 
 
         

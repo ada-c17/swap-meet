@@ -1,4 +1,5 @@
 
+
 class Item:
     
     def __init__(self, category = "", condition = 0):

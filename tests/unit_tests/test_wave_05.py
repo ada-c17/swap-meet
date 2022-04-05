@@ -6,6 +6,7 @@ from swap_meet.electronics import Electronics
 #@pytest.mark.skip
 def test_clothing_has_default_category_and_to_str():
     cloth = Clothing()
+
     assert cloth.category == "Clothing"
     assert str(cloth) == "The finest clothing you could wear."
 
