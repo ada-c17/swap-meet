@@ -9,15 +9,13 @@ class Item:
         #return f"{self.category}"
 
     def condition_description(self):
-        if self.condition < 1:
+        if self.condition <= 1:
             return "no comment"
-        elif self.condition < 2:
-            return "umm"
-        elif self.condition < 3:
+        elif self.condition <= 2:
             return "eh"
-        elif self.condition < 4:
+        elif self.condition <= 3:
             return "good"
-        elif self.condition < 5:
+        elif self.condition <= 4:
             return "great"
-        elif self.condition >= 5:
+        elif self.condition <= 5:
             return "perfect"
