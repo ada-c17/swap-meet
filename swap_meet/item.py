@@ -16,5 +16,7 @@ class Item:
         self.category = category
 
 
-
+    def __str__(self):
+        """Return string with 'Hellow World!' """
+        return str("Hello World!")
 
