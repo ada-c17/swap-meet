@@ -27,3 +27,10 @@ class Vendor:
 
     def get_by_category(self, category):
         return [item for item in self.inventory if item.category == category]
+
+    def swap_first_item(self, vendor):
+        if not self.inventory or not vendor.inventory:
+            return False
+        else:
+            self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+            return True
