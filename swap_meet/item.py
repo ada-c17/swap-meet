@@ -18,4 +18,4 @@ class Item:
         elif self.condition <= 4:
             return "great"
         elif self.condition <= 5:
-            return "perfect"
+            return "perfect, mwah"
