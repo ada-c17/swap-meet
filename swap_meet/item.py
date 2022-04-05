@@ -5,3 +5,6 @@ class Item:
         #super().__init__(inventory)
         self.category=category
 
+    def __str__(self):
+        return (f"Hello World!")   
+
