@@ -6,7 +6,11 @@ from swap_meet.item import Item
 class Vendor:
     """
     attributes: inventory
-    methods : add and remove
+    methods: 
+        - In wave 1: add() and remove()
+        - In wave 2: get_by_category(), 
+        - In Wave 3: swap_items()
+        - In Wave 4: swap_first_item()
     """
 
     # Wave 1
@@ -71,6 +75,11 @@ class Vendor:
 
     # Wave 4
     def swap_first_item(self, vendor):
+        """
+        Swapping first item of my inventory and friend's inventory:
+        - if both inventories are not empty then return True
+        - otherwise, return False
+        """
         if len(self.inventory) > 0 and len(vendor.inventory) > 0:
             self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
             return True
