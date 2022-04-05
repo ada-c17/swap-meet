@@ -9,14 +9,19 @@ class Vendor:
 
     def add(self, item):
         self.inventory.append(item)
-        return self.inventory
+        return item
         
 
     def remove(self, item):
-        if item not in self.inventory:
-            return False
-        self.inventory.remove(item)
-        return self.inventory
+        if item in self.inventory:
+            self.inventory.remove(item)
+            return item
+        return False 
+
+        # if item not in self.inventory:
+        #     return False
+        # self.inventory.remove(item)
+        # return item
 
 
     def get_by_category(self, category):

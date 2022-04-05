@@ -27,7 +27,7 @@ def test_adding_to_inventory():
 
     assert len(vendor.inventory) == 1
     assert item in vendor.inventory
-    assert result == [item]
+    assert result == item
 
 # Test 4
 #@pytest.mark.skip
@@ -41,7 +41,7 @@ def test_removing_from_inventory_returns_item():
 
     assert len(vendor.inventory) == 3
     assert item not in vendor.inventory
-    assert result == ["a", "b", "c"]
+    assert result == item
     
 
 # Test 5
@@ -56,7 +56,5 @@ def test_removing_not_found_is_false():
 
     #raise Exception("Complete this test according to comments below.")
     # *********************************************************************
-    assert len(vendor.inventory) == 3
-    assert item not in vendor.inventory
     assert result == False
     # *********************************************************************
