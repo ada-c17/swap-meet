@@ -23,6 +23,10 @@ class Vendor:
             if item.category == category:
                 items.append(item)
         return items
+        # if items:
+        #     return items
+        # else:
+        #     return False
 
     def swap_items(self, second_person, user_item, second_item):
         if user_item in self.inventory and second_item in second_person.inventory:
@@ -48,3 +52,11 @@ class Vendor:
                 highest_rating = item.condition
                 best_item = item
         return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        if self.get_by_category(their_priority) and other.get_by_category(my_priority):
+            my_item = self.get_best_by_category(their_priority)
+            their_item = other.get_best_by_category(my_priority)
+            self.swap_items(other, my_item, their_item)
+            return True
+        return False

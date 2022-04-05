@@ -8,6 +8,7 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
+        # how should this handle floats?
         condition_dict = {
             1: "Don't buy it",
             2: "At your own risk",

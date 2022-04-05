@@ -3,6 +3,7 @@ from .item import Item
 class Clothing(Item):
     
     def __init__(self, category="Clothing", condition=0):
+        #use super
         self.category = category
         self.condition = condition
     
