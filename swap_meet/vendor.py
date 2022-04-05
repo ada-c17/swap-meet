@@ -42,3 +42,15 @@ class Vendor:
             self.add(their_swap_item)
             Vendor.add(my_swap_item)
             return True
+    
+    def swap_first_item(self, Vendor):
+        """Swaps first item in self and another vendor's inventory"""
+        # check valid input
+        if not self.inventory or not Vendor.inventory:
+            return False
+        else:
+            my_first_item = self.inventory.pop(0)
+            vendor_first_item = Vendor.inventory.pop(0)
+            self.add(vendor_first_item)
+            Vendor.add(my_first_item)
+            return True
