@@ -2,10 +2,8 @@ from swap_meet.item import Item
 
 class Clothing(Item):
     
-    def __init__(self, condition=None):
+    def __init__(self, condition = 0):
         self.category = "Clothing"
-        if not condition:
-            condition = 0
         self.condition = condition
     
     
