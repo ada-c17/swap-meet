@@ -32,22 +32,14 @@ class Vendor:
         return False
 
     def swap_first_item(self, second_person):
-        # Refactor to use swap_items???
         if len(self.inventory) > 0 and len(second_person.inventory) > 0:
-            #second_person.add(self.inventory.pop(0))
-            #self.add(second_person.inventory.pop(0))
             self.swap_items(second_person, self.inventory[0], second_person.inventory[0])
             return True
         return False
 
     def get_best_by_category(self, best_cat):
-        # Get list with get_by_category, then use max???
-        highest_rating = 0
-        best_item = None
-        for item in self.inventory:
-            if item.category == best_cat and item.condition > highest_rating:
-                highest_rating = item.condition
-                best_item = item
+        cat_list = self.get_by_category(best_cat)
+        best_item = max(cat_list, default=None, key=lambda x: x.condition)
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
