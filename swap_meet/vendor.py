@@ -1,9 +1,16 @@
 from operator import attrgetter
+from swap_meet.item import Item
 class Vendor:
     def __init__(self, inventory =None):
         if inventory is None:
             inventory =[]
+        # if isinstance(inventory,list) and not inventory:
         self.inventory = inventory
+        # elif all(isinstance(x, Item) for x in inventory):   
+        #     self.inventory = inventory
+        # else:
+        #     raise ValueError ("Argument inventory should be a list of objects class Item")  
+        # ! I cant add the logic above because tests in Wave1 pass the list of strings!
     
     def add(self, item):
         self.inventory.append(item)
