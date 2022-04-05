@@ -46,11 +46,12 @@ def test_removing_not_found_is_false():
     vendor = Vendor(
         inventory=["a", "b", "c"]
     )
+    # raise ValueError()
+    # # with pytest.raises(ValueError):
+    result = vendor.remove(item)
 
-    with pytest.raises(ValueError):
-        result = vendor.remove(item)
+    assert result == False
 
-    assert reult == False
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
