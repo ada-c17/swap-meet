@@ -30,10 +30,7 @@ class Vendor:
     
     def swap_first_item(self, other_vendor):
         if len(self.inventory) > 0 and len(other_vendor.inventory) > 0:
-            self.add(other_vendor.inventory[0]) 
-            other_vendor.add(self.inventory[0])  
-            self.remove(self.inventory[0]) 
-            other_vendor.remove(other_vendor.inventory[0])
+            self.swap_items(other_vendor, self.inventory[0], other_vendor.inventory[0])
             return True
     
     def get_best_by_category(self, category):  
@@ -49,8 +46,5 @@ class Vendor:
         my_inventory = self.get_by_category(their_priority)
         other_inventory = other.get_by_category(my_priority)
         if len(my_inventory) > 0 and len(other_inventory) > 0:
-                self.add(other.get_best_by_category(my_priority))
-                other.add(self.get_best_by_category(their_priority))
-                self.remove(self.get_best_by_category(their_priority))
-                other.remove(other.get_best_by_category(my_priority))
-                return True
+            self.swap_items(other, self.get_best_by_category(their_priority), other.get_best_by_category(my_priority))
+            return True    
