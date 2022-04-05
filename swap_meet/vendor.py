@@ -36,5 +36,15 @@ class Vendor:
         self.add(their_item)
         return True
 
+    def swap_first_item(self, vendor):
+        if len(self.inventory) >=1 and len(vendor.inventory) >= 1:
+            vendor.add(self.inventory[0])
+            self.add(vendor.inventory[0])
+            self.remove(self.inventory[0])
+            vendor.remove(vendor.inventory[0])
+        else:
+            return False
+
+        return True
 
 
