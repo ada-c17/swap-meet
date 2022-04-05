@@ -43,10 +43,7 @@ class Vendor:
         self_first = self.inventory[0]
         friend_first = friend.inventory[0]
 
-        self.inventory.append(friend_first)
-        friend.inventory.append(self_first)
-        self.inventory.remove(self_first)
-        friend.inventory.remove(friend_first)
+        self.swap_items(friend, self_first, friend_first)
 
         return True 
 
@@ -67,12 +64,9 @@ class Vendor:
         self_swap = other.get_best_by_category(my_priority)
 
         if not friend_swap or not self_swap:
-            return False 
+            return False
 
-        self.inventory.append(self_swap)
-        other.inventory.append(friend_swap)
-        self.inventory.remove(friend_swap)
-        other.inventory.remove(self_swap)
-
+        self.swap_items(other, friend_swap, self_swap)
+        
         return True
 
