@@ -58,3 +58,14 @@ class Vendor:
             return None
 
         return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        
+        giving = self.get_best_by_category(their_priority)
+        receiving = other.get_best_by_category(my_priority)
+        if giving and receiving:
+            self.swap_items(other, giving, receiving)
+        else:
+            return False
+
+        return True
