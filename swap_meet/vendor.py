@@ -1,6 +1,10 @@
 # Wave 1
+from curses import beep
 from nis import cat
 from swap_meet.item import Item
+from swap_meet.clothing import Clothing
+from swap_meet.decor import Decor
+from swap_meet.electronics import Electronics
 
 
 class Vendor:
@@ -11,6 +15,7 @@ class Vendor:
         - In wave 2: get_by_category(), 
         - In Wave 3: swap_items()
         - In Wave 4: swap_first_item()
+        - In Wave 6: get_best_by_category()
     """
 
     # Wave 1
@@ -84,6 +89,25 @@ class Vendor:
             self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
             return True
         return False
+
+
+    # Wave 6
+    def get_best_by_category(self, category):
+        """
+        - Returning best item if inventory for item is not empty and has the highest condition and matching category
+        - Otherwise, return None
+        """
+
+        if len(self.inventory) > 0:
+            for item in self.inventory:
+                if item.category == category:  
+                    max_condi = max([item.condition for item in self.inventory if item.category == category])
+                    if item.condition == max_condi:
+                        return item
+        return None
+
+
+
 
 
 
