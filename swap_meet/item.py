@@ -1,7 +1,13 @@
-from swap_meet.utils import CONDITION_RATINGS
-
-
 class Item:
+
+    CONDITION_RATINGS = {
+    0: "You can help me throw in the trash",
+    1: "Poor",
+    2: "Fair",
+    3: "Good Condition",
+    4: "Mint",
+    5: "Brand New"
+    }
 
     def __init__(self, category="", condition=0, age=0):
         self.category = category
@@ -13,4 +19,4 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
-        return CONDITION_RATINGS.get(self.condition, None)
+        return Item.CONDITION_RATINGS.get(self.condition, None)
