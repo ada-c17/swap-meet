@@ -39,5 +39,6 @@ def test_get_no_matching_items_by_category():
 
     #raise Exception("Complete this test according to comments below.")
     # *********************************************************************
-    assert items == False
+    assert items == []
+    assert len(items) == 0
     # *********************************************************************

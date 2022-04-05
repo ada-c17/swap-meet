@@ -29,14 +29,16 @@ class Vendor:
         for item in self.inventory:
             if item.category == category:
                 inventory_by_category.append(item)
+        return inventory_by_category
         # if item.category != category:
         #     return False 
         #return inventory_by_category
         
-        if len(inventory_by_category) > 0:
-            return inventory_by_category
-        else:
-            return False 
+        # if len(inventory_by_category) > 0:
+        #     return inventory_by_category
+        # else:
+        #     return False 
+            
                 
     def swap_items(self, other_vendor, my_item, their_item):
         if my_item in self.inventory and their_item in other_vendor.inventory:
@@ -56,4 +58,6 @@ class Vendor:
     #             self.inventory.append(item)
     #             friend.inventory.remove(item)
     #     return True 
+
+    #def swap_first_item(self, other_vendor)
 
