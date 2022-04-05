@@ -12,6 +12,10 @@ class Vendor:
     # and adds the item to 'inventory' and returns the item that was added
 
     def add(self, item_to_add):
+        """
+        Input: one item to add to inventory
+        Output: the item that is being passed in
+        """
         self.inventory.append(item_to_add)
 
         return item_to_add
@@ -21,7 +25,11 @@ class Vendor:
     # and returns the item that was removed.
     # If there's no matching item in 'inventory', the method should return False
     def remove(self, item_to_remove):
-        
+        """
+        Input: one item to remove from the inventory
+        Output: the item that is being passed in
+        """
+
         if item_to_remove in self.inventory:
             self.inventory.remove(item_to_remove)
             return item_to_remove
@@ -32,7 +40,7 @@ class Vendor:
 
     def get_by_category(self, category=""):
         """
-        Input: ""
+        Input: empty string as default or some string
         Output: list of items ['Computer', 'Calculator']
         """
         found_items = []
