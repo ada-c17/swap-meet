@@ -23,7 +23,7 @@ def test_get_items_by_category():
     assert item_c in items
     assert item_b not in items
 
-pytest.mark.skip
+#pytest.mark.skip
 def test_get_no_matching_items_by_category():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
