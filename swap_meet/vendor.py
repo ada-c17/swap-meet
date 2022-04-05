@@ -41,4 +41,14 @@ class Vendor:
             self.inventory.pop(0)
             friend.inventory.pop(0)
             return True
-        
+
+    def get_best_by_category(self, category):
+        items_list = [thing for thing in self.inventory if thing.category == category]
+        if items_list == []:
+            return None
+        best_item = items_list[0]
+        for item in items_list:
+            if item.condition > best_item.condition:
+                best_item = item
+        return best_item
+    
