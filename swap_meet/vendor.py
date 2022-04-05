@@ -1,10 +1,11 @@
-from swap_meet.item import Item
+# from swap_meet.item import Item
 from operator import attrgetter
+import copy
 
 class Vendor:
     
     def __init__(self, inventory = []):
-        self.inventory = inventory
+        self.inventory = copy.copy(inventory)
     
     def add(self, it):
         self.inventory.append(it)
