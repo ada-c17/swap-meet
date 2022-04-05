@@ -18,15 +18,9 @@ class Vendor:
         return False
 
     def get_by_category(self, category):
-        items = []
-        for item in self.inventory:
-            if item.category == category:
-                items.append(item)
+        items = [item for item in self.inventory if item.category == category]
+        # Line 38 in integration tests wave 1/2/3 expects empty list if no category match
         return items
-        # if items:
-        #     return items
-        # else:
-        #     return False
 
     def swap_items(self, second_person, user_item, second_item):
         if user_item in self.inventory and second_item in second_person.inventory:
@@ -46,6 +40,7 @@ class Vendor:
         return False
 
     def get_best_by_category(self, best_cat):
+        # Get list with get_by_category, then use max???
         highest_rating = 0
         best_item = None
         for item in self.inventory:
