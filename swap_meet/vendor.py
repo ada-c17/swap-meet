@@ -40,3 +40,16 @@ class Vendor:
         swap_friend.add(my_item)
         return True
         
+    def get_best_by_category(self, category):
+        # if not category:
+        #     return None
+        category_list = self.get_by_category(category)
+        if not category_list:
+            return None
+        best_condition = max(category_list, key=lambda x: x.condition).condition
+        for item in category_list:
+            if item.condition == best_condition:
+                return item
+
+    def swap_best_by_category(self):
+        pass
