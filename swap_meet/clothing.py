@@ -4,8 +4,8 @@ class Clothing(Item):
     
     category = "Clothing"
     
-    def __init__(self, condition=0):
-        super().__init__(Clothing.category, condition)
+    def __init__(self, condition=0, age=None):
+        super().__init__(Clothing.category, condition, age)
 
     @staticmethod
     def __str__():

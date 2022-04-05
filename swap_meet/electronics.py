@@ -3,8 +3,8 @@ class Electronics(Item):
 
     category = "Electronics"
 
-    def __init__(self, condition=0):
-        super().__init__(Electronics.category, condition)     
+    def __init__(self, condition=0, age=None):
+        super().__init__(Electronics.category, condition, age)     
 
     @staticmethod
     def __str__():

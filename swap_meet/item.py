@@ -9,7 +9,7 @@ class Item:
     5: "Brand New"
     }
 
-    def __init__(self, category="", condition=0, age=0):
+    def __init__(self, category="", condition=0, age=None):
         self.category = category
         self.condition = condition
         self.age = age
