@@ -1,4 +1,6 @@
-class Decor:
+from .item import Item
+
+class Decor(Item):
 
     def __init__(self, category="Decor", condition=0):
         self.category = category
