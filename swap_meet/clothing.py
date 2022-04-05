@@ -1,7 +1,11 @@
-class Clothing:
+from swap_meet.item import Item
+
+class Clothing(Item):
     
-    def __init__(self):
-        self.category = "Clothing"
+    def __init__(self, category = None, condition = None):
+        category = "Clothing"
+        self.category = category
+        self.condition = condition
 
     # stringify method for Clothing
     def __str__(self):

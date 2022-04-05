@@ -21,7 +21,7 @@ def test_electronics_has_default_category_and_to_str():
     assert electronics.category == "Electronics"
     assert str(electronics) == "A gadget full of buttons and secrets."
 
-@pytest.mark.skip
+#@pytest.mark.skip
 def test_items_have_condition_as_float():
     items = [
         Clothing(condition=3.5),
