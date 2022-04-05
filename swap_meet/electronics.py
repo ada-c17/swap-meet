@@ -7,4 +7,5 @@ class Electronics(Item):
         self.condition = condition
     
     def __str__(self):
+        super().__str__()
         return "A gadget full of buttons and secrets."

@@ -1,8 +1,4 @@
 #from .item import Item
-
-from typing import ByteString
-
-
 class Vendor:
     
     def __init__(self, inventory=None):

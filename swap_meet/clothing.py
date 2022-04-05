@@ -8,4 +8,5 @@ class Clothing(Item):
     
     
     def __str__(self):
+        super().__str__()
         return "The finest clothing you could wear."

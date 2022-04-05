@@ -7,4 +7,5 @@ class Decor(Item):
         self.condition = condition
     
     def __str__(self):
+        super().__str__()
         return "Something to decorate your space."
