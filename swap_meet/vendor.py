@@ -47,3 +47,17 @@ class Vendor:
             return True
         else:
             return False
+
+    def get_best_by_category(self, category):
+        list_by_cat = self.get_by_category(category)
+
+        if list_by_cat == False:
+            return None
+
+        max_qual = 0.0
+        best_item = None
+        for item in list_by_cat:
+            if item.condition > max_qual:
+                max_qual = item.condition
+                best_item = item
+        return best_item
