@@ -7,6 +7,6 @@ class Item:
 
 
     def __str__(self):
-        self.category = "Hello World!"
-        return self.category
+        #self.category = "Hello World!"
+        return "Hello World!"
         

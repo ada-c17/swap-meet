@@ -1,3 +1,4 @@
+from sandbox import swap_items
 from .item import Item
 
 class Vendor:
@@ -48,16 +49,24 @@ class Vendor:
             other_vendor.remove(their_item)
             return True 
         return False 
-    # def swap_items(self, friend, my_item, their_item):
-    #     for item in self.inventory:
-    #         if item == my_item:
-    #             friend.inventory.append(item)
-    #             self.inventory.remove(item)
-    #     for item in friend.inventory:
-    #         if item == their_item:
-    #             self.inventory.append(item)
-    #             friend.inventory.remove(item)
-    #     return True 
+    
 
-    #def swap_first_item(self, other_vendor)
+    def swap_first_item(self, other_vendor):
+        if len(self.inventory) > 0 and len(other_vendor.inventory) > 0:
+            # Extract and assign first element from each vendor 
+            my_item = self.inventory[0]
+            their_item = other_vendor.inventory[0]
+            # Add self's item to the other vendor's list and remove from own 
+            other_vendor.add(my_item)
+            self.remove(my_item)
+            # Add other vendor's item to self's list and remove from own 
+            self.add(their_item)
+            other_vendor.remove(their_item)
+            return True 
+        return False 
+
+
+        
+
+
 
