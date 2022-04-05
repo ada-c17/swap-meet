@@ -1,4 +1,5 @@
 from swap_meet.item import Item
+from operator import attrgetter
 
 class Vendor:
     
@@ -48,3 +49,10 @@ class Vendor:
             self.swap_items(other_vendor, my_item, their_item)
             return True
         return False
+
+    # method to get item with best condition in a certain category
+    def get_best_by_category(self, category):
+        best_item_list = self.get_by_category(category)
+        if best_item_list:
+            return max(best_item_list, key=attrgetter("condition"))
+        return None
