@@ -1,4 +1,4 @@
-from .item import Item
+#from .item import Item
 
 class Vendor:
     
@@ -33,3 +33,10 @@ class Vendor:
             self.inventory.append(their_item)
             return True
         return False
+
+    def swap_first_item(self, friend):
+        if self.inventory and friend.inventory:
+            self.inventory[0] , friend.inventory[0] = friend.inventory[0] , self.inventory[0]
+            return True
+        return False
+
