@@ -1,3 +1,5 @@
+from .item import Item
+
 class Vendor:
     def __init__(self, inventory=[]):
         self.inventory = [item for item in inventory]
@@ -16,6 +18,13 @@ class Vendor:
     def get_by_category(self, category):
         result = [item for item in self.inventory if item.category is category]
         return result
+
+    def get_best_by_category(self, category):
+        all_by_category = self.get_by_category(category)
+        max_rating = max({item.condition for item in all_by_category})
+        best_by_category = [item for item in all_by_category if item.condition == max_rating]
+        return best_by_category[0]
+
 
     def swap_items(self, other_vendor, my_item, their_item):
         if (my_item in self.inventory and
