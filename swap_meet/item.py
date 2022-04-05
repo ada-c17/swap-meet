@@ -8,6 +8,7 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
+        # round the value of condition in case the value of condition is float
         rounded_number = round(self.condition)
         if rounded_number == 0:
             return "Heavily used!"

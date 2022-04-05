@@ -26,8 +26,8 @@ class Vendor:
         if not my_item in self.inventory or not their_item in vendor.inventory:
             return False
         self.remove(my_item)
-        vendor.add(my_item)
         vendor.remove(their_item)
+        vendor.add(my_item)
         self.add(their_item)
         return True
     
@@ -35,8 +35,8 @@ class Vendor:
         if len(self.inventory) == 0 or len(vendor.inventory) == 0:
             return False
         my_first_item = self.inventory[0]
-        friend_first_item = vendor.inventory[0]
-        self.swap_items(vendor, my_first_item, friend_first_item)
+        their_first_item = vendor.inventory[0]
+        self.swap_items(vendor, my_first_item, their_first_item)
         return True
 
     def get_best_by_category(self, category):
@@ -60,6 +60,7 @@ class Vendor:
             return True
         return False
 
+    # Helper function to get the newest item among the inventory
     def get_newest(self):
         try:
             newest_age = self.inventory[0].age
