@@ -1,4 +1,3 @@
-from swap_meet.item import Item
 from operator import attrgetter
 
 class Vendor:
@@ -56,4 +55,12 @@ class Vendor:
         their_best_item = other.get_best_by_category(my_priority)
 
         return self.swap_items(other, my_best_item, their_best_item)
-        
+
+    def swap_by_newest(self, other):
+        if not self.inventory or not other.inventory:
+            return False
+        else:
+            my_newest = min(self.inventory, key=attrgetter("age"))
+            their_newest = min(other.inventory, key=attrgetter("age"))
+
+        return self.swap_items(other, my_newest, their_newest)
