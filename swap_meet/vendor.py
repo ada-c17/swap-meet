@@ -40,3 +40,14 @@ class Vendor:
             return False
         self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
         return True
+
+    def get_best_by_category(self, category):
+        items_in_category = self.get_by_category(category)
+        if len(items_in_category) == 0:
+            return None
+        else:
+            return max(items_in_category, key = lambda item: item.condition)
+    # key = function where comparision of iterable is performed based on its return value
+
+    def swap_best_by_category(self):
+        pass
