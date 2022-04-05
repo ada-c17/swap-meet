@@ -1,3 +1,2 @@
 class Clothing:
-    #comment
     pass
