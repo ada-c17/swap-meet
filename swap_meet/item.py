@@ -1,5 +1,6 @@
 class Item:
     def __init__(self, condition=0.0, age=0, category=""):
+        '''Initializes an item object'''
         self.category = category
         self.condition = condition
         self.age = age
@@ -8,6 +9,7 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
+        '''returns description of item based on condition rating'''
         if self.condition == 5:
             return "Like new"
         elif self.condition == 4:
