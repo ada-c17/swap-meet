@@ -57,6 +57,21 @@ class Vendor:
                     item_to_return = item
         return item_to_return
 
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        vendor_best_item = self.get_best_by_category(their_priority)
+        other_best_item = other.get_best_by_category(my_priority)
+        if vendor_best_item is None or other_best_item is None:
+            return False
+        else:
+            other_index = other.inventory.index(other_best_item)
+            temp_item = None
+            for index, item in enumerate(self.inventory):
+                if item == vendor_best_item:
+                    temp_item = item
+                    self.inventory[index] = other_best_item
+                    other.inventory[other_index] = temp_item
+                    return True
+
 
 
 

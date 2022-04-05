@@ -67,6 +67,3 @@ def test_integration_wave_04_05_06():
     assert item_electronics1 in valentina.inventory
     assert item_decor1 in valentina.inventory
     assert item_clothing2 in valentina.inventory
-
-
-
