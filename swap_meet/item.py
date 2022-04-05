@@ -14,9 +14,9 @@ class Item:
 
     def condition_description(self):
         if self.condition < 1:
-            return "you sure you want this?"
+            return "ewww"
         elif self.condition < 2:
-            return "awful"
+            return "umm"
         elif self.condition < 3:
             return "eh"
         elif self.condition < 4:
