@@ -6,5 +6,8 @@ class Item:
         self.category = category
 
     def __str__(self):
+        '''
+        Overrides Python default __str__ method and returns "Hello World!"
+        '''
         return "Hello World!"
 
