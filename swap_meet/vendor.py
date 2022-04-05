@@ -44,7 +44,22 @@ class Vendor:
             vendor.remove(vendor.inventory[0])
         else:
             return False
-
         return True
 
+    def get_best_by_category(self, category):
+        max_condition = 0
+        best_item = None
+        for item in self.inventory:
+            if item.category == category:
+                if item.condition >= max_condition:
+                    max_condition = item.condition
+                    best_item = item
+        return best_item
 
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        their_item = other.get_best_by_category(my_priority)
+        my_item = self.get_best_by_category(their_priority)
+        if my_item == None or their_item == None:
+            return False
+        self.swap_items(other, my_item, their_item)
+        return True
