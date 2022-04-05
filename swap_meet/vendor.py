@@ -51,5 +51,9 @@ class Vendor:
             if item.condition == best_condition:
                 return item
 
-    def swap_best_by_category(self):
-        pass
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        to_trade = self.get_best_by_category(their_priority)
+        to_receive = other.get_best_by_category(my_priority)
+        if not to_trade or not to_receive:
+            return False
+        return self.swap_items(other, to_trade, to_receive)
