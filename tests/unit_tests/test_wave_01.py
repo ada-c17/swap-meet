@@ -55,3 +55,4 @@ def test_removing_not_found_is_false():
     # *********************************************************************
     assert result == False
     assert len(vendor.inventory) == 3
+    # Why does this instruction to us use a raise Exception instead of a comment?

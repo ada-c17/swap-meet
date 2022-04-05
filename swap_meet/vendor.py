@@ -15,6 +15,12 @@ class Vendor:
             return item
         except ValueError:
             return False
+        # Alternate method below - which one is better / closer to best practice?
+        # if item in self.inventory:
+        #     self.inventory.remove(item)
+        #     return item
+        # else:
+        #     return False
     
     def get_by_category(self, category):
         items = []
@@ -27,6 +33,8 @@ class Vendor:
         if my_item not in self.inventory or their_item not in other.inventory:
             return False
         else:
+            # Leaving alternate ordering here because I have a question
+            # Confused why when executing in this order, swap_first_item function still works
             # self.inventory.remove(my_item)
             # self.inventory.append(their_item)
             # other.inventory.remove(their_item)
@@ -46,7 +54,7 @@ class Vendor:
             return True
 
     def get_best_by_category(self, category):
-        items_list = [thing for thing in self.inventory if thing.category == category]
+        items_list = [item for item in self.inventory if item.category == category]
         if items_list == []:
             return None
         best_item = items_list[0]
