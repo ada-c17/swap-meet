@@ -32,7 +32,11 @@ class Vendor:
         return relevant_items
 
     def swap_items(self, other_vendor, selfs_item, others_item):
-        print(f"My inventory has {len(self.inventory)} items in it. Other's inventory has {len(other_vendor.inventory)} items in it.")
+        # Check items exist in respective inventories before attempting swap
+        if selfs_item not in self.inventory or others_item not in other_vendor.inventory:
+            print("You are trying to swap an item that either you or the other vendor does not have!")
+            return False
+            
         #remove self's item from self's inventory
         self.remove(selfs_item)
         #add self's item to other's inventory
@@ -41,6 +45,4 @@ class Vendor:
         other_vendor.remove(others_item)
         #add other's item to self's inventory
         self.inventory.append(others_item)
-        print(f"My inventory now has {len(self.inventory)} items in it. Other's inventory now has {len(other_vendor.inventory)} items in it.")
         return True
-
