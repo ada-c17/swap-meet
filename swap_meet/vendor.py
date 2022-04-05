@@ -58,10 +58,7 @@ class Vendor:
         if len(self.inventory) == 0 or len(vendor.inventory) == 0:
             return False
 
-        self.add(vendor.inventory[0])
-        vendor.add(self.inventory[0])
-        self.remove(self.inventory[0])
-        vendor.remove(vendor.inventory[0])
+        self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
 
         return True
 
