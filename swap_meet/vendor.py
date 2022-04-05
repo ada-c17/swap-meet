@@ -50,6 +50,36 @@ class Vendor:
         self.inventory[0], o_vendor.inventory[0] = o_vendor.inventory[0], self.inventory[0]
         return True
         
+    #wave 6
+    def get_best_by_category(self, category):
+        same_category = self.get_by_category(category)
+        if not same_category:
+            return None
+    
+        conditions = [cond.condition for cond in same_category]
+        highest_condition = max(conditions)
+       
+        for cond in same_category:
+            if cond.condition >= highest_condition:
+                return cond #should we return list contains multible?
+            
         
-    
-    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """
+        other, which represents another Vendor instance to trade with
+        my_priority, which represents a category that the Vendor wants to receive
+        their_priority, which represents a category that other wants to receive
+        """
+        they_prefered, we_prefered = None, None
+        for my_item in self.inventory:
+            if their_priority == my_item.category:
+                they_prefered = self.get_best_by_category(their_priority)
+            else:
+                continue
+        for their_item in other.inventory:
+            if my_priority != their_item.category:
+                we_prefered = other.get_best_by_category(my_priority)
+            else:
+                continue
+        
+        return self.swap_items(other, they_prefered, we_prefered)

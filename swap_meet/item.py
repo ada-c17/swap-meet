@@ -17,4 +17,5 @@ class Item:
             return f"Condition: {self.condition} is average."
         elif self.condition == 5:
             return f"Condition: {self.condition} is super."
-            
+    
+    
