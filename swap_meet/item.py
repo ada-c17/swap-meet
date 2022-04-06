@@ -1,17 +1,21 @@
+from datetime import date
 class Item:
+    #the decorated function below was not nesessary I just wanted to implement it
     @classmethod
     def __check_value(cls,x):
         return type(x) in (int, float)
 
-    def __init__(self, category="", condition=0, age =0):
+    def __init__(self, category="", condition=0, age=date(2021,1,1)):
         self.category=''
-        self.condition=self.age=0
-        if isinstance(category, str) and self.__check_value(condition) and self.__check_value(age):
+        self.condition=0
+        self.age=1
+        if isinstance(category, str) and self.__check_value(condition) and isinstance(age, date):
             self.condition =condition
             self.category =category
-            self.age=age
+            today=date.today()
+            self.age= today.year-age.year
         else:  
-            raise ValueError ("First argument is a string type, second and third arguments are numbers")     
+            raise ValueError ("First argument is a string type, second argument is number, third argument is a date")     
 
     def __str__(self):
         return "Hello World!"
