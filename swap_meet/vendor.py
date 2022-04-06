@@ -64,9 +64,11 @@ class Vendor:
                     highest_rating = item.condition
                     best_item = item
         return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        pass
+    # Get best by category from self where category is other vendor's priority
+    # Get best by category from other where category is my priority
+    # Swap the two items 
         
-
-
-
-
 
