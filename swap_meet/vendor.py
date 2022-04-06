@@ -34,8 +34,14 @@ class Vendor:
         return True
     
     def swap_first_item(self, friend_vendor):
-        pass
-
+        if not self.inventory or not friend_vendor.inventory:
+            return False 
+        self.inventory.append(friend_vendor.inventory[0])
+        friend_vendor.inventory.append(self.inventory[0])
+        self.inventory.pop(0)
+        friend_vendor.inventory.pop(0)
+        return True
+        
 
 
 
@@ -53,5 +59,4 @@ class Vendor:
 #     inventory=[item_d, item_e]
 # )
 
-# result = fatimah.swap_items(jolie, item_b, item_d)
-# print(result)
+# result = fatimah.swap_first_item(jolie)
