@@ -1,3 +1,6 @@
+from multiprocessing.sharedctypes import Value
+
+
 class Vendor:
     def __init__(self, inventory=None):
         if not inventory:
@@ -46,3 +49,36 @@ class Vendor:
             friend.inventory.remove(friend.inventory[0])
             return True
         return False
+    
+    def get_best_by_category(self, specific_category):
+        '''
+        1) create a highest condition variable set 0
+        2) iterate over the vendor's inventory
+        3) check if the specific category is clothing
+        4) if the condition is greater than the highest condtion, reassign highest condition
+        5) return the highest condtion
+        6) otherwise none
+        '''
+        # highest_condition = 0
+        
+        # for item in self.inventory:
+        #     if specific_category == item.category and item.condition > highest_condition:
+        #             highest_condition = item.condition
+        #     return item
+        # return None
+        try:
+            categories = {}
+            # {2.0: 'Clothing', 4.0: 'Clothing', 3.0: 'Clothing'}
+            for item in self.inventory:
+                if specific_category == item.category:
+                        categories[item.condition] = item.category
+
+            highest_condition = max(categories.keys())
+            # 4.0
+            for item in self.inventory:
+                if item.category == specific_category and item.condition == highest_condition:
+                    return item
+        except ValueError:
+            return None
+        
+            
