@@ -76,9 +76,9 @@ class Vendor:
         ----------
         other_vender: Vender instance object
             The instance of the class Vendor
-        my_item: var
+        my_item: component
             Item instance with given cateogry to be removed from self.inventory and appended to other_vender
-        their_item: var
+        their_item: component
             Item instance with given cateogry to be removed from other_vender.inventory and appended to self.inventory
 
         Returns
@@ -127,7 +127,7 @@ class Vendor:
         Parameters
         ----------
         best_category: str
-            The instance of the class Vendor
+            String of the wanted category
 
         Returns
         -------
