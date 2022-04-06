@@ -4,3 +4,6 @@ class Item:
 
     def __str__(self):
         return "Hello World!"
+
+    def condition_description(self):
+        return f"The quality of this item is {self.condition}."
