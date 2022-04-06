@@ -57,11 +57,11 @@ def test_items_have_condition_descriptions_depending_on_number():
     #Arrange
     items = [
         Clothing(condition=0),
-        Clothing(condition=1),
-        Clothing(condition=2),
+        Decor(condition=1),
+        Electronics(condition=2),
         Clothing(condition=3),
-        Clothing(condition=4),
-        Clothing(condition=5)
+        Decor(condition=4),
+        Electronics(condition=5)
             
     ]    
 
