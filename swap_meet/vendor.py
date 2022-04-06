@@ -52,3 +52,35 @@ class Vendor:
                 found_items.append(ele)
 
         return found_items
+
+    # Instances of Vendor have an instance method named 'swap_items'
+    # 'swap_items' takes in 3 arguments: 
+    # One: an instance of another Vendor --> friend the vendor is swapping with
+    # Two: an instance of an Item (my_item) --> item this Vendor instance plans to give
+    # Three: an instance of an Item (their_item) --> item the friend Vendor plans to give
+
+    def swap_items(self, friend_vendor, my_item, their_item):
+        """
+        Input: 
+        1. friend_vendor is another instance of Vendor to swap Items with
+        2. my_item is the item from this Vendor's inventory
+        3. their_item is the item from friend's inventory
+
+        Output: Return True if swap is successful. Otherwise, return False
+        """
+        
+
+        if (my_item in self.inventory) and (their_item in friend_vendor.inventory):
+            # Remove item from this Vendor's inventory
+            self.inventory.remove(my_item)
+            # Add to friend's inventory
+            friend_vendor.inventory.append(my_item)
+
+            # Remove item from friend's inventory
+            friend_vendor.inventory.remove(their_item)
+            # Add item to this Vendor's inventory
+            self.inventory.append(their_item)
+
+            return True
+        else:
+            return False
