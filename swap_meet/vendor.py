@@ -46,6 +46,64 @@ class Vendor:
             self.add(thier_first_item)
         return True
 
+    def get_best_by_category(self, category): #refactor to see if you can use get_category()
+
+        condition_of_items_in_category = []
+
+        for item in self.inventory:
+            if category == item.category:
+                condition_of_items_in_category.append(item.condition)
+        
+        if not condition_of_items_in_category:
+            return None
+        else:
+            best_condition = max(condition_of_items_in_category)
+        
+        for item in self.inventory:
+            if category == item.category and item.condition == best_condition:
+                return item
 
 
 
+        # if not get_category_items_list:
+        #     return None
+        # else:
+        #     return max(get_category_items_list.item.condition)
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        if not self.inventory or not other.inventory:
+            return False
+        
+        this_vendor_condition_best_item = []
+        other_vendor_condition_best_item = []
+
+        for item in self.inventory:
+            this_vendor_condition_best_item.append(item.condition)
+
+        for item in other.inventory:
+            other_vendor_condition_best_item.append(item.condition)
+        
+        this_vendor_best_condition = max(this_vendor_condition_best_item)
+        other_vendor_best_condition = max(other_vendor_condition_best_item)
+
+        my_trade_is_valid = False
+        for item in self.inventory:
+            if their_priority == item.category and item.condition == this_vendor_best_condition:
+                my_item = item
+                my_trade_is_valid = True
+
+        their_trade_is_valid = False
+        for item in other.inventory:
+            if my_priority == item.category and item.condition == other_vendor_best_condition:
+                their_item = item
+                their_trade_is_valid = True
+
+        if my_trade_is_valid and their_trade_is_valid:
+            self.remove(my_item)
+            other.add(my_item)
+            
+            other.remove(their_item)
+            self.add(their_item)
+            return True
+        else:
+            return False
