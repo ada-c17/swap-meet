@@ -7,7 +7,7 @@ class Item:
         return("Hello World!")
 
     def __repr__(self): #created repr dunder method just for funzies
-        rep = 'Item(' + self.category + ')'
+        rep = f"Item({self.category}, {str(self.condition)})"
         return rep
 
     def condition_description(self):

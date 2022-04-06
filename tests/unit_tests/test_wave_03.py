@@ -10,6 +10,12 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
+def test_item_overrides_to_repr():
+    item = Item("Clothing")
+
+    repr_item = repr(item)
+
+    assert repr_item == "Item(Clothing, 5)"
 
 def test_swap_items_returns_true():
     item_a = Item(category="clothing")
