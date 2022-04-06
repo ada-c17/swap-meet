@@ -16,7 +16,7 @@ def test_vendor_takes_optional_inventory():
     assert "b" in vendor.inventory
     assert "c" in vendor.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_adding_to_inventory():
     vendor = Vendor()
     item = "new item"
