@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, category = None, condition = 0):
+    def __init__(self, category = None, condition = 0.0):
         if not category:
             category = ""
         self.category = category
@@ -12,7 +12,7 @@ class Item:
     
 
     def condition_description(self):
-        description = ""
+        #description = ""
         if self.condition == 0:
             description = "horrendous quality"
         elif self.condition == 1:

@@ -1,5 +1,4 @@
-from sandbox import swap_items
-from .item import Item
+#from .item import Item
 
 class Vendor:
     def __init__(self, inventory = None):
@@ -64,6 +63,43 @@ class Vendor:
             other_vendor.remove(their_item)
             return True 
         return False 
+
+
+    
+
+    def get_best_by_category(self, category):
+        
+        # for item in self.inventory:
+        #     if item.category == category and item.condition >= 4:
+        #             return item 
+        max_condition = 0
+        max_item = None 
+        for item in self.inventory:
+            if item.condition > max_condition and item.category == category:
+                max_condition = item.condition  
+                max_item = item
+        return max_item 
+
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        their_item = self.get_best_by_category(their_priority)
+        my_item = other.get_best_by_category(my_priority)
+        return self.swap_items(other, their_item, my_item)
+
+
+
+            
+            
+    
+        
+                
+        
+        
+        
+
+
+        
+
 
 
         

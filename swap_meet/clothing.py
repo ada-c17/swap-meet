@@ -1,7 +1,7 @@
 from .item import Item 
 
 class Clothing(Item):
-    def __init__(self, category = "Clothing", condition=0):
+    def __init__(self, category = "Clothing", condition = 0.0):
         #super().__init__(condition)
         self.category = category 
         self.condition = condition
