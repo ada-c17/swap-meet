@@ -46,9 +46,8 @@ class Vendor:
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
         
-        #can/cannot invoke previously made instances methods remove()/add() on instances self and vendor b/c of return?
-        self.inventory.remove(my_item)   # have you overwritten python fnx for remove?
-        vendor.inventory.remove(their_item)
+        self.inventory.remove(my_item)   # remove here being applied to a list
+        vendor.inventory.remove(their_item) #add being applied to a list
         self.inventory.append(their_item)
         vendor.inventory.append(my_item)
 
