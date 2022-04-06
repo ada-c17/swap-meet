@@ -22,11 +22,14 @@ class Vendor:
         return item
 
     def get_by_category(self, category):
-        list_of_items_per_cat = []  # do i need .self? i do not.
+        #list_of_items_per_cat = []  # do i need .self? i do not.
 
-        for item in self.inventory:
-            if item.category == category:
-               list_of_items_per_cat.append(item)
+        # for item in self.inventory:
+        #     if item.category == category:
+        #        list_of_items_per_cat.append(item)
+
+        # list comprehension
+        list_of_items_per_cat = [item for item in self.inventory if item.category == category]
 
         return list_of_items_per_cat
 
@@ -60,31 +63,48 @@ class Vendor:
         return True
 
     def get_best_by_category(self, category):
-        if category not in self.inventory:
+
+        items_by_cat = self.get_by_category(category)
+
+        if len(items_by_cat) == 0:
             return None
 
-    def swap_best_by_category(self):
-        pass
+        best_item = items_by_cat[0]
+        for item in items_by_cat:
+            if item.condition > best_item.condition:
+                best_item = item
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        best_item_other = other.get_best_by_category(my_priority)
+        best_item_mine = self.get_best_by_category(their_priority)
+
+        if not best_item_other or not best_item_mine:
+            return False
+
+        self.swap_items(other, best_item_mine, best_item_other)
+
+        return True
 
 
 rafferty = Vendor()
 closet_items = ["white shirt", "balenciaga jeans", "flat shoes", "work gown"]
 rafferty.inventory = closet_items
-print(vars(rafferty))
+# print(vars(rafferty))
 rafferty.add("elegant work gown")
 rafferty.remove("flat shoes")
+# print(vars(rafferty))
+oriana = Vendor()
+closet_items2 = ["yellow shirt", "method jeans", "ballet flats", "red jacket"]
+oriana.inventory = closet_items2
 print(vars(rafferty))
+rafferty.swap_items(oriana, rafferty.inventory[0], oriana.inventory[0])
+print(vars(rafferty))
+
 
 '''
 Notes and Questions:
 
-
-# inventory = ["ball", "jeans" "shirt"]
-# # inventory = ["clothing", "decor", "electronics"] #<--
-# inventory[0] = ["jeans", "shirt"]
-
-
-# print(Vendor.get_by_category("instruments"))
 
 # questions
 
