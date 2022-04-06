@@ -31,3 +31,9 @@ class Vendor:
             other_vendor.add(self_item)
             return True
         return False
+
+    def swap_first_item(self, other_vendor):
+        if len(self.inventory)>= 1 <=len(other_vendor.inventory):
+            swap_first = self.swap_items(other_vendor, self.inventory[0],other_vendor.inventory[0])
+            return swap_first
+        return False
