@@ -51,3 +51,19 @@ class Vendor:
         friend.remove(friend.inventory[0])
 
         return True
+    
+    def get_best_by_category(self, category):
+        items_in_category = []
+        best_condition = 0
+
+        for item in self.inventory:
+            if item.category == category:
+                items_in_category.append(item)
+                if item.condition > best_condition:
+                    best_item = item
+                    best_condition = item.condition
+        
+        if not items_in_category:
+            return None
+
+        return best_item
