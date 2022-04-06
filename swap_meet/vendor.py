@@ -26,3 +26,13 @@ class Vendor:
             if elem.category == category_str:
                 category_list.append(elem)
         return category_list
+
+    def swap_items(self, friend, my_item, their_item):
+        if my_item not in self.inventory or their_item \
+            not in friend.inventory:
+            return False
+        self.inventory.remove(my_item)
+        friend.inventory.append(my_item)
+        friend.inventory.remove(their_item)
+        self.inventory.append(their_item)
+        return True
