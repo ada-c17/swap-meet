@@ -10,6 +10,7 @@ class Vendor:
         try:
             self.inventory.remove(item)
         except ValueError:
+            print("That item is not in the inventory.")
             return False
         else:
             return item
