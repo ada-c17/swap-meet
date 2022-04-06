@@ -22,6 +22,7 @@ class Vendor:
     
     def get_by_category(self, category_string):
         """Return list of items from inventory of a certain category"""
+
 ### refactor this?? check first if any items match category??
         item_list = []
         for item in self.inventory:
@@ -31,11 +32,12 @@ class Vendor:
     
     def swap_items(self, Vendor, my_item, their_item):
         """Swaps items betwen self and another vendor's inventory"""
+
         # check valid input
         if my_item not in self.inventory or their_item not in Vendor.inventory:
             return False
         else:
-            # remove items from inventory
+            # remove items from original inventory
             my_swap_item = self.remove(my_item)
             their_swap_item = Vendor.remove(their_item)
             # add items to new inventory 
@@ -45,6 +47,7 @@ class Vendor:
     
     def swap_first_item(self, Vendor):
         """Swaps first item in self and another vendor's inventory"""
+
         # check valid input
         if not self.inventory or not Vendor.inventory:
             return False
@@ -57,6 +60,7 @@ class Vendor:
     
     def get_best_by_category(self, desired_category):
         """Returns item in best condition within a certain category"""
+
         # get list of items of category
         potential_items = self.get_by_category(desired_category)
         # account for no items of desired category or only one of desired category
@@ -72,4 +76,15 @@ class Vendor:
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         """Swap best items in provided categories between self and another vendor"""
-        pass
+        
+        # get best items in each category
+        their_desired_item = self.get_best_by_category(their_priority)
+        my_desired_item = other.get_best_by_category(my_priority)
+
+        # check validity
+        if not my_desired_item or not their_desired_item:
+            return False
+        else:
+            # swap items
+            self.swap_items(other, their_desired_item, my_desired_item)
+            return True
