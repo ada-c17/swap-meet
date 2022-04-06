@@ -65,20 +65,26 @@ class Vendor:
         """Get the item with the best condition in a certain category.
         It takes one argument: a string that represents a category"""
 
-        for item in self.inventory:
+        # for item in self.inventory:
             # Need dictionary with key value pairs of item, condition, and category.
             # Iterate over this dictionary and return just the item (with the max condition for each category).
             # Perhaps create a new data structure with category and highest value item for that category.
+
             #Need guard clause for no items in inventory that match category and returns None 
-            # If there are duplicate items (smae itam and condition) return just one of them 
+            # If there are duplicate items (smae item and condition) return just one of them 
             #Figure out what else you can glean from the tests. 
-            best_item = max(self.condition)  #where is condition located?
+            # best_item = max(Item.condition)  #where is condition located?
 
-            category_list = self.get_by_category(self, category) #???? syntax
+        category_list = self.get_by_category(category) 
+        best_condition = 0
+        best_item = None    
+        
+        for item in category_list:
+            if item.condition > best_condition:
+                best_condition = item.condition
+                best_item = item
 
-
-
-        pass
+        return best_item
 
     # my_priority = ??
     # their_priority = ??
@@ -86,15 +92,20 @@ class Vendor:
     # # can I put item and condition in a dictionary that I can reference?
 
 
-    def swap_best_by_category(self, friend, my_priority, their_priority):
-        for item in self.inventory:
-            if item not in their_priority:
-                return False
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        friend_swap = other.get_best_by_category(my_priority)
+        my_swap = self.get_best_by_category(their_priority)
+    
+        if not my_swap or not friend_swap:
+            return False
 
-        for item in friend.inventory:
-            if item not in my_priority:
-                return False
-        pass
+        self.swap_items(other, my_swap, friend_swap)
+        return True
+
+    
+
+
+
             
             
     
