@@ -63,10 +63,5 @@ class Vendor:
         
             
             
-            
-        # friend.inventory[0]:
-
-            
-            
-            #  and item[0] in self.inventory:
+    
 
