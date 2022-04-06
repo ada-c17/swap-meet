@@ -93,7 +93,24 @@ class Vendor:
 
         return self.swap_items(other, what_they_want, what_I_want) #to reduce the amount of code i am using swap_items method that has the same logic
 
+    #Bonus
+    def get_newest_item(self):
 
+
+        sorted_inventory=self.inventory
+        sorted_inventory.sort(key=lambda x:x.age) 
+        
+        newest_item=sorted_inventory[0]
+        if newest_item.age==0:
+            return False
+        return newest_item
+
+    def swap_by_newest(self,other):
+        
+        my_newest=self.get_newest_item()
+        friends_newest=other.get_newest_item()
+
+        return self.swap_items(other,my_newest,friends_newest)   
 
 
 
