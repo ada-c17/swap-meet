@@ -42,3 +42,19 @@ def test_get_no_matching_items_by_category():
     assert item_a not in items
     assert item_b not in items
     assert item_c not in items
+    assert items == []
+
+# additional test case on get_by_category() function to complete the code coverage
+# @pytest.mark.skip
+def test_get_by_category_with_empty_inventory():
+    # Arrange
+    vendor = Vendor(
+        inventory=[]
+    )
+
+    # Act
+    items = vendor.get_by_category("electronics")
+
+    # Assert
+    assert items == []
+    assert len(vendor.inventory) == 0
