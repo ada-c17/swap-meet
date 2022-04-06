@@ -1,10 +1,12 @@
 from swap_meet.item import Item
+
+
 class Decor(Item):
 
     category = "Decor"
 
-    def __init__(self, condition=0, age=None):
-        super().__init__(Decor.category, condition, age)
+    def __init__(self, *args, **kwargs):
+        super().__init__(category=Decor.category, *args, **kwargs)  
 
     @staticmethod
     def __str__():

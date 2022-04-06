@@ -1,11 +1,12 @@
-from unicodedata import category
 from swap_meet.item import Item
+
+
 class Clothing(Item):
     
     category = "Clothing"
     
-    def __init__(self, condition=0, age=None):
-        super().__init__(Clothing.category, condition, age)
+    def __init__(self, *args, **kwargs):
+        super().__init__(category=Clothing.category, *args, **kwargs) 
 
     @staticmethod
     def __str__():
