@@ -29,6 +29,12 @@ class Vendor:
         Removes item_vendor_gets from vendor_to_swap_with.inventory list and appends.item_vendor_swaps to list
         Returns vendor's list.
 
+    swap_first_item(vendor):
+        swaps first items from my list and param vendor's list 
+        Returns true if both lists are not empty
+
+    return_best_by_category(category):
+        returns item with best condition in vendor list given the category
     """
 
 
@@ -164,6 +170,56 @@ class Vendor:
             return True
         except IndexError:
             return False
+
+    def get_best_by_category(self, category):
+        """
+        Given the category, return the item with the best condition
+
+        Parameters
+        -------
+        category: str
+
+        Returns
+        -------
+        best_item: object
+        """
+        best_condition = 0.0
+        best_item = None
+
+        for item in self.inventory:
+            if item.category == category and item.condition >= best_condition:
+                best_condition = item.condition
+                best_item = item
+
+        return best_item
+
+    def swap_best_by_category(self,other, my_priority,their_priority):
+        """
+        Given the other vendor, your item category preference, and the vendor's item category preference, swap items that are the best in each category. Return truthy
+
+        If you or the vendor does not have an item that matches the other's priority, do not swap. Return falsey
+
+        Parameters
+        -------
+        other: object
+        my_priority: str
+        their_priority: str
+
+        Returns
+        -------
+        boolean
+        """
+        other_best = other.get_best_by_category(my_priority)
+        my_best = self.get_best_by_category(their_priority)
+
+        return self.swap_items(other, my_best, other_best)
+
+        
+
+
+
+            
+
 
 
 
