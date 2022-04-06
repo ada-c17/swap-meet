@@ -58,8 +58,7 @@ def test_condition_descriptions_handles_floats_incorrect_values():
     # Arrange
     clothing1 = Clothing(condition=0.3) # Less than 1
     electronics1 = Electronics(condition=7) # Greater than 5
-    # Floats
-    clothing2 = Clothing(condition=1.6)
+    clothing2 = Clothing(condition=1.6) # Floats
     clothing3 = Clothing(condition=3.1)
     clothing4 = Clothing(condition=4.0)
     clothing5 = Clothing(condition=4.5)

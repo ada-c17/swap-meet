@@ -59,19 +59,16 @@ class Vendor:
     # return True if can swap
     # tie will go to first item in inventory
     # (tests in new file, unit tests-wave 7)
-    def swap_by_newest(self, other):
-        my_newest_item = None
-        my_low_age = 1000
+    def get_by_newest(self):
+        low_age = 1000
+        newest_item = None
         for item in self.inventory:
-            if item.age and item.age < my_low_age:
-                my_low_age = item.age
-                my_newest_item = item
+            if item.age and item.age < low_age:
+                low_age = item.age
+                newest_item = item
+        return newest_item
 
-        their_newest_item = None
-        their_low_age = 1000
-        for item in other.inventory:
-            if item.age and item.age < their_low_age:
-                their_low_age = item.age
-                their_newest_item = item
-
-        return self.swap_items(other, my_newest_item, their_newest_item)
+    def swap_by_newest(self, other):
+        my_newest = self.get_by_newest()
+        their_newest = other.get_by_newest()
+        return self.swap_items(other, my_newest, their_newest)
