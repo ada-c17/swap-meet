@@ -232,11 +232,3 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert len(jesse.inventory) == 3
     assert item_a and item_b and item_c in tai.inventory
     assert item_d and item_e and item_f in jesse.inventory
-
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
-    # Assertions should check:
-    # - That result is falsy
-    # - That tai and jesse's inventories are the correct length
-    # - That all the correct items are in tai and jesse's inventories
