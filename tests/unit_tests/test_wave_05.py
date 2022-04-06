@@ -15,7 +15,7 @@ def test_decor_has_default_category_and_to_str():
     assert decor.category == "Decor"
     assert str(decor) == "Something to decorate your space."
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_electronics_has_default_category_and_to_str():
     electronics = Electronics()
     assert electronics.category == "Electronics"
