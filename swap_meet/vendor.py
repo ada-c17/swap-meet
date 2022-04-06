@@ -173,26 +173,23 @@ class Vendor:
         -------
         best_item: object
         """
-        best_condition = 0.0
-        best_item = None
-        inventory_by_category = self.get_by_category(category)
-
-        for item in inventory_by_category:
-            if item.condition > best_condition:
-                best_condition = item.condition
-                best_item = item
-
-        return best_item
-
         # best_condition = 0.0
         # best_item = None
-        
-        # for item in self.inventory:
-        #     if item.category == category and item.condition > best_condition:
+        # inventory_by_category = self.get_by_category(category)
+
+        # for item in inventory_by_category:
+        #     if item.condition > best_condition:
         #         best_condition = item.condition
         #         best_item = item
 
         # return best_item
+
+        inventory_by_category = self.get_by_category(category)
+
+        try:
+            return max(inventory_by_category, key = lambda item: item.condition) #max item of sorted items list where we compare number values from the item's condition attribute retreived via lambda function
+        except ValueError:
+            return None
 
 
     def swap_best_by_category(self,other, my_priority,their_priority):
@@ -217,15 +214,19 @@ class Vendor:
         return self.swap_items(other, my_best, other_best)
     
     def get_newest(self):
-        age = 1000
-        newest = None
+        # age = 1000
+        # newest = None
 
-        for item in self.inventory:
-            if item.age < age:
-                age = item.age
-                newest = item
+        # for item in self.inventory:
+        #     if item.age < age:
+        #         age = item.age
+        #         newest = item
         
-        return newest
+        # return newest
+        try:
+            return min(self.inventory, key = lambda item: item.age)#min item of items list where we compare number values from the item's age attribute retreived via lambda function
+        except ValueError:
+            return None
 
     def swap_by_newest(self, other):
         """
