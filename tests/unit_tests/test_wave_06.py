@@ -87,8 +87,8 @@ def test_swap_best_by_category():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
-    assert item_a and item_b and item_f in tai.inventory 
-    assert item_d and item_e and item_c in jesse.inventory
+    assert item_a in tai.inventory  and item_b in tai.inventory and item_f in tai.inventory 
+    assert item_d in jesse.inventory and item_e in jesse.inventory and item_c in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_reordered():
@@ -126,8 +126,8 @@ def test_swap_best_by_category_reordered():
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
     # assert set(tai.inventory) == {item_f, item_b, item_a}
-    assert item_f and item_b and item_a in tai.inventory
-    assert item_c and item_e and item_d in jesse.inventory
+    assert item_f in tai.inventory and item_b in tai.inventory and item_a in tai.inventory
+    assert item_c in jesse.inventory and item_e in jesse.inventory and item_d in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_inventory_is_false():
@@ -216,8 +216,8 @@ def test_swap_best_by_category_no_match_is_false():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories
-    assert item_a and item_b and item_c in tai.inventory
-    assert item_d and item_e and item_f in jesse.inventory
+    assert item_a in tai.inventory and item_b in tai.inventory and item_c in tai.inventory
+    assert item_d in jesse.inventory and item_e in jesse.inventory and item_f in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_other_match_is_false():
@@ -254,5 +254,68 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories
-    assert item_a and item_b and item_c in tai.inventory
-    assert item_f and item_e and item_d in jesse.inventory
+    assert item_a in tai.inventory and item_b in tai.inventory and item_c in tai.inventory
+    assert item_f in jesse.inventory and item_e in jesse.inventory and item_d in jesse.inventory
+
+# Adding tests for swap_by_newest(self, other):
+def test_swap_by_newest_nominal_case():
+    # arrange
+    item_a = Decor(condition=2.0, age=50)
+    item_b = Electronics(condition=4.0, age = 5)
+    item_c = Decor(condition=4.0, age =3)
+    tai = Vendor(
+        inventory=[item_c, item_b, item_a]
+    )
+
+    item_d = Clothing(condition=2.0, age = 2)
+    item_e = Decor(condition=4.0, age = 25)
+    item_f = Clothing(condition=4.0, age =400)
+    jesse = Vendor(
+        inventory=[item_f, item_e, item_d]
+    )
+    # act
+    result = tai.swap_by_newest(jesse)
+    # assert
+    assert item_a in tai.inventory and item_b in tai.inventory and item_d in tai.inventory
+    assert item_f in jesse.inventory and item_e in jesse.inventory and item_c in jesse.inventory
+
+def test_swap_by_newest_tied_age_case_swaps_first_occurance_of_newest():
+    # arrange
+    item_a = Decor(condition=2.0, age=2)
+    item_b = Electronics(condition=4.0, age = 2)
+    item_c = Decor(condition=4.0, age =3)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    item_d = Clothing(condition=2.0, age = 2)
+    item_e = Decor(condition=4.0, age = 2)
+    item_f = Clothing(condition=4.0, age =400)
+    jesse = Vendor(
+        inventory=[item_d, item_e, item_f]
+    )
+    # act
+    result = tai.swap_by_newest(jesse)
+    # assert
+    assert item_d in tai.inventory and item_b in tai.inventory and item_c in tai.inventory
+    assert item_f in jesse.inventory and item_e in jesse.inventory and item_a in jesse.inventory
+
+def test_swap_by_newest_empty_inventory_returns_False():
+    # arrange
+    item_a = Decor(condition=2.0, age=50)
+    item_b = Electronics(condition=4.0, age = 5)
+    item_c = Decor(condition=4.0, age =3)
+    tai = Vendor(
+        inventory=[item_c, item_b, item_a]
+    )
+
+    jesse = Vendor(
+        inventory=[]
+    )
+    # act
+    result = tai.swap_by_newest(jesse)
+    # assert
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 0
+    assert result is False
+

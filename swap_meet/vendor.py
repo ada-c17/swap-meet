@@ -45,13 +45,7 @@ class Vendor:
         else:
             self.swap_items(other, their_priority_item, my_priority_item)
             return True
-            # self.add(my_priority_item)
-            # self.remove(their_priority_item)
-            # other.add(their_priority_item)
-            # other.remove(my_priority_item)
-            # return True
 
-    #  result = fatimah.swap_items(jolie, item_b, item_d)
     # passing in instance of Vendor, instance of Item, instance of Item
     def swap_items(self, vendor_friend, my_item, their_item):
         '''
@@ -78,25 +72,20 @@ class Vendor:
             self.swap_items(vendor_friend, my_first_item, their_first_item)
             return True
 
-            # self.add(their_first_item)
-            # vendor_friend.add(my_first_item)
-            # self.remove(my_first_item)
-            # vendor_friend.remove(their_first_item)
-            # return True
+    def get_newest_from_inventory(self):
+        my_newest_item = self.inventory[0]
+
+        for item in self.inventory:
+                if item.age < my_newest_item.age:
+                    my_newest_item = item
+        return my_newest_item
 
     def swap_by_newest(self, other):
         if self.inventory == [] or other.inventory == []: 
             return False
         else:
-            my_newest_item = self.inventory[0]
-            their_newest_item = other.inventory[0]
+            my_newest_item = self.get_newest_from_inventory()
+            their_newest_item = other.get_newest_from_inventory()
 
-            for item in self.inventory:
-                if item.age < my_newest_item.age:
-                    item = my_newest_item
-                    
-            for item in other.inventory:
-                if item.age < their_newest_item.age:
-                    item = their_newest_item
             self.swap_items(other, my_newest_item, their_newest_item)
             return True
