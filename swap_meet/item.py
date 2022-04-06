@@ -12,12 +12,5 @@ class Item:
         return self.category
 
     # return string "Hello World!"
-    def __str__(self, category="Hello World!"):
-        return category
-
-
-# item_a = Item(category="clothing")
-# print(item_a)
-
-# item_a = Item()
-# print(str(item_a))
+    def __str__(self):
+        return "Hello World!"

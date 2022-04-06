@@ -1,4 +1,4 @@
-from .item import Item
+from item import Item
 
 class Vendor():
     # create inventory parameters, where deafalt is empty list
@@ -49,22 +49,22 @@ class Vendor():
                 self.add(their_item)
                 return True
 
-# item_a = Item(category="clothing")
-# item_b = Item(category="clothing")
-# item_c = Item(category="clothing")
-# fatimah = Vendor(
-#     inventory=[item_a, item_b, item_c]
-# )
+item_a = Item(category="clothing")
+item_b = Item(category="clothing")
+item_c = Item(category="clothing")
+fatimah = Vendor(
+    inventory=[item_a, item_b, item_c]
+)
 
-# item_d = Item(category="electronics")
-# item_e = Item(category="decor")
-# jolie = Vendor(
-#     inventory=[item_d, item_e]
-# )
+item_d = Item(category="electronics")
+item_e = Item(category="decor")
+jolie = Vendor(
+    inventory=[item_d, item_e]
+)
 
-# print(fatimah.inventory)
-# print(jolie.inventory)
+print(fatimah.inventory)
+print(jolie.inventory)
 
-# result = fatimah.swap_items(jolie, item_b, item_d)
-# print(fatimah.inventory)
-# print(jolie.inventory)
+result = fatimah.swap_items(jolie, item_b, item_d)
+print(fatimah.inventory)
+print(jolie.inventory)
