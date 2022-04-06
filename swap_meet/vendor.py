@@ -5,18 +5,8 @@ from swap_meet.item import Item
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
-
-
 class Vendor:
-    """
-    attributes: inventory
-    methods: 
-        - In wave 1: add() and remove()
-        - In wave 2: get_by_category(), 
-        - In Wave 3: swap_items()
-        - In Wave 4: swap_first_item()
-        - In Wave 6: get_best_by_category()
-    """
+    """Parent class of Clothing, Decor, and Electronics"""
 
     # Wave 1
     def __init__(self, inventory = None):
@@ -35,7 +25,7 @@ class Vendor:
 
 
     def remove(self, item):
-        """Removing item from inventory if it is matching the paramenter item and returns the removed item."""
+        """Removing item from inventory if it is matching the paramenter pass in and returns that removed item."""
         if item in self.inventory:
             self.inventory.remove(item)
             return item
@@ -44,15 +34,10 @@ class Vendor:
 
     # Wave 2
     def get_by_category(self, category):
-        """
-        - Adding item object into a list if category is in vendor's inventory
-        - Return empty list if inventory list is empty. Otherwise returns list of items in inventory.
-
-        """
+        """Returnning list of items if matching the conditions, otherwise, return []"""
         items_list = []
+        # adding item into the new list if the inventory is not empty and category was the input
         if len(self.inventory) > 0:
-            # loop over inventory list to check each item object's category
-            # add item object into list if its category macthes to parameter
             for item in self.inventory:
                 if item.category == category:
                     items_list.append(item)
@@ -62,13 +47,9 @@ class Vendor:
 
     # Wave 3
     def swap_items(self, vendor, my_item, their_item):
-        """
-        If my item is in my inventory and their item is in friend's inventory:
-            - remove my item from my inventory and add it to friend's inventory
-            - remove their item from friend's inventory and add it to my inventory
-            - return True
-        Otherwise return False
-        """
+        """Returning True if item been swapped between both inventories, otherwise, return False"""
+        
+        # make sure the both items that want to swap are in both inventories
         if my_item in self.inventory and their_item in vendor.inventory:
             self.inventory.remove(my_item)
             self.inventory.append(their_item)
@@ -80,11 +61,9 @@ class Vendor:
 
     # Wave 4
     def swap_first_item(self, vendor):
-        """
-        Swapping first item of my inventory and friend's inventory:
-        - if both inventories are not empty then return True
-        - otherwise, return False
-        """
+        """Returnning True if the first item of both inventories been swapped, otherwise, return False."""
+        
+        # make sure both inventories are not empty before swapping
         if len(self.inventory) > 0 and len(vendor.inventory) > 0:
             self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
             return True
@@ -93,19 +72,29 @@ class Vendor:
 
     # Wave 6
     def get_best_by_category(self, category):
-        """
-        - Returning best item if inventory for item is not empty and has the highest condition and matching category
-        - Otherwise, return None
-        """
-
+        """Returning best item if matching conditions, otherwise, return False"""
+        
+        # if inventory is not empty then find the highest condition that is matching category for best item
         if len(self.inventory) > 0:
             for item in self.inventory:
-                if item.category == category:  
+                if item.category == category:
                     max_condi = max([item.condition for item in self.inventory if item.category == category])
-                    if item.condition == max_condi:
+                    if item.condition == max_condi: 
                         return item
         return None
 
+    
+    def swap_best_by_category(self, other, my_priority, their_priority ):
+        """Swapping item by best item and returning invoked function swap_items() at the end."""
+        
+        # invoking method get_best_by_category() to find my best item and other best item.
+        my_best_item = self.get_best_by_category(their_priority)
+        other_best_item = other.get_best_by_category(my_priority)
+        # invoking method swap_item() to swap item then return it
+        return self.swap_items(other, my_best_item, other_best_item)
+
+
+  
 
 
 
