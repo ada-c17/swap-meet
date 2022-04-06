@@ -24,7 +24,7 @@ class Vendor:
         return each_category
 
 
-    
+    # def swap_items(self):
 
 
         
