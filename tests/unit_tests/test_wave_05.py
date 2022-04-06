@@ -52,3 +52,25 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+def test_items_have_condition_descriptions_depending_on_number():
+    #Arrange
+    items = [
+        Clothing(condition=0),
+        Clothing(condition=1),
+        Clothing(condition=2),
+        Clothing(condition=3),
+        Clothing(condition=4),
+        Clothing(condition=5)
+            
+    ]    
+
+    #Act
+    condition_list = []
+    for item in items:
+        string_condition = item.condition_description()
+        condition_list.append(string_condition)
+
+    #Assert
+
+    assert condition_list == ["New", "Used like new", "Used", "Fair", "Dont buy it", "Run"]
