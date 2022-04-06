@@ -14,13 +14,6 @@ class Vendor:
             return item
         else:
             return False
-        # OLD IMPLEMENTATION
-        # try:
-        #     self.inventory.remove(item)
-        # except ValueError:
-        #     print("Item not found.")
-        #     return False
-        # return item
 
     def get_by_category(self, category):
         # Initialize empty list that will hold all items of the correct category
@@ -31,12 +24,8 @@ class Vendor:
                 relevant_items.append(item)
         return relevant_items
 
-    def swap_items(self, other_vendor, selfs_item, others_item):
-        # Check items exist in respective inventories before attempting swap
-        if selfs_item not in self.inventory or others_item not in other_vendor.inventory:
-            print("You are trying to swap an item that either you or the other vendor does not have!")
-            return False
-            
+    def swap(self, other_vendor, selfs_item, others_item):
+        """Swaps two items between two vendors."""
         #remove self's item from self's inventory
         self.remove(selfs_item)
         #add self's item to other's inventory
@@ -46,3 +35,22 @@ class Vendor:
         #add other's item to self's inventory
         self.inventory.append(others_item)
         return True
+
+    def swap_items(self, other_vendor, selfs_item, others_item):
+        # Check items exist in respective inventories before attempting swap
+        if selfs_item not in self.inventory or others_item not in other_vendor.inventory:
+            print("You are trying to swap an item that either you or the other vendor does not have!")
+            return False
+        else:
+            self.swap(other_vendor, selfs_item, others_item)
+            return True
+
+    # def swap_first_item(self, other_vendor):
+    #     # Check both vendors have items to swap
+    #     if self.inventory and other_vendor.inventory:
+    #         return
+
+
+
+
+
