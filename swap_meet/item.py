@@ -1,4 +1,22 @@
 class Item:
+    """
+    A class which represents items traded at a swap meet.
+
+    ...
+
+    Attributes
+    ----------
+    category: str
+        Name of category
+    condition: int or float
+        Represents condition of item on scale of 0-5
+
+    Methods
+    ----------
+    condition_description:
+        Returns a string that describes the condition based on the value of the condition attribute.
+
+    """
     def __init__(self, category = "", condition = 0):
         self.category = category
         self.condition = condition
