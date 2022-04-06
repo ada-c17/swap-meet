@@ -40,21 +40,16 @@ class Vendor:
         if len(self.inventory) == 0 or len(friend_vendor.inventory) == 0:
             return False
         else:
-            friend_vendor.add(self.inventory[0])
-            self.remove(self.inventory[0])
-            self.add(friend_vendor.inventory[0])
-            friend_vendor.remove(friend_vendor.inventory[0])
-            return True
+            return self.swap_items(friend_vendor,self.inventory[0],friend_vendor.inventory[0])
 
     def get_best_by_category(self,category):
         best_condition = 0
         best_item = None
-        #items = self.get_by_category() If I want to call this method?
-        for item in self.inventory:
-            if item.category == category:
-                if item.condition > best_condition:
-                    best_condition = item.condition
-                    best_item = item
+        items = self.get_by_category(category)
+        for item in items:
+            if item.condition > best_condition:
+                best_condition = item.condition
+                best_item = item
         return best_item
 
     def swap_best_by_category(self,other,my_priority,their_priority):
