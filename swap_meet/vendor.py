@@ -4,7 +4,10 @@ class Vendor:
     # Each Vendor will have an attribute named 'inventory' which is an empty list by default
     # When Vender is instantiated, optionally pass in a list with the keyword argument 'inventory'
 
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
+
+        if inventory is None:
+            inventory = []
 
         self.inventory = inventory
 
