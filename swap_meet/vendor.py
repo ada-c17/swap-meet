@@ -6,7 +6,7 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 class Vendor:
-    """Parent class of Clothing, Decor, and Electronics"""
+    
 
     # Wave 1
     def __init__(self, inventory = None):
@@ -22,6 +22,7 @@ class Vendor:
         """Adding new item into inventory and returns the added item."""
         self.inventory.append(item)
         return item
+        
 
 
     def remove(self, item):
@@ -48,7 +49,6 @@ class Vendor:
     # Wave 3
     def swap_items(self, vendor, my_item, their_item):
         """Returning True if item been swapped between both inventories, otherwise, return False"""
-        
         # make sure the both items that want to swap are in both inventories
         if my_item in self.inventory and their_item in vendor.inventory:
             self.inventory.remove(my_item)
@@ -62,7 +62,6 @@ class Vendor:
     # Wave 4
     def swap_first_item(self, vendor):
         """Returnning True if the first item of both inventories been swapped, otherwise, return False."""
-        
         # make sure both inventories are not empty before swapping
         if len(self.inventory) > 0 and len(vendor.inventory) > 0:
             self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
@@ -73,7 +72,6 @@ class Vendor:
     # Wave 6
     def get_best_by_category(self, category):
         """Returning best item if matching conditions, otherwise, return False"""
-        
         # if inventory is not empty then find the highest condition that is matching category for best item
         if len(self.inventory) > 0:
             for item in self.inventory:
@@ -90,14 +88,6 @@ class Vendor:
         # invoking method get_best_by_category() to find my best item and other best item.
         my_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
+        
         # invoking method swap_item() to swap item then return it
         return self.swap_items(other, my_best_item, other_best_item)
-
-
-  
-
-
-
-
-
-        
