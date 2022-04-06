@@ -78,9 +78,12 @@ def test_swap_best_by_category():
 
     # Assert
     assert result == True
-    assert len(tai.inventory) == len(jesse.inventory)
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     assert item_a and item_b and item_f in tai.inventory
     assert item_d and item_e and item_c in jesse.inventory
+    assert item_c not in tai.inventory
+    assert item_f not in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_reordered():
