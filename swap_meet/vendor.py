@@ -2,13 +2,12 @@
 
 class Vendor:
 
-    def __init__(self, inventory = None, category = None):
+    def __init__(self, inventory = None):
         # why do we specify that it's a list as a default param?
         if not inventory:
            inventory = []
         self.inventory = inventory
-        self.category = category
-
+        #self.category = category
 
     def add(self, item):
         if not item:
@@ -65,25 +64,12 @@ class Vendor:
 
         return True
 
+    def get_best_by_category(self, category):
+        if category not in self.inventory:
+            return None
+
+    def swap_best_by_category(self):
+        pass
 
 
-
-
-'''
-Notes and Questions:
-
-
-# inventory = ["ball", "jeans" "shirt"]
-# # inventory = ["clothing", "decor", "electronics"] #<--
-# inventory[0] = ["jeans", "shirt"]
-
-
-# print(Vendor.get_by_category("instruments"))
-
-# questions
-# what is the orange thing on top of vendor (does it equal class)?
-# and now what is the purple thing (instance method)
-
-
-'''
 
