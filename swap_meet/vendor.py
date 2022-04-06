@@ -1,4 +1,4 @@
-from item import Item
+from .item import Item
 
 class Vendor():
     # create inventory parameters, where deafalt is empty list
@@ -54,30 +54,17 @@ class Vendor():
         if len(self.inventory) == 0 or len(friend.inventory) == 0:
             return False
         else:
-            # grab first element from self list: first_item = self.inventory[0]
-            # remove from self inventory: self.remove(first_item)
-            # add to friends inventory: friend.add(first_item)
+            # grab first element from self list 
+            first_item = self.inventory[0]
+            # remove from self inventory
+            self.remove(first_item)
+            # add to friends inventory 
+            friend.add(first_item)
 
-            # grab first element from friends list: first_item = friend.inventory[0]
-            # remove this elem from friensd list: friend.remove(first_item)
-            # add to self inventory: self.add(first_item)
+            # grab first element from friends list
+            first_item = friend.inventory[0]
+            # remove this elem from friensd list
+            friend.remove(first_item)
+            # add to self inventory
+            self.add(first_item)
             return True
-
-
-item_a = Item(category="clothing")
-item_b = Item(category="clothing")
-item_c = Item(category="clothing")
-fatimah = Vendor(
-    inventory=[item_a, item_b, item_c]
-)
-
-item_d = Item(category="electronics")
-item_e = Item(category="decor")
-jolie = Vendor(
-    inventory=[item_d, item_e]
-)
-
-# result = fatimah.swap_first_item(jolie)
-
-print(jolie.first)
-# print(item_a.category)
