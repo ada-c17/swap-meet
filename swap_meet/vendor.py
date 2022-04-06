@@ -72,3 +72,11 @@ class Vendor:
         # gets item with best condition in a certain category
         # returns this item (only a single item even if there are duplicates)
         # returns None if no matching items in inventory
+    
+    def get_best_by_category(self, category):
+        get_same_category = self.get_by_category(category)
+        best_item = get_same_category[0]
+        for item in get_same_category:
+            if item.condition > best_item.condition:
+                best_item = item
+        return best_item
