@@ -20,13 +20,6 @@ class Vendor:
             return item
         return False
 
-        # refactor
-        # try:
-        #     self.inventory.remove(item)
-        #     return item
-        # except ValueError:
-        #     return False
-
 
     def get_by_category(self, category):
 
@@ -50,9 +43,7 @@ class Vendor:
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
 
-        # self.remove(my_item)
         vendor.add(self.remove(my_item))
-        # vendor.remove(their_item)
         self.add(vendor.remove(their_item))
 
         return True
