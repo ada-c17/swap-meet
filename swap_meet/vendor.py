@@ -38,6 +38,7 @@ class Vendor:
 
         try:
             return self._inventory.index(item)
+            
         except ValueError:
             return -1
 

@@ -1,6 +1,3 @@
-from re import I
-
-
 class Item:
 
     CONDITION_RATINGS = {
@@ -28,7 +25,7 @@ class Item:
         if 0 <= new_condition <= 5:
             self._condition = new_condition
         else:
-            raise ValueError("Item rating must be from 0 to 5.")
+            raise ValueError("Condition rating must be from 0 to 5.")
     
     
     @property
