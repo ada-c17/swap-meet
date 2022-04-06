@@ -4,3 +4,7 @@ class Item:
 
     def __str__(self):
         return("Hello World!")
+
+    def __repr__(self): #created repr dunder method just for funzies
+        rep = 'Item(' + self.category + ')'
+        return rep
