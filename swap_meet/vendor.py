@@ -6,7 +6,6 @@ class Vendor:
         self.inventory = inventory
 
     def add(self,item):
-
         self.inventory.append(item)
         return item
 
@@ -16,22 +15,43 @@ class Vendor:
         self.inventory.remove(item)
         return item
 
+
     def get_by_category(self, category):
         item_list = []
         for item in self.inventory:
-            # print(item)
             if item.category == category:
-                # print(item.category)
                 item_list.append(item)
         return item_list
+
+    def swap_items(self, friend_vendor, my_item, friend_item):
+        if my_item not in self.inventory or friend_item \
+            not in friend_vendor.inventory:
+            return False
+        self.inventory.remove(my_item)
+        self.inventory.append(friend_item)
+        friend_vendor.inventory.remove(friend_item)
+        friend_vendor.inventory.append(my_item)
+        return True
+    
+    def swap_first_item(self, friend_vendor):
+        pass
+
+
 
 
 
 # item_a = Item(category="clothing")
-# item_b = Item(category="electronics")
+# item_b = Item(category="clothing")
 # item_c = Item(category="clothing")
-# vendor = Vendor(
+# fatimah = Vendor(
 #     inventory=[item_a, item_b, item_c]
 # )
 
-# items = vendor.get_by_category("clothing")
+# item_d = Item(category="electronics")
+# item_e = Item(category="decor")
+# jolie = Vendor(
+#     inventory=[item_d, item_e]
+# )
+
+# result = fatimah.swap_items(jolie, item_b, item_d)
+# print(result)
