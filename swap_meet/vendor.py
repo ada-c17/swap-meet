@@ -59,10 +59,12 @@ class Vendor:
         """Returns item in best condition within a certain category"""
         # get list of items of category
         potential_items = self.get_by_category(desired_category)
+        # account for no items of desired category or only one of desired category
         if not potential_items:
             return None
         elif len(potential_items) == 1:
             return potential_items[0]
+        # calculate max item condition
         else:
             best_item = max(potential_items, key = lambda item: item.condition)
             return best_item
