@@ -10,7 +10,7 @@ class Item:
         self.condition=0
         self.age=1
         if isinstance(category, str) and self.__check_value(condition) and isinstance(age, date):
-            self.condition =condition
+            self.condition =int(condition)
             self.category =category
             today=date.today()
             self.age= today.year-age.year
