@@ -2,8 +2,7 @@
 class Vendor:
     
     def __init__(self, inventory=None):
-        if not inventory:
-            inventory = []
+        inventory = inventory if inventory is not None else []
         self.inventory = inventory
 
     def add(self, item):
@@ -43,10 +42,9 @@ class Vendor:
         condition = 0
         best_item = None
         for item in self.inventory:
-            if item.category == category:
-                if item.condition > condition:
-                    best_item = item
-                    condition = item.condition
+            if item.category == category and item.condition > condition:
+                best_item = item
+                condition = item.condition
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
