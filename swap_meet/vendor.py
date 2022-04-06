@@ -87,3 +87,25 @@ class Vendor:
             return True
         else:
             return False
+
+    def swap_first_item(self, vendor_friend):
+        """
+        Input: vendor_friend represents the friend that this Vendor is swapping with
+        Output: Return True if swap is successful. If either inventories are empty, return False
+        """
+
+        if (len(self.inventory) == 0) or (len(vendor_friend.inventory) == 0):
+            # If the Vendor or the friend have empty inventories, return False
+            return False
+        else:
+            # Consider the first item in this Vendor's inventory and vendor_friend's inventory
+            # Remove the first item from this Vendor's inventory, add it to vendor_friend's inventory
+            # Remove the first item from the friend's inventory, add it to this Vendor's inventory
+            # Return True when the swap is done
+            my_first_item = self.inventory[0]
+            their_first_item = vendor_friend.inventory[0]
+
+            self.inventory[0] = their_first_item
+            vendor_friend.inventory[0] = my_first_item
+
+            return True
