@@ -61,3 +61,13 @@ class Vendor:
                 max_qual = item.condition
                 best_item = item
         return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        item_to_self = other.get_best_by_category(my_priority)
+        item_to_other = self.get_best_by_category(their_priority)
+
+        if not (item_to_self and item_to_other):
+            return False
+
+        self.swap_items(other, item_to_other, item_to_self)
+        return True
