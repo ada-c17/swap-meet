@@ -52,3 +52,21 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+pytest.mark.skip
+def test_items_have_correct_condition_description():
+    items = [
+        Clothing(condition=0.0),
+        Decor(condition=1.0),
+        Electronics(condition=2.0),
+        Clothing(condition=3.0),
+        Decor(condition=4.0),
+        Electronics(condition=5.0),
+    ]
+
+    assert items[0].condition_description() == "Heavily used"
+    assert items[1].condition_description() == "Very Bad"
+    assert items[2].condition_description() == "Bad"
+    assert items[3].condition_description() == "Average"
+    assert items[4].condition_description() == "Used like new"
+    assert items[5].condition_description() == "Never used"
