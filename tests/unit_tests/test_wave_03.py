@@ -15,7 +15,7 @@ def test_item_overrides_to_repr():
 
     repr_item = repr(item)
 
-    assert repr_item == "Item(Clothing, 5, 0)"
+    assert repr_item == "Item(Clothing, 0, 0)"
 
 def test_swap_items_returns_true():
     item_a = Item(category="clothing")
