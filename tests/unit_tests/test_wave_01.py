@@ -55,4 +55,7 @@ def test_removing_not_found_is_false():
     # *********************************************************************
     assert result == False
     assert vendor.inventory == ["a", "b", "c"]
+    assert vendor.inventory[0] == "a"
+    assert vendor.inventory[1] == "b"
+    assert vendor.inventory[2] == "c"
     assert len(vendor.inventory) == 3
