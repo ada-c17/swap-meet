@@ -9,7 +9,7 @@ class Vendor:
     def inventory_initializer_if_None(self):
         if self.inventory is None:
             self.inventory = []
-    
+
     def add(self, item):
         self.inventory.append(item)
         return item
