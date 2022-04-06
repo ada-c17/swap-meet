@@ -31,7 +31,13 @@ class Vendor:
         return True
 
     def swap_first_item(self, Vendor):
-        pass
+        if not self.inventory or not Vendor.inventory:
+            return False
+        self.inventory.append(Vendor.inventory[0])
+        Vendor.inventory.append(self.inventory[0])
+        self.inventory.remove(self.inventory[0])
+        Vendor.inventory.remove(Vendor.inventory[0])
+        return True
 
     def get_best_by_category(self, category=""):
         pass
