@@ -40,14 +40,14 @@ class Vendor:
         checks for your best item given other's priority
         checks for their best item given your priority
         swaps those items
-        returns truthy if swap occurs
+        returns true if swap occurs
     
     get_newest():
         returns item in self.inventory with the lowest age attribute value
 
     swap_by_newest(other):
         swaps your's and other vendor's newest items
-        returns truthy if swap is successful
+        returns true if swap is successful
     """
 
 
@@ -180,16 +180,6 @@ class Vendor:
         -------
         best_item: object
         """
-        # best_condition = 0.0
-        # best_item = None
-        # inventory_by_category = self.get_by_category(category)
-
-        # for item in inventory_by_category:
-        #     if item.condition > best_condition:
-        #         best_condition = item.condition
-        #         best_item = item
-
-        # return best_item
 
         inventory_by_category = self.get_by_category(category)
 
@@ -221,15 +211,7 @@ class Vendor:
         return self.swap_items(other, my_best, other_best)
     
     def get_newest(self):
-        # age = 1000
-        # newest = None
 
-        # for item in self.inventory:
-        #     if item.age < age:
-        #         age = item.age
-        #         newest = item
-        
-        # return newest
         try:
             return min(self.inventory, key = lambda item: item.age)#min item of items list where we compare number values from the item's age attribute retreived via lambda function
         except ValueError:
