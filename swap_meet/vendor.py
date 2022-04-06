@@ -39,14 +39,4 @@ class Vendor:
             self.inventory.append(their_item)
             swap_vendor.inventory.remove(their_item)
             return True
-            
         return False
-
-        # if my_item in self.inventory:
-        #     self.inventory.remove(my_item)
-        #     swap_vendor.inventory.append(my_item)
-        #     if their_item in swap_vendor.inventory:
-        #         self.inventory.append(their_item)
-        #         swap_vendor.inventory.remove(their_item)
-        #         return True
-        # return False
