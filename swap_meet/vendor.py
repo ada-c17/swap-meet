@@ -1,7 +1,12 @@
 #from swap_meet.item import Item
 
 class Vendor:
+    '''
+        A vendor at a swap meet. 
 
+        Attributes:
+            inventory (list): a list of Item objects (default: [])
+    '''
     def __init__(self, inventory=None):
         self.inventory = inventory
         if self.inventory is None:
@@ -19,14 +24,12 @@ class Vendor:
         return item
     
     def get_by_category(self, category):
-        items_in_category = []
-        for item in self.inventory:
-            if item.category == category:
-                items_in_category.append(item)
+        items_in_category = [item for item in self.inventory 
+                            if item.category == category]
         return items_in_category
 
     def swap_items(self, vendor, my_item, their_item):
-        #this if calls .remove regardless of outcome;
+        #this if statement calls .remove regardless of outcome;
         #will cause item removal if present in inventory
         if not (vendor.remove(their_item)):
             return False
@@ -39,12 +42,9 @@ class Vendor:
         return True
     
     def swap_first_item(self, vendor):
-        if len(self.inventory) < 1 or len(vendor.inventory) < 1:
+        if not self.inventory or not vendor.inventory:
             return False
-        vendor.add(self.inventory[0])
-        self.remove(self.inventory[0])
-        self.add(vendor.inventory[0])
-        vendor.remove(vendor.inventory[0])
+        self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
         return True
     
     def get_best_by_category(self, category):
