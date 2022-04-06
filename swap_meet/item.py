@@ -8,6 +8,3 @@ class Item:
     # String-ify 'Item' using 'str()'
     def __str__(self):
         return "Hello World!"
-
-
-    # Write the method 'swap_items'
