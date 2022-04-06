@@ -10,9 +10,16 @@ class Vendor:
 
     def remove(self, item):
         if item not in self.inventory:
+            print("Item is not in inventory. Please enter a valid item.")
             return False
         else:
             return self.inventory.pop(self.inventory.index(item))
 
-    def get_by_category(self):
-        pass
+    def get_by_category(self, category):
+        categorized = []
+
+        for item in self.inventory:
+            if category == item.category:
+                categorized.append(item)
+
+        return categorized
