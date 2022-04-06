@@ -25,7 +25,24 @@ class Vendor:
         if my_item in self.inventory and their_item in friend.inventory:
             friend.inventory.append(my_item)
             self.inventory.remove(my_item)
+            
             self.inventory.append(their_item)
             friend.inventory.remove(their_item)
+            return True
+        return False
+    
+    def swap_first_item(self, friend):
+        '''
+        1) Adds the first item from Jolie's (friend's) inventory.
+        2) Removes first item from Fatimah's (self's) inventory.
+        3) Adds the instances first item
+        4) Remove the first item from Jolie's inventory
+        '''
+        if self.inventory and friend.inventory:
+            friend.inventory.append(self.inventory[0])
+            self.inventory.remove(self.inventory[0])
+
+            self.inventory.append(friend.inventory[0])
+            friend.inventory.remove(friend.inventory[0])
             return True
         return False
