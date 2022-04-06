@@ -32,4 +32,16 @@ class Vendor:
             return True
         return False 
     
+    def swap_first_item(self, vendor):
+        if len(self.inventory) and len(vendor.inventory) != 0: # why doesn't len(self.inventory) or len(vendor.inventory) == 0: work?
+            my_first_item = self.inventory[0]
+            their_first_item = vendor.inventory[0]
+            self.remove(my_first_item)
+            vendor.inventory.append(my_first_item)
+            vendor.inventory.remove(their_first_item)
+            self.add(their_first_item)
+            return True
+        return False 
+
+
 
