@@ -48,3 +48,16 @@ class Vendor:
         if len(my_inventory) and len(other_inventory):
             self.swap_items(other, self.get_best_by_category(their_priority), other.get_best_by_category(my_priority))
             return True    
+
+    # ***Optional***
+    def swap_by_newest(self, other):
+        try:
+            newest_me = min(item.age for item in self.inventory)
+            newest_other = min(item.age for item in other.inventory)          
+            if len(self.inventory) and len(other.inventory):
+                for my_item, other_item in zip(self.inventory, other.inventory):
+                    if my_item.age == newest_me and other_item.age == newest_other:
+                        self.swap_items(other, my_item, other_item)
+                    return True 
+        except:
+            return False
