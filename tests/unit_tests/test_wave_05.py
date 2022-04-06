@@ -52,3 +52,33 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+# *******************ADDING TEST*******************
+def test_condition_descriptions_handles_floats_incorrect_values():
+    # Arrange
+    clothing1 = Clothing(condition=0.3) # Less than 1
+    electronics1 = Electronics(condition=7) # Greater than 5
+    # Floats
+    clothing2 = Clothing(condition=1.6)
+    clothing3 = Clothing(condition=3.1)
+    clothing4 = Clothing(condition=4.0)
+    clothing5 = Clothing(condition=4.5)
+    decor1 = Decor(condition=1.1)
+    decor2 = Decor(condition=1.5)
+    decor3 = Decor(condition=2.5)
+    decor4 = Decor(condition=3.5)
+    decor5 = Decor(condition=4.5)
+    
+
+    # Act/Assert
+    assert clothing1.condition_description() == "Don't buy it"
+    assert clothing2.condition_description() == "At your own risk"
+    assert clothing3.condition_description() == "Meh"
+    assert clothing4.condition_description() == "Near perfect"
+    assert clothing5.condition_description() == "Never been used"
+    assert decor1.condition_description() == "Don't buy it"
+    assert decor2.condition_description() == "At your own risk"
+    assert decor3.condition_description() == "Meh"
+    assert decor4.condition_description() == "Near perfect"
+    assert decor5.condition_description() == "Never been used"
+    assert electronics1.condition_description() == "Never been used"

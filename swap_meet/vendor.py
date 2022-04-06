@@ -23,19 +23,17 @@ class Vendor:
 
     def swap_items(self, second_person, user_item, second_item):
         if user_item in self.inventory and second_item in second_person.inventory:
-            #self.add(second_item)
-            self.add(second_person.remove(second_item))
+            self.add(second_item)
             self.remove(user_item)
             second_person.add(user_item)
-            #second_person.remove(second_item)
+            second_person.remove(second_item)
             return True
         return False
 
     def swap_first_item(self, second_person):
         if len(self.inventory) > 0 and len(second_person.inventory) > 0:
             return self.swap_items(second_person, self.inventory[0], second_person.inventory[0])
-            #return True
-        #return False
+
 
     def get_best_by_category(self, best_cat):
         items_list = self.get_by_category(best_cat)
@@ -49,8 +47,6 @@ class Vendor:
     def swap_best_by_category(self, other, my_priority, their_priority):
         my_item = self.get_best_by_category(their_priority)
         their_item = other.get_best_by_category(my_priority)
-        # is it best practice to return a function like this?
-        # swap_items already returns t/f, so i thought, why repeat that here?
         return self.swap_items(other, my_item, their_item)
 
 
