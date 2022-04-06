@@ -104,27 +104,28 @@ class Vendor:
 
         return [item for item in self.inventory if item.category == category]
     
-    def swap_items(self, vendor_to_swap_with, item_vendor_swaps, item_vendor_gets):
+    def swap_items(self, vendor, my_item, vendor_item):
         """
-        Removes and appends 2nd and 3rd parameters from vendor's inventory respectively.
+        Removes and appends 2nd and 3rd parameters from my inventory respectively.
 
-        Appends and removes 2nd and 3rd parameters from vendor_to_swap_with 's inventory respectively.
+        Appends and removes 2nd and 3rd parameters from vendor's inventory respectively.
 
         Parameters
         -------
-        vendor_to_swap_with: composite object
-        item_vendor_swaps: component object item_vendor_gets: component object
+        vendor: composite object
+        my item: component object 
+        vendor_item: component object
 
         Returns
         -------
         self.inventory: object
         
         """
-        if item_vendor_swaps in self.inventory and item_vendor_gets in vendor_to_swap_with.inventory:
-            self.inventory.remove(item_vendor_swaps) 
-            self.inventory.append(item_vendor_gets)            
-            vendor_to_swap_with.inventory.remove(item_vendor_gets)       
-            vendor_to_swap_with.inventory.append(item_vendor_swaps) 
+        if my_item in self.inventory and vendor_item in vendor.inventory:
+            self.inventory.remove(my_item) 
+            self.inventory.append(vendor_item)            
+            vendor.inventory.remove(vendor_item)       
+            vendor.inventory.append(my_item) 
 
             return self.inventory
         else:
@@ -142,3 +143,27 @@ class Vendor:
         #     vendor_to_swap_with.inventory.append(item_vendor_swaps)
             
         #     return self.inventory
+
+    def swap_first_item(self, vendor):
+        """
+        Removes and appends first item from vendor and first item vendor_to_swap_with from my inventory respectively.
+
+        Removes and appends first item from vendor_to_swap_with and first item vendor from vendor's inventory respectively.
+
+        Parameters
+        -------
+        vendor: object
+
+        Returns
+        -------
+        boolean
+        """
+        try:
+            self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
+
+            return True
+        except IndexError:
+            return False
+
+
+
