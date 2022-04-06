@@ -6,7 +6,7 @@ class Vendor:
             self.inventory = []
         else:
             self.inventory = inventory
-    
+        self.greeting = "Hi"
     
     def add(self, item):
         self.inventory.append(item)
@@ -60,7 +60,41 @@ class Vendor:
 
         return True
 
-        
+
+    def get_best_by_category(self, category):
+        """Get the item with the best condition in a certain category.
+        It takes one argument: a string that represents a category"""
+
+        for item in self.inventory:
+            # Need dictionary with key value pairs of item, condition, and category.
+            # Iterate over this dictionary and return just the item (with the max condition for each category).
+            # Perhaps create a new data structure with category and highest value item for that category.
+            #Need guard clause for no items in inventory that match category and returns None 
+            # If there are duplicate items (smae itam and condition) return just one of them 
+            #Figure out what else you can glean from the tests. 
+            best_item = max(self.condition)  #where is condition located?
+
+            category_list = self.get_by_category(self, category) #???? syntax
+
+
+
+        pass
+
+    # my_priority = ??
+    # their_priority = ??
+
+    # # can I put item and condition in a dictionary that I can reference?
+
+
+    def swap_best_by_category(self, friend, my_priority, their_priority):
+        for item in self.inventory:
+            if item not in their_priority:
+                return False
+
+        for item in friend.inventory:
+            if item not in my_priority:
+                return False
+        pass
             
             
     
