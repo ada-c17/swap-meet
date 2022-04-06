@@ -42,6 +42,7 @@ def test_get_no_matching_items_by_category():
     assert item_a not in items
     assert item_b not in items
     assert item_c not in items
+    assert item_a.category == item_b.category == item_c.category == "clothing"
     assert items == []
 
 # additional test case on get_by_category() function to complete the code coverage
