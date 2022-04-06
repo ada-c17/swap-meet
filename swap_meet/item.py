@@ -1,7 +1,23 @@
 class Item:
+     '''
+    Class that represents an item.
+    
+    ...
+
+    Attributes
+    - - - - - -
+    category : str
+    condition : int
+
+    Methods
+    -------
+    str()
+    condition.description()
+    '''
+
     def __init__(self, category = "", condition = 0.0 ):
         '''
-        Constructs attributes for Item object, default values: category = empty string, condition =0.
+        Constructs attributes for Item object, default values: category = empty string, condition = 0.0.
         '''
         self.category = category
         self.condition = condition
