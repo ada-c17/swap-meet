@@ -3,6 +3,10 @@ class Item:
     # attributes: 
     #   category - an empty string
 
+    # wave 3
+    # stringify returns "Hello World!""
+
+
     def __init__(self, category=""):
         self.category = category
     

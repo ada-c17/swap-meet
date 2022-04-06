@@ -59,4 +59,5 @@ class Vendor:
         # returns False if itself or friend have empty inventory
     
     def swap_first_item(self, vendor):
-        return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+        if self.inventory and vendor.inventory:
+            return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
