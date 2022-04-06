@@ -1,8 +1,5 @@
 class Item:
-    """
-    attributes: category and conditon
-    methods: __str__() and condition_description()
-    """
+    """Parent class of Clothing, Decor, and Electronics"""
 
     # Wave 2, create category attribute
     # Wave 5, create condition attribute
@@ -18,18 +15,19 @@ class Item:
 
     # Wave 3
     def __str__(self):
-        """Return value in string format """
-        return str("Hello World!")
+        """Return value in string format if category or condition is empty """
+        if not self.category or not self.condition:
+            return "Hello World!"
 
 
     # Wave 5
     def condition_description(self):
         """Return item description base on its condition."""
-        
-        if self.condition == 0:
-            return str("New condition")
-
-        elif self.condition < 4:
-            return str("Still useable")
-
-        return str("Old or heavily used")
+        # if condition is integer or float, return string value base on condition value
+        if isinstance(self.condition, int) or isinstance(self.condition, float):
+            if self.condition == 0:
+                return "New condition"
+            elif self.condition < 4:
+                return "Still useable"
+            return "Old or heavily used"
+        return "Invalid input value!"
