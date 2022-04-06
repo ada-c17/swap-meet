@@ -6,8 +6,10 @@ class Vendor:
     #   add - takes in one item and adds to inventory, returns item added
     #   remove - takes in one item and removes from inventory, returns item removed
 
-    def __init__(self, inventory=[]):
+    def __init__(self, inventory=None):
         self.inventory = inventory
+        if self.inventory is None:
+            self.inventory = []
     
     def add(self, item):
         self.inventory.append(item)
@@ -61,3 +63,12 @@ class Vendor:
     def swap_first_item(self, vendor):
         if self.inventory and vendor.inventory:
             return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+    
+    # wave 6
+    # add instance method:
+    # get_best_by_category
+    # swap_best_by_category
+        # arg: str that represents a category
+        # gets item with best condition in a certain category
+        # returns this item (only a single item even if there are duplicates)
+        # returns None if no matching items in inventory
