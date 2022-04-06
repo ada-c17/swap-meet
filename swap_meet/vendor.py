@@ -19,7 +19,7 @@ class Vendor:
             return False
         else:
             self.inventory.remove(item)
-  
+
         return item
 
     def get_by_category(self, category):
@@ -34,7 +34,39 @@ class Vendor:
             
         return category_list
 
-vendor_2 = Vendor("Vendor_2")
 
-    def swap_items(self, ):
+    def swap_items(self, friend, my_item, their_item):
+        if my_item not in self.inventory or their_item not in friend.inventory:
+            return False
+
+        self.inventory.remove(my_item)
+        friend.inventory.append(my_item)
+        friend.inventory.remove(their_item)
+        self.inventory.append(their_item)
+
+        return True
         
+    def swap_first_item(self, friend):
+        if not self.inventory or not friend.inventory:
+            return False
+
+        # elif self.inventory[0] not in friend.inventory:
+        friend.inventory.append(self.inventory[0])
+        self.inventory.remove(self.inventory[0])            
+
+        # if friend.inventory[0] not in self.inventory:
+        self.inventory.append(friend.inventory[0])
+        friend.inventory.remove(friend.inventory[0])
+
+        return True
+
+        
+            
+            
+            
+        # friend.inventory[0]:
+
+            
+            
+            #  and item[0] in self.inventory:
+
