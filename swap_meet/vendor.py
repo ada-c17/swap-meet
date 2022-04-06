@@ -37,3 +37,17 @@ class Vendor:
         self.remove(my_item)
 
         return True
+    
+    def swap_first_item(self, friend):
+        # check that both inventories contain at least one item to swap
+        if not self.inventory or not friend.inventory:
+            return False
+        
+        # remove the first item from each inventory and append to partner's inventory
+        friend.add(self.inventory[0])
+        self.remove(self.inventory[0])
+
+        self.add(friend.inventory[0])
+        friend.remove(friend.inventory[0])
+
+        return True
