@@ -51,10 +51,9 @@ class Vendor:
         if not self.inventory or not Vendor.inventory:
             return False
         else:
-            my_first_item = self.inventory.pop(0)
-            vendor_first_item = Vendor.inventory.pop(0)
-            self.add(vendor_first_item)
-            Vendor.add(my_first_item)
+            my_first_item = self.inventory[0]
+            vendor_first_item = Vendor.inventory[0]
+            self.swap_items(Vendor, my_first_item, vendor_first_item)
             return True
     
     def get_best_by_category(self, desired_category):
