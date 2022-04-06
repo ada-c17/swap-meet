@@ -271,3 +271,48 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert item_d in jesse.inventory
     assert item_e in jesse.inventory
     assert item_f in jesse.inventory
+
+    # Tests Added for Optional swap_by_newest function
+
+def test_swap_by_newest_if_each_vendor_has_one_new_item():
+    #Arrange
+    moist_item = Decor(condition = 0)
+    dry_item = Decor(age = 1)
+    moist_item_2 = Clothing(age = 2)
+    audrey = Vendor([moist_item, moist_item_2])
+    trenisha = Vendor([dry_item])
+    #Act
+    audrey.swap_by_newest(trenisha)
+    #Assert
+    assert len(audrey.inventory) == 2
+    assert len(trenisha.inventory) == 1
+    assert dry_item in audrey.inventory
+    assert moist_item in trenisha.inventory
+
+def test_swap_by_newest_if_one_vendor_has_more_than_one_new_item():
+    #Arrange
+    moist_item = Decor()
+    dry_item = Electronics()
+    moist_item_2 = Clothing()
+    audrey = Vendor([moist_item, moist_item_2])
+    trenisha = Vendor([dry_item])
+    #Act
+    trenisha.swap_by_newest(audrey)
+    #Assert
+    assert dry_item not in trenisha.inventory
+    assert dry_item in audrey.inventory
+    assert len(trenisha.inventory) == 1
+    assert len(audrey.inventory) == 2
+
+def test_swap_by_newest_if_one_vendor_empty_returns_none():
+    #Arrange
+    moist_item = Decor()
+    moist_item_2 = Clothing()
+    audrey = Vendor([moist_item, moist_item_2])
+    trenisha = Vendor()
+    #Act
+    result = trenisha.swap_by_newest(audrey)
+    #Assert
+    assert result == None
+    assert len(trenisha.inventory) == 0
+    assert len(audrey.inventory) == 2
