@@ -1,5 +1,3 @@
-#from swap_meet.item import Item
-
 class Vendor:
     '''
         A vendor at a swap meet. 
@@ -50,14 +48,10 @@ class Vendor:
     def get_best_by_category(self, category):
         item_list = self.get_by_category(category)
         
-        if item_list:
-            best_item = item_list[0]
-            for item in item_list:
-                if item.condition > best_item.condition:
-                    best_item = item
-        else:
+        if not item_list:
             return None
 
+        best_item = max(item_list, key=lambda x: x.condition)
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
