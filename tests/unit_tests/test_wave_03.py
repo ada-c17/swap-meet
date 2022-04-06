@@ -43,8 +43,8 @@ def test_swap_items_returns_true():
     assert result
 
 # ---------- TEST THREE ---------- #
-
-@pytest.mark.skip
+# ---------- PASSED ---------- #
+# @pytest.mark.skip
 def test_swap_items_when_my_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -72,8 +72,8 @@ def test_swap_items_when_my_item_is_missing_returns_false():
     assert not result
 
 # ---------- TEST FOUR ---------- #
-
-@pytest.mark.skip
+# ---------- PASSED ---------- #
+# @pytest.mark.skip
 def test_swap_items_when_their_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -101,8 +101,8 @@ def test_swap_items_when_their_item_is_missing_returns_false():
     assert not result
 
 # ---------- TEST FIVE ---------- #
-
-@pytest.mark.skip
+# ---------- PASSED ---------- #
+# @pytest.mark.skip
 def test_swap_items_from_my_empty_returns_false():
     fatimah = Vendor(
         inventory=[]
@@ -123,8 +123,8 @@ def test_swap_items_from_my_empty_returns_false():
     assert not result
 
 # ---------- TEST SIX ---------- #
-
-@pytest.mark.skip
+# ---------- PASSED ---------- #
+# @pytest.mark.skip
 def test_swap_items_from_their_empty_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
