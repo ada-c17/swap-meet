@@ -63,11 +63,7 @@ class Vendor:
             my_item = self.inventory[0]
             their_item = friend.inventory[0]
 
-            self.inventory.remove(my_item)
-            self.inventory.append(their_item)
-            friend.inventory.remove(their_item)
-            friend.inventory.append(my_item)
-
+            self.swap_items(friend, my_item, their_item)
             return True
 
     def swap_best_by_category(self, other, my_priority, their_priority):
