@@ -26,7 +26,6 @@ class Vendor:
     # best_item = tai.get_best_by_category("Clothing")
     def get_best_by_category(self, category):
         items = self.get_by_category(category)
-
         if items == []:
             return None
         else:
@@ -37,17 +36,20 @@ class Vendor:
             return best_item
     
     def swap_best_by_category(self, other, my_priority, their_priority):
-        their_category_item = self.get_best_by_category(their_priority)
+
+        their_priority_item = self.get_best_by_category(their_priority)
         my_priority_item = other.get_best_by_category(my_priority)
 
-        if not their_category_item or not my_priority_item:
+        if not their_priority_item or not my_priority_item:
             return None
         else:
-            self.add(my_priority_item)
-            self.remove(their_category_item)
-            other.add(their_category_item)
-            other.remove(my_priority_item)
+            self.swap_items(other, their_priority_item, my_priority_item)
             return True
+            # self.add(my_priority_item)
+            # self.remove(their_priority_item)
+            # other.add(their_priority_item)
+            # other.remove(my_priority_item)
+            # return True
 
     #  result = fatimah.swap_items(jolie, item_b, item_d)
     # passing in instance of Vendor, instance of Item, instance of Item
@@ -73,8 +75,28 @@ class Vendor:
         else: 
             my_first_item = self.inventory[0]
             their_first_item = vendor_friend.inventory[0]
-            self.add(their_first_item)
-            vendor_friend.add(my_first_item)
-            self.remove(my_first_item)
-            vendor_friend.remove(their_first_item)
+            self.swap_items(vendor_friend, my_first_item, their_first_item)
+            return True
+
+            # self.add(their_first_item)
+            # vendor_friend.add(my_first_item)
+            # self.remove(my_first_item)
+            # vendor_friend.remove(their_first_item)
+            # return True
+
+    def swap_by_newest(self, other):
+        if self.inventory == [] or other.inventory == []: 
+            return False
+        else:
+            my_newest_item = self.inventory[0]
+            their_newest_item = other.inventory[0]
+
+            for item in self.inventory:
+                if item.age < my_newest_item.age:
+                    item = my_newest_item
+                    
+            for item in other.inventory:
+                if item.age < their_newest_item.age:
+                    item = their_newest_item
+            self.swap_items(other, my_newest_item, their_newest_item)
             return True
