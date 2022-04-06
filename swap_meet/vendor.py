@@ -37,12 +37,41 @@ class Vendor:
         try:
             self_first_item = self.inventory[0]
             vendor_first_item = vendor.inventory[0]
-            self.inventory.remove(self_first_item)
-            self.inventory.append(vendor_first_item)
-            vendor.inventory.remove(vendor_first_item)
-            vendor.inventory.append(self_first_item)
+            self.swap_items(vendor,self_first_item, vendor_first_item)
             return True
         except IndexError:
             return False
         
+    def get_best_by_category(self, category):
+        items = self.get_by_category(category)
+        if not items:
+            return None
+        else:
+            best_rating = max(item.condition for item in items)
+            for item in items:
+                if item.condition == best_rating:
+                    return item
+    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        self_best = self.get_best_by_category(their_priority)
+        their_best = other.get_best_by_category(my_priority)
+        if their_best == None or self_best == None:
+            return False
+        else:
+            self.swap_items(other, self_best, their_best)
+            return True
+    
+    def get_newest_item(self):
+        newest_age = min(item.age for item in self.inventory)
+        for item in self.inventory:
+            if item.age == newest_age:
+                return item
+    
+    def swap_newest(self, other):
+        self_newest_item = self.get_newest_item()
+        their_newest_item = other.get_newest_item()
+        self.swap_items(other, self_newest_item, their_newest_item)
+
+
+
 
