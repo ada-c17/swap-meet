@@ -41,6 +41,13 @@ class Vendor:
         checks for their best item given your priority
         swaps those items
         returns truthy if swap occurs
+    
+    get_newest():
+        returns item in self.inventory with the lowest age attribute value
+
+    swap_by_newest(other):
+        swaps your's and other vendor's newest items
+        returns truthy if swap is successful
     """
 
 
@@ -138,7 +145,7 @@ class Vendor:
                 vendor.remove(vendor_item)       
                 vendor.add(my_item) 
 
-                return self.inventory
+                return True
 
 
     def swap_first_item(self, vendor):
