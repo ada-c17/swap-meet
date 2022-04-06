@@ -20,7 +20,7 @@ class Item:
 
 
     def condition_description(self):
-        
+
         if 0 < self.condition <= 1:
             condition_description = "Poor"
         elif 1 < self.condition <= 2:
