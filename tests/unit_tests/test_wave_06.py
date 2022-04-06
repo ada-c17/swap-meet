@@ -273,6 +273,16 @@ def test_get_newest():
     # Arrange
     result == item_c
 
+def test_get_newest_with_empty_inventory():
+    # Arrange
+    tai = Vendor()
+
+    # Act
+    result = tai.get_newest()
+
+    # Arrange
+    result is None
+
 def test_swap_by_newest():
     # Arrange
     item_a = Decor(age=2)
@@ -300,3 +310,19 @@ def test_swap_by_newest():
     assert len(jesse.inventory) == 3
     assert tai.inventory == [item_b, item_c, item_d]
     assert jesse.inventory == [item_e, item_f, item_a]
+
+def test_swap_by_newest_with_no_match():
+    # Arrange
+    item_a = Decor(age=2)
+    item_b = Electronics(age=4)
+    item_c = Decor(age=5)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+    jesse = Vendor()
+    
+    # Act
+    result = tai.swap_by_newest(other=jesse)
+
+    # Arrange
+    result == False

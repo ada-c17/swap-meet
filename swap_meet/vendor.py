@@ -42,14 +42,11 @@ class Vendor:
     def get_best_by_category(self, category):
         highest_value = 0
         best_item = None
-        try:
-            for item in self.inventory:
-                if item.category == category and item.condition >= highest_value:
-                    highest_value = item.condition
-                    best_item = item
-        except IndexError:
-            return None
-            
+    
+        for item in self.inventory:
+            if item.category == category and item.condition >= highest_value:
+                highest_value = item.condition
+                best_item = item    
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
@@ -62,17 +59,16 @@ class Vendor:
 
     # Helper function to get the newest item among the inventory
     def get_newest(self):
-        try:
-            newest_age = self.inventory[0].age
-            newest_item = self.inventory[0]
-
-            for i in range(1, len(self.inventory)):
-                current_item = self.inventory[i]
-                if current_item.age <= newest_age:
-                    newest_age = current_item.age
-                    newest_item = current_item
-        except IndexError:
+        if len(self.inventory) == 0 :
             return None
+        newest_age = self.inventory[0].age
+        newest_item = self.inventory[0]
+
+        for i in range(1, len(self.inventory)):
+            current_item = self.inventory[i]
+            if current_item.age <= newest_age:
+                newest_age = current_item.age
+                newest_item = current_item
         
         return newest_item
 
