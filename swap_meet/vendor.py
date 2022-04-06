@@ -1,9 +1,9 @@
 from swap_meet.item import Item
 
 class Vendor:
-    def __init__(self, inventory = []):
-            # if not inventory:
-            #     inventory = []
+    def __init__(self, inventory = None):
+            if not inventory:
+                inventory = []
             self.inventory = inventory
 
     
