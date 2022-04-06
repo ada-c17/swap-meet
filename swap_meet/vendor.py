@@ -64,11 +64,11 @@ class Vendor:
     def swap_items(self, friend, my_item, friend_item):
         """
         Remove items (my_item & friend_item) in each respective
-        list (self.inventory & friend.inventory) and put at 
-        the end of the other list
-        (my_items to friend_items and friend_items to my_items)
+        list (self.inventory & friend.inventory) and appends it 
+        the other list
+        (my_items to friend list and friend_items to my list)
 
-            Parameters: friend(instance) = An instance of Vender class
+            Parameters: friend(Vendor) = An instance
                         
                         my_item(str) = An instance of Item
                         
@@ -96,12 +96,14 @@ class Vendor:
 
     def swap_first_item(self, friend):
         """
-        Remove first items in each lists (self.inventory & 
-        friend.inventory) and put at the end of the other list
-        (my inventory[first item] to friend's inventory[first item] 
-        and friend's inventory[first item] to my inventory[first item])
+        Envoke swap_items as helper method to remove first items in 
+        each list (self.inventory & friend.inventory) and put at the 
+        end of the other list (my inventory[first item]) to friend's 
+        inventory[first item] and friend's inventory[first item] to 
+        my inventory[first item])
 
-            Parameters: friend(instance) = An instance of Vender class
+            Parameters: friend(instance of Vendor class) = An instance 
+                        of Vender class
 
 
             Returns:
@@ -114,14 +116,24 @@ class Vendor:
             return False
 
         else:
-            friend.inventory.append(self.inventory[0])
-            self.inventory.append(friend.inventory[0])
-            friend.inventory.remove(friend.inventory[0])
-            self.inventory.remove(self.inventory[0])
+            self.swap_items(friend, self.inventory[0], friend.inventory[0])
             return True
 
-    # def get_best_by_category(self, category):
-    #     # best_condition = 0
-    #     # for item in self.inventory:
-    #     #     if self.get_by_category() == category or:
-    #     #         if 
+    def get_best_by_category(self, category):
+        if not category:
+            return False
+        best_condition = 0
+        best_item = None
+        items_in_category = self.get_by_category(category)
+        for item in items_in_category:
+            if item.condition > best_condition:
+                best_condition = item.condition
+                best_item = item
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        friend_item = other.get_best_by_category(my_priority) # Item I want to get from them
+        my_item = self.get_best_by_category(their_priority) # Item I want to get from them
+        if not friend_item or not my_item:
+            return False
+        return self.swap_items(other, my_item, friend_item)
