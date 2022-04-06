@@ -46,6 +46,19 @@ class Vendor:
         self.inventory.remove(self.inventory[0])
         friend.inventory.remove(friend.inventory[0])
         return True
+
+    def get_best_by_category(self, category):
+        self.category = category
+        highest_rank = 0.0
+        for item in self.inventory:
+            if self.condition == 5.0:
+                if item.category == category:
+                    return item
+                else:
+                    return None
+            
+
+    
     
             
 
