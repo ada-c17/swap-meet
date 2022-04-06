@@ -52,6 +52,20 @@ class Vendor:
             return True
         return False
 
+    def get_best_by_category(self, category):
+        highest_rating = 0.0
+        best_item = None
+        # Iterate through inventory items of correct category
+        for item in self.inventory:
+            if item.category == category:
+        # If item's rating is higher than highest rating, reset
+        # highest rated item to item, and highest rating to item's rating
+                if item.condition > highest_rating:
+                    highest_rating = item.condition
+                    best_item = item
+        return best_item
+        
+
 
 
 
