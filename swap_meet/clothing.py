@@ -5,8 +5,7 @@ class Clothing(Item):
         '''
         Constructs attributes for Clothing object from parent class; default values: category = "Clothing", condition =0.
         '''
-        super().__init__(condition = condition, category = "Clothing") 
-
+        super().__init__(condition = condition, category = "Clothing")
     def __str__(self):
         '''
         Overrides parent str method and returns message.

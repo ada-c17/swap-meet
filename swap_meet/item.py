@@ -4,7 +4,7 @@ class Item:
         Constructs attributes for Item object, default values: category = empty string, condition =0.
         '''
         self.category = category
-        self.condition = condition 
+        self.condition = condition
 
     def __str__(self):
         '''
