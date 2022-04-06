@@ -1,6 +1,3 @@
-from unicodedata import category
-from swap_meet.item import Item
-
 class Vendor:
 
     def __init__(self, inventory = []):
