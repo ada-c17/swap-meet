@@ -1,8 +1,6 @@
 class Electronics:
-    def __init__(self, category="Electronics", condition=None):
+    def __init__(self, category="Electronics", condition=0):
         self.category = category
-        if not condition:
-            condition = 0
         self.condition = condition
     
     def __str__(self):
