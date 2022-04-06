@@ -23,7 +23,6 @@ class Vendor:
     def get_by_category(self, category_string):
         """Return list of items from inventory of a certain category"""
 
-### refactor this?? check first if any items match category??
         item_list = []
         for item in self.inventory:
             if item.category == category_string:
@@ -76,7 +75,7 @@ class Vendor:
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         """Swap best items in provided categories between self and another vendor"""
-        
+
         # get best items in each category
         their_desired_item = self.get_best_by_category(their_priority)
         my_desired_item = other.get_best_by_category(my_priority)
@@ -85,6 +84,6 @@ class Vendor:
         if not my_desired_item or not their_desired_item:
             return False
         else:
-            # swap items
+            # swap items if valid
             self.swap_items(other, their_desired_item, my_desired_item)
             return True
