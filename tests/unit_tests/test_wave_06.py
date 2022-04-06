@@ -202,7 +202,7 @@ def test_swap_best_by_category_no_match_is_false():
     assert item_d and item_e and item_f in jesse.inventory
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_no_other_match_is_false():
     # Arrange
     item_a = Decor(condition=2.0)
@@ -226,7 +226,13 @@ def test_swap_best_by_category_no_other_match_is_false():
         their_priority="Decor"
     )
 
-    raise Exception("Complete this test according to comments below.")
+    # Assert
+    assert result == False
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    assert item_a and item_b and item_c in tai.inventory
+    assert item_d and item_e and item_f in jesse.inventory
+
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
