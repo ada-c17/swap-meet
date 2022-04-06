@@ -3,11 +3,9 @@
 class Vendor:
 
     def __init__(self, inventory = None):
-        # why do we specify that it's a list as a default param?
         if not inventory:
            inventory = []
         self.inventory = inventory
-        #self.category = category
 
     def add(self, item):
         if not item:
@@ -17,7 +15,6 @@ class Vendor:
         return item
 
     def remove(self, item):
-        #inventory_copy = self.inventory.deepcopy
         if item not in self.inventory:
             return False
 
@@ -30,8 +27,6 @@ class Vendor:
         for item in self.inventory:
             if item.category == category:
                list_of_items_per_cat.append(item)
-
-        #print(list_of_items_per_cat)
 
         return list_of_items_per_cat
 
@@ -72,4 +67,25 @@ class Vendor:
         pass
 
 
+rafferty = Vendor()
+closet_items = ["white shirt", "balenciaga jeans", "flat shoes", "work gown"]
+rafferty.inventory = closet_items
+print(vars(rafferty))
+rafferty.add("elegant work gown")
+rafferty.remove("flat shoes")
+print(vars(rafferty))
 
+'''
+Notes and Questions:
+
+
+# inventory = ["ball", "jeans" "shirt"]
+# # inventory = ["clothing", "decor", "electronics"] #<--
+# inventory[0] = ["jeans", "shirt"]
+
+
+# print(Vendor.get_by_category("instruments"))
+
+# questions
+
+'''
