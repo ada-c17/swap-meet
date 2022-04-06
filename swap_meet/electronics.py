@@ -1,12 +1,14 @@
 from .item import Item
 
 class Electronics(Item):
-    def __init__(self, category = "Electronics", condition = 0.0):
+    #keep condition as 0.0 to allow it to change
+    def __init__(self, condition = 0.0):
         '''
-        Constructs attributes for Electronics object, default values: category = "Electronics", condition =0.
+        Constructs attributes for Electronics object from parent class, default values: category = "Electronics", condition =0.
         '''
-        self.category = category
-        self.condition = condition
+        #"Electronics" gets set as keyword argument value in super__init_- -> which is a method CALL, set condition = condition to ensure attribute inherited 
+        #and not reassigned above
+        super().__init__(condition = condition, category = "Electronics")
 
     def __str__(self):
         '''

@@ -1,12 +1,12 @@
 from .item import Item
 
 class Decor(Item):
-    def __init__(self, category = "Decor", condition = 0.0):
+    def __init__(self, condition = 0.0):
         '''
-        Constructs attributes for Decor object, default values: category = "Decor", condition =0.
+        Constructs attributes for Decor object from parent class; default values: category = "Decor", condition = 0.0.
         '''
-        self.category = category
-        self.condition = condition
+        super().__init__(condition = condition, category = "Decor") 
+
 
     def __str__(self):
         '''
