@@ -24,9 +24,22 @@ class Vendor():
   def swap_items(self, vendor, my_item, their_item):
     if my_item in self.inventory and their_item in vendor.inventory:
       self.inventory.remove(my_item)
-      vendor.inventory.append(my_item) #add to fatimah inventory
+      vendor.inventory.append(my_item)
       vendor.inventory.remove(their_item)
       self.inventory.append(their_item)
+      return True
+    else:
+      return False
+
+  def swap_first_item(self, vendor):
+    if len(vendor.inventory) and len(self.inventory) != 0:
+      self_item = self.inventory[0]
+      vendor_item = vendor.inventory[0]
+      
+      self.inventory.remove(self_item)
+      vendor.inventory.append(self_item)
+      vendor.inventory.remove(vendor_item)
+      self.inventory.append(vendor_item)
       return True
     else:
       return False
