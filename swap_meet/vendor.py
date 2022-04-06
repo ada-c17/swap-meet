@@ -12,12 +12,19 @@ class Vendor:
         self.inventory = inventory
 
     def add(self, item):
-        '''Method to add one item to vendor's inventory and return item. Helper function to swap_items method.'''
+        '''
+        Adds one item to vendor's inventory and returns item. 
+        Helper function to swap_items method.
+        '''
         self.inventory.append(item)
         return item
 
     def remove(self, item):
-        '''Method to remove one item from vendor's inventory. Helper function to swap_items method.'''
+        '''
+        Removes one item from vendor's inventory and returns item. 
+        Returns False if item not found in inventory. 
+        Helper function to swap_items method.
+        '''
         try:
             self.inventory.remove(item)
             return item
@@ -25,11 +32,20 @@ class Vendor:
             return False
 
     def get_by_category(self, category):
-        '''Method to return inventory list filtered to only items belonging to given category. Helper function to get_best_by_category method.'''
+        '''
+        Takes a category as parameter and returns instance's inventory list filtered to only items belonging to that category.
+        Returns empty list if none found. 
+        Helper function to get_best_by_category method.
+        '''
         return [item for item in self.inventory if item.category == category]
 
     def swap_items(self, other, item_given, item_received):
-        '''Method to swap two items between the vendor instance's inventory and another given vendor instance's inventory. Helper function to several other methods.'''
+        '''
+        Receives parameters of other vendor instance, item to give that instance and item to receive from that instance. 
+        Swaps two items between the vendor instance's inventory and other vendor instance's inventory. 
+        Returns True if successful and False if either item is not found in inventory. 
+        Helper function to several other methods.
+        '''
         if item_given not in self.inventory or item_received not in other.inventory:
             return False
 
@@ -40,13 +56,20 @@ class Vendor:
         return True
 
     def swap_first_item(self, other):
-        '''Method to trade the first item listed in vendor instance's inventory with the first item listed in another given vendor instance's inventory'''
+        '''
+        Receives other vendor instance as parameter. 
+        Trades the first item listed in vendor instance's inventory with the first item listed in other vendor instance's inventory. 
+        Returns True if successful and False if either inventory is falsey.
+        '''
         if not self.inventory or not other.inventory:
             return False
         return self.swap_items(other, self.inventory[0], other.inventory[0])
 
     def get_best_by_category(self, category):
-        '''Method to return the highest rated item in an inventory belonging to a given category. Helper method to swap_best_by_category method.'''
+        '''
+        Returns the highest-rated item in instance's inventory belonging to the category passed in as a parameter. 
+        Helper method to swap_best_by_category method.
+        '''
         category_inventory = self.get_by_category(category)
         if len(category_inventory) < 1:
             return None
@@ -57,7 +80,11 @@ class Vendor:
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
-        '''Method to swap the highest-rated item belonging to a preferred category specific to each vendor instance, given a trade partner and category for each vendor'''
+        '''
+        Receives parameters of another vendor instance, preferred category for self instance and preferred category for other instance. 
+        Swaps the highest-rated item in each instance's inventory belonging to the category preferred by the other instance.
+        Returns True if successful and False if either item can't be found.
+        '''
         my_best = self.get_best_by_category(their_priority)
         their_best = other.get_best_by_category(my_priority)
         if not my_best or not their_best:
@@ -65,7 +92,11 @@ class Vendor:
         return self.swap_items(other, my_best, their_best)
 
     def get_newest(self):
-        '''Method to return the item in an inventory with the lowest age attribute. Helper function to swap_by_newest function.'''
+        '''
+        Returns the item in inventory attribute with the lowest age attribute. 
+        Returns False if any item missing age attribute.
+        Helper function to swap_by_newest function.
+        '''
         newest = self.inventory[0]
         for item in self.inventory:
             if not item.age:
@@ -75,7 +106,10 @@ class Vendor:
         return newest
 
     def swap_by_newest(self, other):
-        '''Method to trade the newest item from each vendor instance's inventory given a trading partner.'''
+        '''
+        Receives another vendor instance as parameter and trades the newest item from each vendor instance's inventory.
+        Returns False if either inventory does not have an identifiable newest item.
+        '''
         my_newest = self.get_newest()
         their_newest = other.get_newest()
         if not my_newest or not their_newest:
