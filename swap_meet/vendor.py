@@ -49,13 +49,14 @@ class Vendor:
     # Wave 3
     def swap_items(self, vendor, my_item, their_item):
         """Returning True if item been swapped between both inventories, otherwise, return False"""
-        # make sure the both items that want to swap are in both inventories
-        if my_item in self.inventory and their_item in vendor.inventory:
-            self.inventory.remove(my_item)
-            self.inventory.append(their_item)
-            vendor.inventory.append(my_item)
-            vendor.inventory.remove(their_item)
-            return True
+        # make sure both inventories are not empty and both items that want to swap are in both inventories
+        if len(self.inventory) > 0 and len(vendor.inventory) > 0:
+            if my_item in self.inventory and their_item in vendor.inventory:
+                self.inventory.remove(my_item)
+                self.inventory.append(their_item)
+                vendor.inventory.append(my_item)
+                vendor.inventory.remove(their_item)
+                return True
         return False
             
 
@@ -71,9 +72,9 @@ class Vendor:
 
     # Wave 6
     def get_best_by_category(self, category):
-        """Returning best item if matching conditions, otherwise, return False"""
-        # if inventory is not empty then find the highest condition that is matching category for best item
-        if len(self.inventory) > 0:
+        """Returning best item if matching requirements, otherwise, return False"""
+        # if inventory and category are not empty then find the highest condition that is matching category for best item
+        if category and len(self.inventory) > 0:
             for item in self.inventory:
                 if item.category == category:
                     max_condi = max([item.condition for item in self.inventory if item.category == category])
@@ -85,9 +86,12 @@ class Vendor:
     def swap_best_by_category(self, other, my_priority, their_priority ):
         """Swapping item by best item and returning invoked function swap_items() at the end."""
         
-        # invoking method get_best_by_category() to find my best item and other best item.
+        # invoking method get_best_by_category() to find my best item and other best item base on priority.
         my_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
         
-        # invoking method swap_item() to swap item then return it
+        # invoking method swap_item() to swap item and it will return True or False
         return self.swap_items(other, my_best_item, other_best_item)
+
+
+
