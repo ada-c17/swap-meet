@@ -12,6 +12,6 @@ class Item:
         '''
         return "Hello World!"
 
-    def condition(self, condition_description):
+    def condition_description(self, condition_description):
         self.condition_description = condition_description
 
