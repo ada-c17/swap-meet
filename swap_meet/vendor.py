@@ -1,3 +1,5 @@
+from operator import attrgetter
+
 class Vendor:
 
     def __init__(self, inventory = None):
@@ -10,7 +12,7 @@ class Vendor:
         return item
 
     def remove(self,item):
-        # Use try-clause to check if the matching item can be removed from the inventory list
+        # Use a try statement to check if the matching item can be removed from the inventory list
         try:
             self.inventory.remove(item)
             return item
@@ -19,7 +21,7 @@ class Vendor:
             return False
 
     def get_by_category(self, category):
-        # Create items list to store the item in inventory with that category
+        # Create items list to store the item with matching category 
         items = []
         for item in self.inventory:
             if item.category == category:
@@ -27,47 +29,56 @@ class Vendor:
         return items 
 
     def swap_items(self, friend, my_item, their_item):
-        # Use try_clause to access the index of my_item from Vendor's inventory and the index of their_item from friend's inventory
-        # Swap the value of those indexes 
-        try:
+        # Check if self.inventory contains my_item and friend.inventory contains their_item
+        # Access the index of my_item and their_item in the inventory list 
+        # Swap the value of index1 and index2 (so that the time complexity is constant O(1))
+        if my_item in self.inventory and their_item in friend.inventory:
             index1 = self.inventory.index(my_item)
             index2 = friend.inventory.index(their_item) 
-
+            
             self.inventory[index1] = their_item
             friend.inventory[index2] = my_item
             return True
 
-        # Use except_clause to handle exception if the Vendor's inventory does not contain my_item or the friend's inventory does not contain their item
-        except ValueError as err:
-            return False
-
     def swap_first_item(self, friend):
-        # If the length of both lists are greater or equal one:
-        # Swap the first item in Vendor's inventory and friend's inventory lists
-        if len(self.inventory) >= 1 and len(friend.inventory) >= 1:
-            temp = self.inventory[0]
-            self.inventory[0] = friend.inventory[0]
-            friend.inventory[0] = temp
+
+        # Calling helper function swap_first_item if either Vendor or Friend inventory list isn't empty
+        if self.inventory and friend.inventory: 
+            result = self.swap_items(friend,self.inventory[0],friend.inventory[0])
             return True
-        # Return False if either Vendor or Friend has an empty inventory list
-        else:
-            return False
     
     def get_best_by_category(self, category):
+        # Initialize max_condition and max_value variables to capture the item with the highest condition and matching category
         max_condition = 0
         max_value = None
+
         for item in self.inventory:
+        # If the item matches the category and the item condition is greater than current max condition
+        # We will update the value of max condition and max_value
             if item.category == category and item.condition > max_condition:
                 max_condition = item.condition 
                 max_value = item
         return max_value 
 
     def swap_best_by_category(self, other, my_priority, their_priority):
+        # Call helper function get_best_by_category to return the best item avaiable that matches my_priority or their_priority category
+        # Call helper function swap_items to swap my_best and their_best items
+        if self.inventory and other.inventory:
+            my_best = self.get_best_by_category(their_priority)
+            their_best = other.get_best_by_category(my_priority)
 
-        if len(self.inventory) == 0 or len(other.inventory) == 0:
-            return False
+            return self.swap_items(other,my_best,their_best)
+    
+    def swap_by_newest(self, other):
 
-        my_best = self.get_best_by_category(their_priority)
-        their_best = other.get_best_by_category(my_priority)
+        # Find the newest item in vendor's inventory list and other's inventory list
+        my_newest_item = min(self.inventory, key = attrgetter("age"))
+        their_newest_item = min(other.inventory, key = attrgetter("age"))
+        
+        # Call helper function swap_items to my_newest item and their_newest_item
+        return self.swap_items(other,my_newest_item,their_newest_item)
+            
 
-        return self.swap_items(other,my_best,their_best)
+
+
+
