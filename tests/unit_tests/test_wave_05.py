@@ -52,3 +52,21 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+#my test to check condition descriptions
+def test_items_have_condition_descriptions_2():
+    item = Clothing(condition=2)
+
+    condition_to_description = {
+        0: "very bad",
+        1: "moderate",
+        2: "normal",
+        3: "acceptable",
+        4: "good",
+        5: "very very good"
+    }
+
+    for c,d in condition_to_description.items():
+        item.condition = c
+        assert item.condition_description() == d
+
