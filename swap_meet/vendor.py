@@ -23,3 +23,11 @@ class Vendor:
         return same_category
 
 
+    def swap_items(self, other_vendor, self_item, other_vendor_item):
+        if other_vendor_item in other_vendor.inventory and self_item in self.inventory:
+            self.remove(self_item)
+            other_vendor.remove(other_vendor_item)
+            self.add (other_vendor_item)
+            other_vendor.add(self_item)
+            return True
+        return False
