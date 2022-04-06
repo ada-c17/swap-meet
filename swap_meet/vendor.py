@@ -35,6 +35,12 @@ class Vendor:
 
     return_best_by_category(category):
         returns item with best condition in vendor list given the category
+
+    swap_best_by_category(other, my_priority, their_priority):
+        checks for your best item given other's priority
+        checks for their best item given your priority
+        swaps those items
+        returns truthy if swap occurs
     """
 
 
@@ -53,13 +59,14 @@ class Vendor:
         else:
             self.inventory = inventory
 
+
     def add(self, item):
         """
         Appends the item to the inventory list.
 
         Parameters
         ----------
-        item : str
+        item : object
 
         Returns
         -------
@@ -67,6 +74,7 @@ class Vendor:
         """
         self.inventory.append(item)
         return item
+
     
     def remove(self, item):
         """
@@ -88,6 +96,7 @@ class Vendor:
         except ValueError:
             return False
     
+
     def get_by_category(self, category):
         """
         Creates a list of items from inventory whose category attributes match the input category. 
@@ -102,14 +111,10 @@ class Vendor:
         -------
         items: list
         """
-        # items = []
-        # for item in self.inventory:
-        #     if item.category == category:
-        #         items.append(item)
-        # return items
 
         return [item for item in self.inventory if item.category == category]
     
+
     def swap_items(self, vendor, my_item, vendor_item):
         """
         Removes and appends 2nd and 3rd parameters from my inventory respectively.
@@ -128,27 +133,13 @@ class Vendor:
         
         """
         if my_item in self.inventory and vendor_item in vendor.inventory:
-            self.inventory.remove(my_item) 
-            self.inventory.append(vendor_item)            
-            vendor.inventory.remove(vendor_item)       
-            vendor.inventory.append(my_item) 
+                self.remove(my_item) 
+                self.add(vendor_item)            
+                vendor.remove(vendor_item)       
+                vendor.add(my_item) 
 
-            return self.inventory
-        else:
-            return None
-        # try:
-        #     item_vendor_swaps in self.inventory and item_vendor_gets in vendor_to_swap_with.inventory
-        # except ValueError:
-        #     return None
-        # finally:
-        #     self.inventory.remove(item_vendor_swaps) 
-            
-        #     vendor_to_swap_with.inventory.remove(item_vendor_gets)            
-        #     self.inventory.append(item_vendor_gets)
-        
-        #     vendor_to_swap_with.inventory.append(item_vendor_swaps)
-            
-        #     return self.inventory
+                return self.inventory
+
 
     def swap_first_item(self, vendor):
         """
@@ -165,11 +156,10 @@ class Vendor:
         boolean
         """
         try:
-            self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
-
-            return True
+            return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
         except IndexError:
             return False
+
 
     def get_best_by_category(self, category):
         """
@@ -192,6 +182,7 @@ class Vendor:
                 best_item = item
 
         return best_item
+
 
     def swap_best_by_category(self,other, my_priority,their_priority):
         """
