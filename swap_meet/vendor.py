@@ -3,7 +3,7 @@ from operator import attrgetter
 class Vendor:
 
     def __init__(self, inventory = None):
-        if inventory is None:
+        if inventory == None:
             inventory = []
         self.inventory = inventory
 
@@ -31,13 +31,13 @@ class Vendor:
     def swap_items(self, friend, my_item, their_item):
         # Check if self.inventory contains my_item and friend.inventory contains their_item
         # Access the index of my_item and their_item in the inventory list 
-        # Swap the value of index1 and index2 (so that the time complexity is constant O(1))
+        # Swap the value of my_index and their_index (so that the time complexity is constant O(1))
         if my_item in self.inventory and their_item in friend.inventory:
-            index1 = self.inventory.index(my_item)
-            index2 = friend.inventory.index(their_item) 
+            my_index = self.inventory.index(my_item)
+            their_index = friend.inventory.index(their_item) 
             
-            self.inventory[index1] = their_item
-            friend.inventory[index2] = my_item
+            self.inventory[my_index] = their_item
+            friend.inventory[their_index] = my_item
             return True
 
     def swap_first_item(self, friend):

@@ -7,7 +7,7 @@ class Item:
         if condition == 0.0:
             condition = 0.0
         self.condition = condition
-        if age is 0.0:
+        if age == 0.0:
             age = 0.0
         self.age = age
 
