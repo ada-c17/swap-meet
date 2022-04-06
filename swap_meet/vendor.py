@@ -22,7 +22,13 @@ class Vendor:
         return category_match
 
     def swap_items(self, Vendor, my_item, their_item):
-        pass
+        if my_item not in self.inventory  or their_item not in Vendor.inventory:
+            return False
+        self.inventory.append(their_item)
+        Vendor.inventory.append(my_item)
+        self.inventory.remove(my_item)
+        Vendor.inventory.remove(their_item)
+        return True
 
     def swap_first_item(self, Vendor):
         pass
