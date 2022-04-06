@@ -33,21 +33,36 @@ class Vendor():
 
 
     # create instance method implement swaping process
-    def swap_items(self, another_vendor, my_item, their_item):
+    def swap_items(self, friend, my_item, friends_item):
         
-        if not my_item or not their_item:
+        if not my_item or not friends_item:
             return False
         
         else:
-            
-            if my_item in self.inventory and their_item in another_vendor.inventory:
+            if my_item in self.inventory and friends_item in friend.inventory:
                 # vendor swap his item
                 self.remove(my_item)
-                another_vendor.add(my_item)
+                friend.add(my_item)
                 # friend swap his item
-                another_vendor.remove(their_item)
-                self.add(their_item)
+                friend.remove(friends_item)
+                self.add(friends_item)
                 return True
+
+    # create instance method implement swaping process first item
+    def swap_first_item(self, friend):
+
+        if len(self.inventory) == 0 or len(friend.inventory) == 0:
+            return False
+        else:
+            # grab first element from self list: first_item = self.inventory[0]
+            # remove from self inventory: self.remove(first_item)
+            # add to friends inventory: friend.add(first_item)
+
+            # grab first element from friends list: first_item = friend.inventory[0]
+            # remove this elem from friensd list: friend.remove(first_item)
+            # add to self inventory: self.add(first_item)
+            return True
+
 
 item_a = Item(category="clothing")
 item_b = Item(category="clothing")
@@ -62,9 +77,7 @@ jolie = Vendor(
     inventory=[item_d, item_e]
 )
 
-print(fatimah.inventory)
-print(jolie.inventory)
+# result = fatimah.swap_first_item(jolie)
 
-result = fatimah.swap_items(jolie, item_b, item_d)
-print(fatimah.inventory)
-print(jolie.inventory)
+print(jolie.first)
+# print(item_a.category)
