@@ -45,10 +45,12 @@ class Vendor:
             self.swap(other_vendor, selfs_item, others_item)
             return True
 
-    # def swap_first_item(self, other_vendor):
-    #     # Check both vendors have items to swap
-    #     if self.inventory and other_vendor.inventory:
-    #         return
+    def swap_first_item(self, other_vendor):
+        # Check both vendors have items to swap, then swap them
+        if self.inventory and other_vendor.inventory:
+            self.swap(other_vendor, self.inventory[0], other_vendor.inventory[0])
+            return True
+        return False
 
 
 
