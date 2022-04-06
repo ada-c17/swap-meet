@@ -1,13 +1,14 @@
 from .item import Item
 
+
 class Vendor:
     def __init__(self, inventory=[]):
         self.inventory = [item for item in inventory]
-    
+
     def add(self, item):
         self.inventory.append(item)
         return item
-    
+
     def remove(self, item):
         inventory_copy = [item for item in self.inventory]
         if item in inventory_copy:
@@ -22,19 +23,19 @@ class Vendor:
 
     def get_best_by_category(self, category):
         all_by_category = self.get_by_category(category)
-        
+
         if not all_by_category:
             return None
-        
+
         max_rating = max({item.condition for item in all_by_category})
-        best_by_category = [item for item in all_by_category if item.condition == max_rating]
-        
+        best_by_category = [
+            item for item in all_by_category if item.condition == max_rating
+        ]
+
         return best_by_category[0]
 
-
     def swap_items(self, other_vendor, my_item, their_item):
-        if (my_item in self.inventory and
-                their_item in other_vendor.inventory):
+        if my_item in self.inventory and their_item in other_vendor.inventory:
             self.remove(my_item)
             self.add(their_item)
             other_vendor.remove(their_item)
@@ -57,4 +58,3 @@ class Vendor:
         else:
             self.swap_items(other_vendor, self.inventory[0], other_vendor.inventory[0])
             return True
-        
