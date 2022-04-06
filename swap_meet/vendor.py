@@ -1,3 +1,3 @@
 class Vendor:
-    def __init__(self):
-        self.inventory = []
+    def __init__(self, inventory = []):
+        self.inventory = inventory
