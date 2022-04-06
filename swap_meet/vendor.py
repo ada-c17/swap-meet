@@ -175,13 +175,24 @@ class Vendor:
         """
         best_condition = 0.0
         best_item = None
+        inventory_by_category = self.get_by_category(category)
 
-        for item in self.inventory:
-            if item.category == category and item.condition >= best_condition:
+        for item in inventory_by_category:
+            if item.condition > best_condition:
                 best_condition = item.condition
                 best_item = item
 
         return best_item
+
+        # best_condition = 0.0
+        # best_item = None
+        
+        # for item in self.inventory:
+        #     if item.category == category and item.condition > best_condition:
+        #         best_condition = item.condition
+        #         best_item = item
+
+        # return best_item
 
 
     def swap_best_by_category(self,other, my_priority,their_priority):
@@ -210,7 +221,7 @@ class Vendor:
         newest = None
 
         for item in self.inventory:
-            if item.age <= age:
+            if item.age < age:
                 age = item.age
                 newest = item
         
