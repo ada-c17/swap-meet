@@ -75,8 +75,11 @@ class Vendor:
     
     def get_best_by_category(self, category):
         get_same_category = self.get_by_category(category)
-        best_item = get_same_category[0]
-        for item in get_same_category:
-            if item.condition > best_item.condition:
-                best_item = item
+        if not get_same_category:
+            best_item = None
+        else:
+            best_item = get_same_category[0]
+            for item in get_same_category:
+                if item.condition > best_item.condition:
+                    best_item = item
         return best_item
