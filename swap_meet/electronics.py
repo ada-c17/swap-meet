@@ -9,9 +9,9 @@ class Electronics(Item):
 
 
     def __str__(self):
-        """Overriding method from Item class by returning differenct value in string format if condition is empty."""
-        if not self.condition:
-            return "A gadget full of buttons and secrets."
+        """Printing the returnning message string when printing instance of Electronics class."""
+        
+        return "A gadget full of buttons and secrets."
 
     
 
