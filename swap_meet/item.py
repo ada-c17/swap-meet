@@ -1,7 +1,7 @@
 class Item:
-     '''
+    '''
     Class that represents an item.
-    
+
     ...
 
     Attributes

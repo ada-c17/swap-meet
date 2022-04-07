@@ -1,8 +1,23 @@
 from swap_meet.item import Item
 
 class Vendor:
-    #insert doc strings
+    '''
+    Class that represents a vendor.
+    ...
 
+    Attributes
+    - - - - - -
+    inventory: default (None) or empty list
+
+    Methods
+    -------
+    add()
+    remove()
+    get_by_category()
+    swap_items()
+    get_best_by_category()
+    swap_best_by_category()
+    '''
     def __init__(self, inventory = None):
         '''
         Constructs attributes for Vendor object, default inventory value is empty list.
@@ -56,7 +71,7 @@ class Vendor:
     def swap_first_item(self, vendor):
         '''
         Swaps (removes/appends) first item from self.inventory and vendor.inventory, returns True
-        If self.inventory or vendory.inventory empty, returns False'''
+        If self.inventory or vendory.inventory empty, returns False.'''
         if not self.inventory or not vendor.inventory:
             return False
         
@@ -66,5 +81,39 @@ class Vendor:
         vendor.inventory.append(first_item_self)
 
         return True
+
+    def get_best_by_category(self, category):
+        '''
+        Input: category (str), finds items in self.inventory whose category = input,
+        returns item with highest value of attribute condition. 
+        If self.inventory has no items with category, return None.
+        '''
+        category_list = self.get_by_category(category)
+        if not category_list:
+            return None
+        condition = 0
+        top_item = None
+        for item in category_list:
+                if item.condition > condition:
+                    condition = item.condition
+                    top_item = item
+            
+        return top_item 
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        '''
+        input- other(vendor class), my_priority (category->string), ""
+        '''
+        best_item_self = self.get_best_by_category(their_priority)
+        best_item_other = other.get_best_by_category(my_priority)
+
+        if not best_item_self or not best_item_other:
+            return False
+        
+        return self.swap_items(other, best_item_self, best_item_other)
+
+        
+
+
 
         
