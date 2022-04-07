@@ -28,6 +28,16 @@ def test_adding_to_inventory():
     assert result == item
 
 # @pytest.mark.skip
+def test_adding_invalid_item():
+    vendor = Vendor()
+    item = ""
+
+    result = vendor.add(item)
+
+    # assert len(vendor.inventory) == 0
+    assert result is False
+
+# @pytest.mark.skip
 def test_removing_from_inventory_returns_item():
     item = "item to remove"
     vendor = Vendor(
