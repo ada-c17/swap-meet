@@ -30,6 +30,7 @@ def test_items_have_condition_as_float():
     ]
     for item in items:
         assert item.condition == pytest.approx(3.5)
+        assert item.condition_description() == "Good condition"
 
 # @pytest.mark.skip
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
@@ -52,3 +53,13 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+def test_bad_items_have_condition_as_heavily_used():
+    items = [
+        Clothing(condition=0.5),
+        Decor(condition=0.5),
+        Electronics(condition=0.5)
+    ]
+    for item in items:
+        assert item.condition == pytest.approx(0.5)
+        assert item.condition_description() == "Heavily used"
