@@ -3,11 +3,9 @@ from .item import Item
 
 class Vendor:
     def __init__(self, inventory=None):
-        self.inventory = inventory
-        self.inventory_initializer_if_None()
-
-    def inventory_initializer_if_None(self):
-        if self.inventory is None:
+        if inventory:
+            self.inventory = inventory
+        else:
             self.inventory = []
 
     def add(self, item):
