@@ -76,11 +76,13 @@ def test_swap_best_by_category():
         their_priority="Decor"
     )
     
-    assert result == True
+    assert result
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3
-    assert item_f in tai.inventory
-    assert item_c in jesse.inventory
+    assert item_f and item_a and item_b in tai.inventory
+    assert item_c not in tai.inventory
+    assert item_c and item_d and item_e in jesse.inventory
+    assert item_f not in jesse.inventory
 
     # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
@@ -115,11 +117,13 @@ def test_swap_best_by_category_reordered():
         their_priority="Decor"
     )
 
-    assert result == True
+    assert result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    assert item_f in tai.inventory
-    assert item_c in jesse.inventory
+    assert item_f and item_a and item_b in tai.inventory
+    assert item_c not in tai.inventory
+    assert item_c and item_d and item_e in jesse.inventory
+    assert item_f not in jesse.inventory
 
     # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
@@ -152,9 +156,8 @@ def test_swap_best_by_category_no_inventory_is_false():
     assert not result
     assert len(tai.inventory) == 0
     assert len(jesse.inventory) == 3
-    assert item_a in jesse.inventory
-    assert item_b in jesse.inventory
-    assert item_c in jesse.inventory
+    assert item_a and item_b and item_c in jesse.inventory
+    
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_other_inventory_is_false():
@@ -178,9 +181,8 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     assert not result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 0
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_c in tai.inventory
+    assert item_a and item_b and item_c in tai.inventory
+    
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_match_is_false():
