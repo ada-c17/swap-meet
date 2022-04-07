@@ -1,5 +1,3 @@
-from swap_meet.item import Item
-
 class Vendor:
     def __init__(self, inventory = None):
         if inventory is None:
@@ -51,3 +49,12 @@ class Vendor:
         vendor.add(my_item)
         vendor.remove(their_item)
         return True
+
+    def get_best_by_category(self, category):
+        matching_items = self.get_by_category(category)
+        
+        if len(matching_items) == 0:
+            return None
+
+        matching_items.sort(key = lambda x: x.condition, reverse = True)
+        return matching_items[0]

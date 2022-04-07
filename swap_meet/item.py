@@ -20,7 +20,7 @@ class Item:
         elif self.condition == 4:
             return "Pretty darn good"
         elif self.condition == 5:
-            return "Absolute perfection"
+            return "Perfection"
 
     
 
