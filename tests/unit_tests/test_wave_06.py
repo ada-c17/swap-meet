@@ -369,3 +369,19 @@ def test_swap_by_newest_returns_false_if_either_inventory_is_empty():
 
     # Assert
     assert not result 
+
+def test_swap_by_newest_helper_gets_newest_item():
+    # Arrange
+    item_a = Decor(condition=2.0, age=3.0)
+    item_b = Electronics(condition=4.0, age=5.0)
+    item_c = Decor(condition=4.0, age=2.0)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    # Act
+    result = tai.swap_by_newest_helper()
+
+    # Assert 
+    assert result 
+    assert result == item_c
