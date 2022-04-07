@@ -1,3 +1,6 @@
+from swap_meet.item import Item
+
+
 class Vendor:
     '''
     A class to represent a vendor at the swap meet.
@@ -23,6 +26,10 @@ class Vendor:
         searches an instance's inventory attribute for an item of a specific category with the highest condition and returns it
     swap_best_by_category(other, my_priority, their_priority):
         swaps the best items in the specified priority categories between the current instance's inventory and the other instance's inventory
+    find_newest_item():
+        searches an instance's inventory attribute for an item with the youngest age; if inventory is empty, returns None.
+    swap_by_newest(swap_friend):
+        swaps the newest item from the current instance's inventory with the newest item from swap_friend's inventory
     '''
     def __init__(self, inventory=None):
         '''
@@ -127,3 +134,29 @@ class Vendor:
         if not to_trade or not to_receive:
             return False
         return self.swap_items(other, to_trade, to_receive)
+
+    def find_newest_item(self) -> Item:
+        '''
+        Searches an instance's inventory attribute for an item with the youngest age. If inventory is empty, returns none.
+        '''
+        if not self.inventory:
+            return None
+        newest_item = self.inventory[0]
+        for item in self.inventory:
+            if item.age is None:
+                return None
+            elif item.age < newest_item.age:
+                newest_item = item
+        return newest_item
+    
+    def swap_by_newest(self, swap_friend):
+        '''
+        Swaps the newest item from the current instance's inventory with the newest item from swap_friend's inventory
+        '''
+        my_newest_item = self.find_newest_item()
+        their_newest_item = swap_friend.find_newest_item()
+        if my_newest_item is None or their_newest_item is None:
+            return False
+        else:
+            self.swap_items(swap_friend, my_newest_item, their_newest_item)
+            return True

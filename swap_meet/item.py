@@ -9,6 +9,8 @@ class Item:
         empty string by default, otherwise a specific category represented by a string
     condition : int or float, optional
         zero by default, otherwise a number representing the condition of the item
+    age : int or float, optional
+        None by default, otherwise a number representing how old the item is in years
 
     ---Methods---
     __str__():
@@ -18,7 +20,7 @@ class Item:
         based on an item instance's numerical condition, returns a string description of that condition
 
     '''
-    def __init__(self, category="", condition=0):
+    def __init__(self, category="", condition=0, age=None):
         '''
         Constructs all the necessary attributes for the item object
 
@@ -27,9 +29,12 @@ class Item:
             empty string by default, otherwise a specific category represented by a string
         condition : int or float, optional
             zero by default, otherwise a number representing the condition of the item
+        age : int or float, optional
+            None by default, otherwise a number representing how old the item is in years
         '''
         self.category = category
         self.condition = condition
+        self.age = age
 
 
     def __str__(self):
