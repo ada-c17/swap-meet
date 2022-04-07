@@ -1,8 +1,7 @@
-# from item import Item
-
-
 class Vendor:
-    def __init__(self, inventory=[]):
+    def __init__(self, inventory=None):
+        if inventory is None:
+            inventory = []
         self.inventory = inventory
 
     def add(self,item):
@@ -17,10 +16,7 @@ class Vendor:
 
 
     def get_by_category(self, category):
-        item_list = []
-        for item in self.inventory:
-            if item.category == category:
-                item_list.append(item)
+        item_list = [item for item in self.inventory if item.category == category]
         return item_list
 
     def swap_items(self, friend_vendor, my_item, friend_item):
@@ -41,22 +37,24 @@ class Vendor:
         self.inventory.pop(0)
         friend_vendor.inventory.pop(0)
         return True
-        
+    
+    def get_best_by_category(self, category):
+        max_condition = 0
+        max_item = None
+        for item in self.inventory:
+            if item.category == category and item.condition >= max_condition:
+                max_item = item 
+                max_condition = item.condition
+        return max_item
+    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_best_item = self.get_best_by_category(their_priority)
+        their_best_item = other.get_best_by_category(my_priority)
+
+        if not my_best_item or not their_best_item:
+            return False
+        self.swap_items(other, my_best_item, their_best_item)
+        return True
 
 
 
-
-# item_a = Item(category="clothing")
-# item_b = Item(category="clothing")
-# item_c = Item(category="clothing")
-# fatimah = Vendor(
-#     inventory=[item_a, item_b, item_c]
-# )
-
-# item_d = Item(category="electronics")
-# item_e = Item(category="decor")
-# jolie = Vendor(
-#     inventory=[item_d, item_e]
-# )
-
-# result = fatimah.swap_first_item(jolie)

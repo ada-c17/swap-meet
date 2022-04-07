@@ -31,6 +31,20 @@ def test_items_have_condition_as_float():
     for item in items:
         assert item.condition == pytest.approx(3.5)
 
+#TEST FOR 100% CODE COVERAGE
+# # @pytest.mark.skip
+# def test_items_have_condition_as_float():
+#     items = [
+#         Clothing(condition=2),
+#         Decor(condition=1),
+#         Electronics(condition=3.4)
+#     ]
+#     # for item in items:
+#     #     assert item.condition == pytest.approx(3.5)
+#     assert items[0].condition_description ==  "Eh Condition"
+#     assert items[1].condition_description ==  "Poor Condition"
+#     assert items[2].condition_description ==  "Decent Condition"
+
 # @pytest.mark.skip
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
     items = [
