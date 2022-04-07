@@ -79,8 +79,7 @@ class Vendor:
         if category and len(self.inventory) > 0:
             for item in self.inventory:
                 if (isinstance(item.condition, int) or isinstance(item.condition, float)) and item.category == category :
-                    max_condi = max([item.condition for item in self.inventory if item.category == category])
-                    if item.condition == max_condi: 
+                    if item.condition == max(item.condition for item in self.inventory if item.category == category):
                         return item
         return None
 
@@ -102,8 +101,7 @@ class Vendor:
         if category and len(self.inventory) > 0:
             for item in self.inventory:
                 if item.category == category and isinstance(item.age, int):
-                    min_age = min(item.age for item in self.inventory if item.category == category)
-                    if item.age == min_age: 
+                    if item.age == min(item.age for item in self.inventory if item.category == category):
                         return item
         return None
 
