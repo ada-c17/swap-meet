@@ -3,25 +3,25 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
-@pytest.mark.skip
+
 def test_clothing_has_default_category_and_to_str():
     cloth = Clothing()
     assert cloth.category == "Clothing"
     assert str(cloth) == "The finest clothing you could wear."
 
-@pytest.mark.skip
+
 def test_decor_has_default_category_and_to_str():
     decor = Decor()
     assert decor.category == "Decor"
     assert str(decor) == "Something to decorate your space."
 
-@pytest.mark.skip
+
 def test_electronics_has_default_category_and_to_str():
     electronics = Electronics()
     assert electronics.category == "Electronics"
     assert str(electronics) == "A gadget full of buttons and secrets."
 
-@pytest.mark.skip
+
 def test_items_have_condition_as_float():
     items = [
         Clothing(condition=3.5),
@@ -31,7 +31,7 @@ def test_items_have_condition_as_float():
     for item in items:
         assert item.condition == pytest.approx(3.5)
 
-@pytest.mark.skip
+
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
     items = [
         Clothing(condition=5),
@@ -52,3 +52,28 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+    assert five_condition_description == "Green"
+    assert one_condition_description == "Brown"
+    
+def test_item_condition_description_for_each_range():
+    items = [
+        Clothing(condition=0),
+        Decor(condition=1),
+        Electronics(condition=2),
+        Clothing(condition= 3),
+        Decor(condition=4),
+        Electronics(condition=5)]
+    
+    zero_item = items[0].condition_description()
+    one_item = items[1].condition_description()
+    two_item = items[2].condition_description()
+    three_item = items[3].condition_description()
+    four_item = items[4].condition_description()
+    five_item = items[5].condition_description()
+    
+    assert zero_item == "Red"
+    assert one_item == "Brown"
+    assert two_item == "Orange" 
+    assert three_item == "Yellow" 
+    assert four_item == "Blue"
+    assert five_item == "Green"
