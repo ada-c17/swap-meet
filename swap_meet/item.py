@@ -3,15 +3,18 @@ class Item:
 
     # Wave 2, create category attribute
     # Wave 5, create condition attribute
-    def __init__(self, category = None, condition = None):
+    def __init__(self, category = None, condition = None, age = None):
         """category and condition are keyword arguments that optionally pass in."""
-        if category is None:
+        if not category:
             category = ""
-        if condition is None:
+        if not condition:
             condition = 0
+        if not age:
+            age = 0
         self.category = category
         self.condition = condition
-
+        self.age = age
+        
 
     # Wave 3
     def __str__(self):
