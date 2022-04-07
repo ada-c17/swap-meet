@@ -71,17 +71,16 @@ class Vendor:
             2. Otherwise, return False
         """
         
-
         if (my_item in self.inventory) and (their_item in friend_vendor.inventory):
             # Remove item from this Vendor's inventory
-            self.inventory.remove(my_item)
-            # Add to friend's inventory
-            friend_vendor.inventory.append(my_item)
+            self.remove(my_item)
+            # # Add to friend's inventory
+            friend_vendor.add(my_item)
 
             # Remove item from friend's inventory
-            friend_vendor.inventory.remove(their_item)
+            friend_vendor.remove(their_item)
             # Add item to this Vendor's inventory
-            self.inventory.append(their_item)
+            self.add(their_item)
 
             return True
         else:
@@ -113,7 +112,7 @@ class Vendor:
 
             return True
     
-    
+
     def get_best_by_category(self, item_category):
         # Function will get the item with the best condition in a certain category
 
@@ -144,9 +143,6 @@ class Vendor:
         
 
 
-
-
-
     def swap_best_by_category(self, other, my_priority, their_priority):
 
         """
@@ -156,20 +152,43 @@ class Vendor:
             3. 'their_priority': category that 'other' wants to receive
         
         Output:
-            1. Return True if best item in my inventory matches 'their_priority'is swapped
+            1. Return True if best item in my inventory matches 'their_priority' is swapped
                 with the best item in 'other's inventory that matches 'my_priority'
             2. Return False if item priorities don't match and swap doesn't happen
         """
         
         # Category the Vendor wants to receive
-        my_category_to_swap = self.get_best_by_category(my_priority)
+        my_best_item_to_swap = self.get_best_by_category(their_priority)
         # Category the other Vendor wants to receive
-        their_category_to_swap = self.get_best_by_category(their_priority)
-        # Returning the best item in that categories
-
-        if (not my_category_to_swap) or (not their_category_to_swap):
-            return False 
+        their_best_item_to_swap = other.get_best_by_category(my_priority)
+        # Returning the best item in those categories
 
 
-        # swap_the_best = self.swap_items(other, my_category_to_swap, their_category_to_swap)
+        # if (not my_best_item_to_swap) or (not their_best_item_to_swap):
+        #     return False 
+        # else:
+        #     return True
+
+
+        swap_the_best = self.swap_items(other, my_best_item_to_swap, their_best_item_to_swap)
         # return swap_the_best
+        if not swap_the_best:
+            return False
+        else:
+            return True
+        
+
+        # if (my_best_item_to_swap not in other.inventory) or (their_best_item_to_swap not in self.inventory):
+        #     return False
+        # else:
+        #     # Remove item from this Vendor's inventory
+        #     self.inventory.remove(my_best_item_to_swap)
+        #     # Add to other's inventory
+        #     other.inventory.append(my_best_item_to_swap)
+
+        #     # Remove item from other's inventory
+        #     other.inventory.remove(their_best_item_to_swap)
+        #     # Add to this Vendor's inventory
+        #     self.inventory.remove(my_best_item_to_swap)
+
+        #     return True
