@@ -86,3 +86,30 @@ class Vendor:
             # swap items if valid
             self.swap_items(other, their_desired_item, my_desired_item)
             return True
+
+    def get_newest_item(self):
+        """Returns newest item from inventory"""
+        
+        potential_items = []
+        for item in self.inventory:
+            if item.age:
+                potential_items.append(item)
+        if not potential_items:
+            return None
+        elif len(potential_items) == 1:
+            return potential_items[0]
+        else:
+            newest_item = min(potential_items, key = lambda item: item.age)
+            return newest_item 
+    
+    def swap_by_newest(self, other):
+        """Swaps newest items of self and another vendor"""
+
+        their_newest = other.get_newest_item()
+        my_newest = self.get_newest_item()
+
+        if not my_newest or not their_newest:
+            return False
+        else:
+            self.swap_items(other, my_newest, their_newest)
+            return True

@@ -1,7 +1,10 @@
 class Item:
-    def __init__(self, condition = 0, category = ""):
+    def __init__(self, condition = 0, age = None, category = ""):
         self.condition = condition
         self.category = category
+        if age and age < 0:
+            raise ValueError("Age may not be a negative number")
+        self.age = age
 
 
     def __str__(self):
@@ -22,4 +25,18 @@ class Item:
             return "Excellent. Full marks. Drinks all around!"
         else:
             return "Oh my god BUY THIS NOW ITS CONDITION IS OUT OF THIS WORLD"
+    
+    def age_description(self):
+        """Returns strings describing item's age"""
+
+        if self.age is None:
+            return "The age of this item is unknown. Please judge it by its condition."
+        elif self.age == 0:
+            return "This item is brand new."
+        elif 0 < self.age < 1:
+            return "This item is less than 1 year old."
+        elif self.age == 1:
+            return "This item is 1 year old."
+        else:
+            return f"This item is {self.age} years old."
 
