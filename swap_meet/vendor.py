@@ -24,3 +24,4 @@ class Vendor:
             if item.category == category:
                 items_in_category.append(item)
         return items_in_category
+
