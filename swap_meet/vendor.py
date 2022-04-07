@@ -55,11 +55,3 @@ class Vendor:
         item_vendor_wanted = other.get_best_by_category(my_priority)
         item_other_wanted = self.get_best_by_category(their_priority)
         return self.swap_items(other, item_other_wanted, item_vendor_wanted)
-     
-
-
-
-
-
-
-
