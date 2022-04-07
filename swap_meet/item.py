@@ -7,12 +7,10 @@ class Item:
     
 
     def __str__(self):
-        #self.category = "Hello World!"
         return "Hello World!"
     
 
     def condition_description(self):
-        #description = ""
         if self.condition == 0:
             description = "horrendous quality"
         elif self.condition == 1:
@@ -25,6 +23,6 @@ class Item:
             description = "great quality"
         elif self.condition == 5:
             description = "exquisite quality"
-        return f"This item is: {description}"
+        return f"This item's condition is {description}"
 
     
