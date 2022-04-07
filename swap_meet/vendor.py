@@ -9,6 +9,7 @@ class Vendor:
         return item_to_add
     
     def remove(self, item_to_remove):
+        # check that item is in inventory
         if item_to_remove not in self.inventory:
             return False
 
@@ -18,6 +19,7 @@ class Vendor:
     def get_by_category(self, category):
         items_in_category = []
         
+        # check each item in inventory and add items of given category to list
         for item in self.inventory:
             if item.category == category:
                 items_in_category.append(item)
@@ -32,7 +34,6 @@ class Vendor:
         # swap items in each vendor's inventory
         self.add(their_item)
         friend.remove(their_item)
-
         friend.add(my_item)
         self.remove(my_item)
 
@@ -58,7 +59,8 @@ class Vendor:
             return None
 
         best_condition = 0
-        # loop through 
+        # loop through items of the given category, 
+        # checking for highest condition rating
         for item in self.get_by_category(category):
             if item.condition > best_condition:
                 best_item = item
@@ -67,10 +69,13 @@ class Vendor:
         return best_item        
 
     def swap_best_by_category(self, other, my_priority, their_priority):
+        # identify items with best condition based on partner's preferred categories
         my_item = self.get_best_by_category(their_priority)
         their_item = other.get_best_by_category(my_priority)
 
+        # check that each vendor has an item of partner's preferred category
         if not my_item or not their_item:
             return False
         
+        # swap items and return True
         return self.swap_items(other, my_item, their_item)
