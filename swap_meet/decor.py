@@ -3,11 +3,10 @@ class Decor(Item):
     """Child class that inherits attributes and methods from Item class as parent class:"""
 
 
-    def __init__(self, condition = None):
+    def __init__(self, condition = None, age = None):
         """Setting category as default with "Decor" which inherits attributes from Item class."""
-        super().__init__(category= "Decor", condition = condition)
+        super().__init__(category= "Decor", condition = condition, age = age)
         
-
 
     def __str__(self):
         """Overriding method from Item class by returning differenct value in string format if condition is empty."""
