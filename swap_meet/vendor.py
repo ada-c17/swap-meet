@@ -1,11 +1,12 @@
-from unicodedata import category
+# from unicodedata import category
 from swap_meet.item import Item
 
 class Vendor:
     
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
         self.inventory = inventory
-
+        if self.inventory is None:
+            self.inventory = []
     def add(self, item):
         """
         takes in one item
