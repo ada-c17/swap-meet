@@ -25,7 +25,7 @@ class Vendor:
 
     def swap_items(self, vendor, my_item, their_item):
         '''Swaps items (my_item and their_item) between two vendor inventories (self and vendor)'''
-        if my_item not in self.inventory or their_item not in other.inventory:
+        if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
         self.inventory.remove(my_item)
         self.inventory.append(their_item)
@@ -37,3 +37,13 @@ class Vendor:
         '''Swaps the first item in two vendor inventories (self and vendor)'''
         if self.inventory and vendor.inventory:
             return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+
+    def get_best_by_category(self, category):
+        pass
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        pass
+
+    def get_newest_by_category(self, category):
+        pass
+
