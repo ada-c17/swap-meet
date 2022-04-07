@@ -165,9 +165,5 @@ class Vendor:
 
 
         swap_the_best = self.swap_items(other, my_best_item_to_swap, their_best_item_to_swap)
-
-        if not swap_the_best:
-            return False
-        else:
-            return True
-            
+        
+        return swap_the_best
