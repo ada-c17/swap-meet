@@ -39,7 +39,7 @@ class Item:
         elif 3.0 < self.condition <= 4.0:
            return "Very good condition"
         elif  2.0 < self.condition <= 3.0:
-           return "Good condition with not noticeable wear and tear"
+           return "Good condition without noticeable wear and tear"
         elif  1.0 < self.condition <= 2.0:
            return "Acceptable condition but noticeable wear and tear"
         else:
