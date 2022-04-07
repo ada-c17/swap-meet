@@ -76,8 +76,6 @@ def test_swap_best_by_category():
         their_priority="Decor"
     )
 
-    print(result)
-
     # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
@@ -291,7 +289,7 @@ def test_swap_swap_by_newest_different_ages():
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3
 
-def test_swap_swap_by_newest_one_all_same_age():
+def test_swap_by_newest_one_all_same_age():
     # Arrange
     item_a = Decor(condition=2.0, age=3.0)
     item_b = Electronics(condition=4.0, age=3.0)
@@ -321,20 +319,20 @@ def test_swap_swap_by_newest_one_all_same_age():
     assert len(tai.inventory) == 3
 
 
-def test_swap_swap_by_newest_both_all_same_age():
+def test_swap_by_newest_both_all_same_age_swaps_first_instances():
     # Arrange
     item_a = Decor(condition=2.0, age=3.0)
     item_b = Electronics(condition=4.0, age=3.0)
     item_c = Decor(condition=4.0, age=3.0)
     tai = Vendor(
-        inventory=[item_c, item_b, item_a]
+        inventory=[item_a, item_b, item_c]
     )
 
     item_d = Clothing(condition=2.0, age=8.0)
     item_e = Decor(condition=4.0, age=8.0)
     item_f = Clothing(condition=4.0, age=8.0)
     jesse = Vendor(
-        inventory=[item_f, item_e, item_d]
+        inventory=[item_d, item_e, item_f]
     )
 
     # Act
@@ -343,14 +341,12 @@ def test_swap_swap_by_newest_both_all_same_age():
     )
 
     # Assert 
-    assert result 
-    assert item_a or item_b or item_c in jesse.inventory
-    assert item_a or item_b or item_c not in tai.inventory
-    assert item_d or item_e or item_f in tai.inventory 
-    assert item_d or item_e or item_f not in jesse.inventory
-    assert len(jesse.inventory) == 3
-    assert len(tai.inventory) == 3
+    assert result  
+    assert item_a in jesse.inventory
+    assert item_a not in tai.inventory
+    assert item_d in tai.inventory 
+    assert item_d not in jesse.inventory 
 
-    # figure how to handle method if 3 items have same age, take last or first one
-    
+    assert len(jesse.inventory) == 3
+    assert len(tai.inventory) == 3    
 
