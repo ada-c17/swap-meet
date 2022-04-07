@@ -4,27 +4,22 @@ class Vendor:
             inventory = []
         self.inventory = inventory
 
-
     def add(self, item):
         self.inventory.append(item)
         return item
 
     def remove(self, item):
-        if item in self.inventory:
-            self.inventory.remove(item)
-            return item
-        else:
+        if item not in self.inventory:
             return False
-    
+
+        self.inventory.remove(item)
+        return item
 
     def get_by_category(self, category):
-        self.category = category
         items = []
-
         for item in self.inventory:
             if item.category == category:
                 items.append(item)
-                
         return items
 
     def swap_items(self, vendor, my_item, their_item):
@@ -38,20 +33,19 @@ class Vendor:
         return True
 
     def swap_first_item(self, vendor):
-        if len(self.inventory) == 0 or len(vendor.inventory) == 0:
+        if not self.inventory or not vendor.inventory:
             return False
-            
+
         my_item = self.inventory[0]
         their_item = vendor.inventory[0]
 
         self.swap_items(vendor, my_item, their_item)
-
         return True
 
     def get_best_by_category(self, category):
         matching_items = self.get_by_category(category)
         
-        if len(matching_items) == 0:
+        if not matching_items:
             return None
 
         matching_items.sort(key = lambda x: x.condition, reverse = True)
@@ -61,9 +55,8 @@ class Vendor:
         my_item = self.get_best_by_category(their_priority)
         their_item = other.get_best_by_category(my_priority)
 
-        if my_item is None or their_item is None:
+        if not my_item or not their_item:
             return False
 
         self.swap_items(other, my_item, their_item)
-
         return True
