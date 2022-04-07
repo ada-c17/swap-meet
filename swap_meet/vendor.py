@@ -30,7 +30,7 @@ class Vendor:
 
     def swap_first_item(self, second_person):
         if len(self.inventory) > 0 and len(second_person.inventory) > 0:
-            # swap_items method, which returns True if can swap, False if not
+            # return True/False by calling swap_items method
             return self.swap_items(second_person, self.inventory[0], second_person.inventory[0])
     
     def get_by_category(self, category):
@@ -49,6 +49,7 @@ class Vendor:
         # Get Item objects based on category and condition (None if no match)
         my_item = self.get_best_by_category(their_priority)
         their_item = other.get_best_by_category(my_priority)
+        # return True/False by calling swap_items method
         return self.swap_items(other, my_item, their_item)
 
     # (tests in new file, unit tests-wave 7)
@@ -76,4 +77,5 @@ class Vendor:
         """
         my_newest = self.get_by_newest()
         their_newest = other.get_by_newest()
+        # return True/False by calling swap_items method
         return self.swap_items(other, my_newest, their_newest)
