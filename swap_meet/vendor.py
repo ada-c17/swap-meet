@@ -57,8 +57,7 @@ class Vendor:
         if len(same_category) == 0: #if not same_category
             return None
     
-        best_condition = 0
-        best_item = None
+        best_condition, best_item = 0, None
         for item in same_category:
             if item.condition >= best_condition:
                 best_condition = item.condition
@@ -71,15 +70,9 @@ class Vendor:
         other, which represents another Vendor instance to trade with
         my_priority, which represents a category that the Vendor wants to receive
         their_priority, which represents a category that other wants to receive
-        """
-        they_prefered, we_prefered = None, None
-        for my_item in self.inventory:
-            if their_priority == my_item.category:
-                they_prefered = self.get_best_by_category(their_priority)
- 
-        for their_item in other.inventory:
-            if my_priority != their_item.category:
-                we_prefered = other.get_best_by_category(my_priority)
+        """       
+        they_prefered = self.get_best_by_category(their_priority)
+        we_prefered = other.get_best_by_category(my_priority)
         
         return self.swap_items(other, they_prefered, we_prefered)
     

@@ -6,6 +6,7 @@ class Electronics(Item):
         
         
     def __str__(self):
+        #return f"{super().__str__()} A gadget full of buttons and secrets."
         return "A gadget full of buttons and secrets."
 
     def condition_description(self):

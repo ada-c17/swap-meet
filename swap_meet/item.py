@@ -7,7 +7,7 @@ class Item:
     #wave 3
     def __str__(self):
         """overrides class object's __str__ method"""
-        #return f"Item Category: {self.category}"
+        #return f"{type(self).__name__} Hello World!"
         return "Hello World!"
     
     def condition_description(self):
