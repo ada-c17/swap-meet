@@ -12,7 +12,7 @@ class Item:
         elif self.condition == 1:
             return "A hand-me-down many, many times over"
         elif self.condition == 2:
-            return "Like reliving your college dorm"
+            return "Like revisiting life in your college dorm"
         elif self.condition == 3:
             return "A gift from my ex - he was ok"
         elif self.condition == 4:
