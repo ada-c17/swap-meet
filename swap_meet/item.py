@@ -18,21 +18,7 @@ class Item:
 
     def condition_description(self):
         try:
-            print(Item.CONDITIONS[int(self.age)])
-            return Item.CONDITIONS[int(self.age)]
+            print(Item.CONDITIONS[int(self.condition)])
+            return Item.CONDITIONS[int(self.condition)]
         except:
             return "Condition must be a whole number between 0 and 5."
-        # if self.condition == 0.0:
-        #     return "Poor"
-        # elif self.condition == 1.0:
-        #     return "Acceptable"
-        # elif self.condition == 2.0:
-        #     return "Good" 
-        # elif self.condition == 3.0:
-        #     return "Very Good" 
-        # elif self.condition == 4.0:
-        #     return "Like New" 
-        # elif self.condition == 5.0:
-        #     return "Brand New" 
-        # else: 
-        #     return "Condition must be a whole number between 1 and 5."
