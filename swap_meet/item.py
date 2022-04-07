@@ -18,7 +18,6 @@ class Item:
 
     def condition_description(self):
         try:
-            print(Item.CONDITIONS[int(self.condition)])
             return Item.CONDITIONS[int(self.condition)]
         except:
             return "Condition must be a whole number between 0 and 5."
