@@ -62,7 +62,7 @@ class Vendor:
         else: 
             return False
 
-# result = fatimah.swap_first_item(jolie)
+    # result = fatimah.swap_first_item(jolie)
     def swap_first_item(self, vendor_friend):
         if self.inventory == [] or vendor_friend.inventory == []: 
             return False
@@ -81,6 +81,12 @@ class Vendor:
         return my_newest_item
 
     def swap_by_newest(self, other):
+        ''' 
+        This function swaps the newest item from a class instance's inventory with newest item from another vendor's inventory.
+        input: Two class instances, one of self and one instance of another vendor. 
+        Each instance has an 'age' attribute which is an integer representing how old each item is by month.
+        Output: False if either inventory is empty, or True if a swap is made
+        '''
         if self.inventory == [] or other.inventory == []: 
             return False
         else:
