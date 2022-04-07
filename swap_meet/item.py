@@ -1,13 +1,15 @@
 class Item:
 
-    def __init__(self, category = "", condition = 0):
+    def __init__(self, category="", condition=0, age=None):
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         return "Hello World!"
 
-    def condition_description(self, condition = 0):
+    def condition_description(self, condition=0):
+        '''Converts a condition's numeric value to a descriptive phrase.'''
         condition = self.condition
         if condition == 0:
             self.__str__ = "EWW! What is this?!"
@@ -21,8 +23,6 @@ class Item:
             self.__str__ = "Lots of wear and tear"
         elif condition > 1:
             self.__str__ = "Not worth fixing"
-        elif condition <= 1:
-            self.__str__ = "Throw away immediately"
         else:
-            self.__str__ = "Something went wrong. Condition not assessed."
+            self.__str__ = "Throw away immediately"
         return self.__str__
