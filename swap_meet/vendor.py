@@ -58,7 +58,7 @@ class Vendor:
     #     return True
 
 
-    #* I know, that I used decorators in an unusual way, because then I started to implement them I did not fully understand them. But because they work and I learned through this a lot - I decided to leave it this thay. Below in a comments you can find a right way that Matt McKnett recommended.
+    #* I know, that I used decorators in an unusual way, because when I started to implement them, I did not fully understand them and I thought we use decorators to change the behaviour of the function. Now I learned that decorators should not change but extend the behaviour of the function. However because they work and I learned through this exersize a lot - I decided to leave the code as it is. I learned my lesson and promise not to use decorators for changing the behavior of the function again. Below in comments you can find a correct way to implement my idea that Matt McKnett recommendended.
     #  
     f_max_min ={ 'age': min,'condition':max}
 
@@ -103,17 +103,15 @@ class Vendor:
 
     #* the code above should be refactored to this:
 
-    #    f_max_min ={ 'age': min,'condition':max}
+    # f_max_min ={'age': min,'condition':max}
 
     # def get_best_by_attr(self, category, attr):
     #     matching_category=self.get_by_category(category)
     #     res = self.f_max_min[attr](matching_category, key =attrgetter(attr), default=None)
     #     return res         
 
-    # #@attr_decorator(attr='condition')
     # def get_best_by_category(self, category):
     #     return self.get_best_by_attr(category, 'condition')
     
-    # #@attr_decorator(attr='age')
     # def get_best_by_age(self, category):
     #     return self.get_best_by_attr(category, 'age')
