@@ -7,15 +7,13 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        if self.condition < 3:
-            return "Quite used but super cute and could refactor it like bad code"
-        # elif 1 <= self.condition < 2:
-        #     return "Not bad, not bad at all"
-        # elif 1 <= self.condition < 2:
-        #    return "Very used but quality fabric and fit"
-        # elif 3 <= self.condition < 4:
-        #     return "Passable"
-        elif 3 <= self.condition < 5:
-            return "Mint condition, sparkly and all"
-        elif self.condition == 5:
-            return "Nevern worn, labels and all, not like new -- it IS new!"
+        ratings = {
+            0: "Quite used, but once super cute - could refactor it like bad code!",
+            2: "It's been through a lot",
+            1: "Verrry used, but quality fabric and fit",
+            3: "Passable",
+            4: "Mint condition, sparkly and all",
+            5: "Nevern worn, labels and all, not like new -- it IS new!"
+        }
+
+        return ratings[self.condition]
