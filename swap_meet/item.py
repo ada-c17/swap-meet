@@ -1,8 +1,9 @@
 from swap_meet.vendor import Vendor
 class Item:
-    def __init__(self, category='', condition = 0):
+    def __init__(self, category='', condition = 0, age = 0):
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         return 'Hello World!'
@@ -14,7 +15,7 @@ class Item:
         if value == 4:
             return "Basically new"
         if value == 3:
-            return "Yah it's used, but we here to be sustainableee"
+            return "Yah it's used, but we be sustainable"
         if value == 2:
             return "It ain't THAT bad... maybe just a litte"
         if value == 1:

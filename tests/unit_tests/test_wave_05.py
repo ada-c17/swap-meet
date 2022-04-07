@@ -1,4 +1,5 @@
 import pytest
+from swap_meet.item import Item
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
@@ -52,3 +53,23 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+
+# test_for_code_coverage
+def test_condition_description():
+    item_a = Item(condition=5)
+    item_b = Item(condition=4)
+    item_c = Item(condition=3)
+    item_d = Item(condition=2)
+    item_e = Item(condition=1)
+    item_f = Item(condition=0)
+
+    assert item_a.condition_description() == "Straight outta da display"
+    assert item_b.condition_description() == "Basically new"
+    assert item_c.condition_description() == "Yah it's used, but we be sustainable"
+    assert item_d.condition_description() == "It ain't THAT bad... maybe just a litte"
+    assert item_e.condition_description() == "It's intact"
+    assert item_f.condition_description() == "Just TAKE it!"
+
+    
+
