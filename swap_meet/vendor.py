@@ -65,13 +65,17 @@ class Vendor:
             return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
     
     # wave 6
-    # add instance method:
-    # get_best_by_category
-    # swap_best_by_category
-        # arg: str that represents a category
-        # gets item with best condition in a certain category
-        # returns this item (only a single item even if there are duplicates)
-        # returns None if no matching items in inventory
+    # add instance methods:
+        # get_best_by_category
+            # arg: str that represents a category
+            # gets item with best condition in a certain category
+            # returns this item (only a single item even if there are duplicates)
+            # returns None if no matching items in inventory
+        # swap_best_by_category
+            # args: other - vendor instance, my_priority - category vendor wants, their_priority - category other wants
+            # best item in my inventory that matches their_prority category is swapped with the best item in other's inventory that matches my priority
+            # returns True
+            # if vendor or other have no match, return False
     
     def get_best_by_category(self, category):
         get_same_category = self.get_by_category(category)
@@ -83,3 +87,9 @@ class Vendor:
                 if item.condition > best_item.condition:
                     best_item = item
         return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        self_best_item = self.get_best_by_category(their_priority)
+        their_best_item = other.get_best_by_category(my_priority)
+        self.swap_items(other, self_best_item, their_best_item)
+        return True
