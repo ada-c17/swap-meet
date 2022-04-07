@@ -25,6 +25,22 @@ def test_best_by_age():
     assert best_item.age == today.year-2020
 
 # #@pytest.mark.skip
+def test_age_is_greater_then_today():
+    item_a = Clothing(age=date(2024,2,1))
+    item_b = Decor(age=date(2020,2,1))
+    item_c = Clothing(age=date(2018,1,1))
+    item_d = Decor(age=date(2010,9,1))
+    item_e = Clothing(age=date(2011,1,1))
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c, item_d, item_e]
+    )
+
+    best_item = tai.get_best_by_age("Clothing")
+
+    assert best_item.category == "Clothing"
+    assert best_item.age == 0    
+
+# #@pytest.mark.skip
 def test_best_by_age_no_matches_is_none():
     item_a = Decor(age=date(2020,2,1))
     item_b = Decor(age=date(2020,2,1))
