@@ -2,7 +2,6 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-@pytest.mark.skip
 def test_item_overrides_to_string():
     item = Item()
 
@@ -10,7 +9,6 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
-@pytest.mark.skip
 def test_swap_items_returns_true():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -38,7 +36,6 @@ def test_swap_items_returns_true():
     assert item_b in jolie.inventory
     assert result
 
-@pytest.mark.skip
 def test_swap_items_when_my_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -65,7 +62,6 @@ def test_swap_items_when_my_item_is_missing_returns_false():
     assert item_e in jolie.inventory
     assert not result
 
-@pytest.mark.skip
 def test_swap_items_when_their_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -92,7 +88,6 @@ def test_swap_items_when_their_item_is_missing_returns_false():
     assert item_e in jolie.inventory
     assert not result
 
-@pytest.mark.skip
 def test_swap_items_from_my_empty_returns_false():
     fatimah = Vendor(
         inventory=[]
@@ -112,7 +107,6 @@ def test_swap_items_from_my_empty_returns_false():
     assert len(jolie.inventory) == 2
     assert not result
 
-@pytest.mark.skip
 def test_swap_items_from_their_empty_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
