@@ -5,6 +5,7 @@ class Item:
     def __init__(self, category = "", condition = 0):
         self.category = category
         self.condition = condition
+        #self.age = age
 
     #override str() for Item, returns "Hello World!" instead
     def __str__(self):

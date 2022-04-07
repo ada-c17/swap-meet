@@ -1,7 +1,9 @@
 from swap_meet.item import Item
 
 class Vendor:
-    def __init__(self, inventory = []):
+    def __init__(self, inventory = None):
+        if inventory == None:
+            inventory = []
         self.inventory = inventory
 
     # Adds the item to the inventory
@@ -36,16 +38,24 @@ class Vendor:
     # adds my_item to the other Vendor's inventory
     # removes their_item from other Vendor's inventory
     # adds their_item to the this Vendor's inventory
-    def swap_items(self, vendor, my_item, their_item):
+    def swap_items(self, other_vendor, my_item, their_item):
 
-        if (my_item not in self.inventory) or (their_item not in vendor.inventory):
+        if (my_item not in self.inventory) or (their_item not in other_vendor.inventory):
             return False
         
-        vendor.add(my_item)
-        self.remove(my_item)
+        #print("********BEFORE***********")
+        #print(len(self.inventory))
+        #print(len(other_vendor.inventory))
 
+        self.remove(my_item)
+        other_vendor.add(my_item)
+        
+        other_vendor.remove(their_item)
         self.add(their_item)
-        vendor.remove(their_item)
+        
+        #print("********AFTER***********")
+       # print(len(self.inventory))
+       # print(len(other_vendor.inventory))
 
         return True
 
