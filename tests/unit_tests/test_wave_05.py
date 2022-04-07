@@ -52,3 +52,31 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+
+# creating own test to get 100% code coverage
+# have to test all of the condition_descriptions that weren't used
+def test_items_have_condition_descriptions_to_get_full_code_coverage():
+    items = [
+        Clothing(condition=0),
+        Decor(condition=2),
+        Electronics(condition=4),
+        Clothing(condition=3)
+    ]
+
+    items[0].condition = 0
+    zero_condition_description = items[0].condition_description()
+    assert isinstance(zero_condition_description, str)
+
+    items[1].condition = 2
+    two_condition_description = items[1].condition_description()
+    assert isinstance(two_condition_description, str)
+
+    items[2].condition = 4
+    four_condition_description = items[2].condition_description()
+    assert isinstance(four_condition_description, str)
+
+    items[3].condition = 3
+    three_condition_description = items[3].condition_description()
+    assert isinstance(three_condition_description, str)
+
