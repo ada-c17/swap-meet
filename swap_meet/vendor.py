@@ -69,7 +69,7 @@ class Vendor:
             return True
         return False
             
-    def swap_by_newest(self, friend):
+    def swap_by_newest(self, friend, my_newest_item, friend_newest_item):
         if self.inventory == [] or friend.inventory == []:
             return None
         my_newest_item = self.inventory[0]

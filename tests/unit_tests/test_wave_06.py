@@ -55,15 +55,15 @@ def test_swap_best_by_category():
     # Arrange
     # me
     item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_b = Electronics(condition=1.0)
+    item_c = Decor(condition=3.5)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
     )
 
     # them
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
+    item_d = Clothing(condition=1.0)
+    item_e = Decor(condition=3.0)
     item_f = Clothing(condition=4.0)
     jesse = Vendor(
         inventory=[item_d, item_e, item_f]
@@ -95,15 +95,15 @@ def test_swap_best_by_category():
 def test_swap_best_by_category_reordered():
     # Arrange
     item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_b = Electronics(condition=2.5)
+    item_c = Decor(condition=3.0)
     tai = Vendor(
         inventory=[item_c, item_b, item_a]
     )
 
     item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_e = Decor(condition=1.0)
+    item_f = Clothing(condition=2.5)
     jesse = Vendor(
         inventory=[item_f, item_e, item_d]
     )
@@ -269,8 +269,8 @@ def test_swap_best_by_category_no_other_match_is_false():
 def test_swap_newest_item():
     # Arrange
     # me
-    item_a = Decor(age=2.0)
-    item_b = Electronics(age=3.0)
+    item_a = Electronics(age=3.0)
+    item_b = Decor(age=2.0)
     item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
@@ -285,18 +285,18 @@ def test_swap_newest_item():
     )
 
     # Act
-    result = tai.swap_items(
-        another_vendor=jesse,
-        my_item="Decor",
-        their_item="Clothing"
+    result = tai.swap_by_newest(
+        friend=jesse,
+        my_newest_item="Decor",
+        friend_newest_item="Clothing"
     )
     # Assert
     assert len(tai.inventory)==3
     assert len(jesse.inventory)==3
-    assert item_a in tai.inventory
-    assert item_a  not in jesse.inventory
-    assert item_f  not in tai.inventory
-    assert item_f in jesse.inventory
+    assert item_f in tai.inventory
+    assert item_f  not in jesse.inventory
+    assert item_b  not in tai.inventory
+    assert item_b in jesse.inventory
 
     # @pytest.mark.skip
 def test_swap_newest_item_no_other_inventory_is_false():
@@ -314,10 +314,10 @@ def test_swap_newest_item_no_other_inventory_is_false():
     )
 
     # Act
-    result = tai.swap_items(
-        another_vendor=jesse,
-        my_item="Decor",
-        their_item="Clothing"
+    result = tai.swap_by_newest(
+        friend=jesse,
+        my_newest_item="Decor",
+        friend_newest_item="Clothing"
     )
     # Assert   
     assert not result
