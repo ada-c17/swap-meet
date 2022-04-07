@@ -91,9 +91,10 @@ class Vendor:
     def swap_best_by_category(self, other, my_priority, their_priority):
         if not self.inventory or not other.inventory:
             return False
+        elif not self.get_by_category(their_priority) or not other.get_by_category(my_priority):
+            return False
         else:
             self_best_item = self.get_best_by_category(their_priority)
             their_best_item = other.get_best_by_category(my_priority)
             self.swap_items(other, self_best_item, their_best_item)
             return True
-    
