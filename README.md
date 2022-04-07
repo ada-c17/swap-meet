@@ -84,6 +84,7 @@ In Wave 2 we will create the `Item` class and the `get_by_category` method.
 - Inside this module, there is a class named `Item`
 - Each `Item` will have an attribute named `category`, which is an empty string by default
 - When we initialize an instance of `Item`, we can optionally pass in a string with the keyword argument `category`
+
 - Instances of `Vendor` have an instance method named `get_by_category`
   - It takes one argument: a string, representing a category
   - This method returns a list of `Item`s in the inventory with that category
@@ -140,7 +141,7 @@ In Wave 5 we will create three additional modules with three additional classes:
 
 #### Using Inheritance
 
-Now, we may notice that these three classes hold the same types of state and have the same general behavior as `Item`. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+Now, we may notice that these three classes hold the same types of state and have the same general behavior as `Item`. That means this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
 
 ##### Hint: Importing Item
 
@@ -157,6 +158,7 @@ In Wave 6 we will write two methods, `get_best_by_category` and `swap_best_by_ca
 - `Vendor`s have a method named `get_best_by_category`, which will get the item with the best condition in a certain category
   - It takes one argument: a string that represents a category
   - This method looks through the instance's `inventory` for the item with the highest `condition` and matching `category`
+   
     - It returns this item
     - If there are no items in the `inventory` that match the category, it returns `None`
     - It returns a single item even if there are duplicates (two or more of the same item with the same condition)
@@ -168,8 +170,11 @@ The remaining tests in wave 6 imply:
     - `other`, which represents another `Vendor` instance to trade with
     - `my_priority`, which represents a category that the `Vendor` wants to receive
     - `their_priority`, which represents a category that `other` wants to receive
+  
   - The best item in my inventory that matches `their_priority` category is swapped with the best item in `other`'s inventory that matches `my_priority`
     - It returns `True`
+
+
     - If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
     - If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False`
 
