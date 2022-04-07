@@ -26,8 +26,8 @@ class Vendor:
         searches an instance's inventory attribute for an item of a specific category with the highest condition and returns it
     swap_best_by_category(other, my_priority, their_priority):
         swaps the best items in the specified priority categories between the current instance's inventory and the other instance's inventory
-    find_newest_item():
-        searches an instance's inventory attribute for an item with the youngest age; if inventory is empty, returns None.
+    get_newest_item():
+        searches an instance's inventory attribute for an item with the youngest age and returns it; if inventory is empty, returns None.
     swap_by_newest(swap_friend):
         swaps the newest item from the current instance's inventory with the newest item from swap_friend's inventory
     '''
@@ -109,10 +109,7 @@ class Vendor:
         category_list = self.get_by_category(category)
         if not category_list:
             return None
-        best_condition = max(category_list, key=lambda x: x.condition).condition
-        for item in category_list:
-            if item.condition == best_condition:
-                return item
+        return max(category_list, key=lambda x: x.condition)
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
@@ -135,7 +132,7 @@ class Vendor:
             return False
         return self.swap_items(other, to_trade, to_receive)
 
-    def find_newest_item(self) -> Item:
+    def get_newest_item(self) -> Item:
         '''
         Searches an instance's inventory attribute for an item with the youngest age. If inventory is empty, returns none.
         '''
@@ -153,10 +150,9 @@ class Vendor:
         '''
         Swaps the newest item from the current instance's inventory with the newest item from swap_friend's inventory
         '''
-        my_newest_item = self.find_newest_item()
-        their_newest_item = swap_friend.find_newest_item()
+        my_newest_item = self.get_newest_item()
+        their_newest_item = swap_friend.get_newest_item()
         if my_newest_item is None or their_newest_item is None:
             return False
         else:
-            self.swap_items(swap_friend, my_newest_item, their_newest_item)
-            return True
+            return self.swap_items(swap_friend, my_newest_item, their_newest_item)

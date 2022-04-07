@@ -65,3 +65,5 @@ class Item:
             return descriptors[4]
         elif self.condition == 5:
             return descriptors[5]
+        else:
+            return f"Condition rated as {self.condition}"

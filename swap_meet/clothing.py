@@ -4,7 +4,7 @@ class Clothing(Item):
     A class to represent a clothing instance with inheritance from the Item class
 
     ...
-
+    
     ---Attributes---
     INHERITED
     category : str, optional

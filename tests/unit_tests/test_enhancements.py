@@ -5,7 +5,7 @@ from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 from swap_meet.item import Item
 
-def test_find_newest_item_returns_correct_item_with_ages():
+def test_get_newest_item_returns_correct_item_with_ages():
 # Arrange
     # me
     item_a = Decor(age=2)
@@ -17,14 +17,14 @@ def test_find_newest_item_returns_correct_item_with_ages():
     )
 
     # Act
-    result = tai.find_newest_item()
+    result = tai.get_newest_item()
 
     assert result
     assert len(tai.inventory) == 4
     assert tai.inventory == [item_a, item_b, item_c, item_d]
     assert result == item_a
 
-def test_find_newest_item_returns_None_with_None_age():
+def test_get_newest_item_returns_None_with_None_age():
 # Arrange
     # me
     item_a = Decor(age=2)
@@ -36,14 +36,14 @@ def test_find_newest_item_returns_None_with_None_age():
     )
 
     # Act
-    result = tai.find_newest_item()
+    result = tai.get_newest_item()
 
     assert not result
     assert len(tai.inventory) == 4
     assert tai.inventory == [item_a, item_b, item_c, item_d]
     assert result == None
 
-def test_find_newest_item_returns_correct_item_with_float_ages():
+def test_get_newest_item_returns_correct_item_with_float_ages():
 # Arrange
     # me
     item_a = Decor(age=2.5)
@@ -55,18 +55,18 @@ def test_find_newest_item_returns_correct_item_with_float_ages():
     )
 
     # Act
-    result = tai.find_newest_item()
+    result = tai.get_newest_item()
 
     assert result
     assert len(tai.inventory) == 4
     assert tai.inventory == [item_a, item_b, item_c, item_d]
     assert result == item_c
 
-def test_find_newest_item_returns_None_with_empty_inventory():
+def test_get_newest_item_returns_None_with_empty_inventory():
     tai = Vendor()
 
     # Act
-    result = tai.find_newest_item()
+    result = tai.get_newest_item()
 
     assert not result
     assert len(tai.inventory) == 0
