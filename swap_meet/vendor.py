@@ -43,10 +43,6 @@ class Vendor:
         friend.add(my_item)
         friend.remove(their_item)
         
-        # self.inventory.append(their_item)
-        # self.inventory.remove(my_item)
-        # friend.inventory.append(my_item)
-        # friend.inventory.remove(their_item)
         return True
 
     def swap_first_item(self, friend):
@@ -58,6 +54,7 @@ class Vendor:
 
         self.swap_items(friend, self.inventory[0], friend.inventory[0])
         
+        #------  Alternative way using destructuring -----------
         # [self.inventory[0], friend.inventory[0]] = [friend.inventory[0], self.inventory[0]]
         
         return True
