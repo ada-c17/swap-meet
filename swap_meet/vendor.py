@@ -30,6 +30,12 @@ class Vendor:
         Swaps items between self and other if item of other's prioritized category
         exists in self's inventory and item of self's prioritized category is in
         other's inventory.
+    swap_by_newest(other, my_priority, their_priority)
+        Swaps items between self and other if an item in other's inventory is at or
+        below self's priortized age and an item in self's inventory is at or below
+        their prioritized age.
+    get_newest(specified_age)
+        Finds the newest item in inventory that is at or below specified age.
     """
 
     def __init__(self, inventory=None):
@@ -187,3 +193,54 @@ class Vendor:
             return True
         else:
             return False
+
+    def swap_by_newest(self, other, my_priority, their_priority):
+        """
+        Swaps items between self and other if an item in other's inventory is at or
+        below self's priortized age and an item in self's inventory is at or below
+        their prioritized age.
+
+        Parameters
+        ----------
+            other: instance of Vendor
+                vendor trading with
+            my_priority: str
+                oldest age first vendor will accept
+            their_priority: str
+                oldest age other vendor will accept
+        Returns
+        -------
+        True if items are swapped and False if items are not swapped.
+        """
+        if other.get_newest(my_priority) and self.get_newest(their_priority):
+            self.swap_items(other, self.get_newest(their_priority), \
+            other.get_newest(my_priority))
+            return True
+        else:
+            return False
+
+    def get_newest(self, specified_age):
+        """
+        Finds the newest item in inventory that is at or below specified age.
+
+        Parameters
+        ----------
+            specified_age: float
+                oldest age of an item desired
+        Returns
+        -------
+        Newest item in inventory based on specified age.
+        """
+        if len(self.inventory) == 0:
+            return None
+
+        newest_item = self.inventory[0]
+
+        for item in self.inventory:
+            if item.age <= specified_age and item.age < newest_item.age:
+                newest_item = item
+
+        if newest_item.age > specified_age:
+            return None
+
+        return newest_item

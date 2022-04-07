@@ -9,6 +9,8 @@ class Item:
         category of an item
     condition: float
         describes condition of item from a range of 0-5
+    age: float
+        describes how old an object is by year
 
     Methods
     -------
@@ -16,9 +18,10 @@ class Item:
         Returns str description of condition.
     """
 
-    def __init__(self, category="", condition=0):
+    def __init__(self, category="", condition=0, age=0):
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         return "Hello World!"

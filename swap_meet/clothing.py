@@ -11,10 +11,12 @@ class Clothing(Item):
         category of item that defaults to "Clothing"
     condition: float
         describes condition of item from a range of 0-5
+    age: float
+        describes how old an object is by year
     """
 
-    def __init__(self, condition=0):
-        super().__init__("Clothing", condition)
+    def __init__(self, condition=0, age=0):
+        super().__init__("Clothing", condition, age)
 
 
     def __str__(self):
