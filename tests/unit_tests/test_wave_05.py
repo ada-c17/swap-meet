@@ -32,6 +32,19 @@ def test_items_have_condition_as_float():
         assert item.condition == pytest.approx(3.5)
 
 # @pytest.mark.skip
+# def test_items_have_approx_value():
+#     items = [
+#         Clothing(condition=4.5),
+#         Decor(condition=2.5),
+#         Electronics(condition=3.5)
+#     ]
+#     # for item in items:
+#     #     assert item.condition == pytest.approx(4.0)
+#     assert items[0].condition == pytest.approx(4.5)
+#     assert items[1].condition == pytest.approx(2.5)
+#     assert items[2].condition == pytest.approx(3.5)
+
+# @pytest.mark.skip
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
     items = [
         Clothing(condition=5),
