@@ -59,11 +59,6 @@ def test_removing_not_found_is_false():
 
     result = vendor.remove(item)
 
-    #raise Exception("Complete this test according to comments below.")  <-- do we need to raise an exception, or??
-    # if not item, raise exception??
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
     #assert
     assert len(vendor.inventory) == 3
     assert item not in vendor.inventory
