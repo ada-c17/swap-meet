@@ -350,3 +350,22 @@ def test_swap_by_newest_both_all_same_age_swaps_first_instances():
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3    
 
+def test_swap_by_newest_returns_false_if_either_inventory_is_empty():
+    # Arrange
+    item_a = Decor(condition=2.0, age=3.0)
+    item_b = Electronics(condition=4.0, age=3.0)
+    item_c = Decor(condition=4.0, age=3.0)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+    jesse = Vendor(
+        inventory=[]
+    )
+
+    # Act
+    result = tai.swap_by_newest(
+        other=jesse,
+    )
+
+    # Assert
+    assert not result 
