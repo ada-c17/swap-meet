@@ -52,3 +52,13 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+def test_items_raises_exception_when_condition_is_not_between_0_and_5_():
+    # Arrange
+    item = Electronics(condition=6)
+
+    # Act
+    result = item.condition_description()
+
+    # Assert
+    assert result == "Condition must be a float between 0 and 5."

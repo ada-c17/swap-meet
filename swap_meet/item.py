@@ -18,6 +18,6 @@ class Item:
 
     def condition_description(self):
         try:
-            return Item.CONDITIONS[int(self.condition)]
+            return Item.CONDITIONS[self.condition]
         except:
-            return "Condition must be a whole number between 0 and 5."
+            return "Condition must be a float between 0 and 5."
