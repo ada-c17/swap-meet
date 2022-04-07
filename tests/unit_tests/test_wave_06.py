@@ -97,7 +97,7 @@ def test_swap_best_by_category():
     assert item_e in jesse.inventory
     assert item_f not in jesse.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_reordered():
     # Arrange
     item_a = Decor(condition=2.0)
@@ -142,7 +142,7 @@ def test_swap_best_by_category_reordered():
     assert item_e in jesse.inventory
     assert item_f not in jesse.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_best_by_category_no_inventory_is_false():
     tai = Vendor(
         inventory=[]
