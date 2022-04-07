@@ -7,10 +7,11 @@ vendor = Vendor(inventory=["a", "b", "c"])
 print(vendor.inventory)
 
 hat = Item(category="clothing")
-sock = Clothing()
+sock = Clothing(condition=3.9)
 shirt = Item(category="clothing")
 phone = Item(category="electronics")
 fatimah = Vendor(inventory=[hat, shirt, phone])
 print(fatimah.inventory)
 print(hat)
-print(sock)
+print(sock.condition_description())
+
