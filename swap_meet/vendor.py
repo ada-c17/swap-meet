@@ -117,7 +117,7 @@ class Vendor:
         # Function will get the item with the best condition in a certain category
 
         # Look through the instance's 'inventory' for the item with 
-        # the highest 'condition' and matching 'category'
+        # The highest 'condition' and matching 'category'
 
         """
         Input: 'item_category': string representing category
