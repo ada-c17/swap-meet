@@ -1,5 +1,3 @@
-#from swap_meet.vendor import Vendor
-
 class Item:
     def __init__(self, category = "", condition = 0):
         self.category = category
@@ -21,10 +19,3 @@ class Item:
             return "Never worn, like new"
         elif self.condition == 5:
             return "Label still on, never worn, like new"
-
-
-
-# item1 = Item()
-# item1.condition = 3.5
-# print(item1.condition_description())
-
