@@ -7,15 +7,11 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        if self.condition == 0:
-            return "You gotta see it to beleive it"
-        elif self.condition == 1:
-            return "A hand-me-down many, many times over"
-        elif self.condition == 2:
-            return "Like revisiting life in your college dorm"
-        elif self.condition == 3:
-            return "A gift from my ex - he was ok"
-        elif self.condition == 4:
-            return "Like new - not new but like it"
-        elif self.condition == 5:
-            return "The Beyonce of objects"
+        condition_descriptions = {0: "You gotta see it to beleive it",
+                                  1: "A hand-me-down many, many times over",
+                                  2: "Like revisiting life in your college dorm",
+                                  3: "A gift from my ex - he was ok",
+                                  4: "Like new - not new but like it",
+                                  5: "The Beyonce of objects"}
+
+        return condition_descriptions[self.condition]

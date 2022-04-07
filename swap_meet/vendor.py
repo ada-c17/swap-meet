@@ -19,6 +19,11 @@ class Vendor:
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
         else:
+            # I refactored this into working chained fuctions but decided to stick with the original code for readability
+            # self.inventory.append(vendor.inventory.pop(
+            #     vendor.inventory.index(their_item)))
+            # vendor.inventory.append(self.inventory.pop(
+            #     self.inventory.index(my_item)))
             self.remove(my_item)
             vendor.add(my_item)
             self.add(their_item)
@@ -47,7 +52,6 @@ class Vendor:
         for item in cat_items:
             if item.condition == best_condition:
                 return item
-        return None
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         for_me = other.get_best_by_category(my_priority)
