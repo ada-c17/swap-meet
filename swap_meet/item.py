@@ -12,15 +12,15 @@ class Item:
     
     def condition_description(self):
         if self.condition == 0 :
-            return "Auberon"
+            return "Red"
         elif self.condition == 1 :
-            return "Jerica"
+            return "Brown"
         elif self.condition == 2: 
-            return "Kaida"
+            return "Orange"
         elif self.condition == 3 :
-            return "Jasmine"
+            return "Yellow"
         elif self.condition == 4 : 
-            return "Chris"
+            return "Blue"
         elif self.condition == 5 :
-            return "Goeun"
+            return "Green"
         

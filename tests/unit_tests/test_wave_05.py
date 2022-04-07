@@ -52,8 +52,8 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
-    assert five_condition_description == "Goeun"
-    assert one_condition_description == "Jerica"
+    assert five_condition_description == "Green"
+    assert one_condition_description == "Brown"
     
 def test_item_condition_description_for_each_range():
     items = [
@@ -71,9 +71,9 @@ def test_item_condition_description_for_each_range():
     four_item = items[4].condition_description()
     five_item = items[5].condition_description()
     
-    assert zero_item == "Auberon"
-    assert one_item == "Jerica"
-    assert two_item == "Kaida" 
-    assert three_item == "Jasmine" 
-    assert four_item == "Chris"
-    assert five_item == "Goeun"
+    assert zero_item == "Red"
+    assert one_item == "Brown"
+    assert two_item == "Orange" 
+    assert three_item == "Yellow" 
+    assert four_item == "Blue"
+    assert five_item == "Green"
