@@ -2,7 +2,7 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_item_overrides_to_string():
     item = Item()
 
@@ -10,7 +10,7 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_items_returns_true():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -28,17 +28,15 @@ def test_swap_items_returns_true():
     result = fatimah.swap_items(jolie, item_b, item_d)
 
     assert len(fatimah.inventory) == 3
-    assert item_b not in fatimah.inventory
-    assert item_a in fatimah.inventory
-    assert item_c in fatimah.inventory
-    assert item_d in fatimah.inventory
     assert len(jolie.inventory) == 2
+    assert item_b not in fatimah.inventory
     assert item_d not in jolie.inventory
-    assert item_e in jolie.inventory
-    assert item_b in jolie.inventory
+    assert item_a and item_c and item_d in fatimah.inventory
+    assert item_e and item_b in jolie.inventory
     assert result
 
-@pytest.mark.skip
+
+# @pytest.mark.skip
 def test_swap_items_when_my_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -56,16 +54,13 @@ def test_swap_items_when_my_item_is_missing_returns_false():
     result = fatimah.swap_items(jolie, item_e, item_d)
 
     assert len(fatimah.inventory) == 3
-    assert item_d not in fatimah.inventory
-    assert item_a in fatimah.inventory
-    assert item_b in fatimah.inventory
-    assert item_c in fatimah.inventory
     assert len(jolie.inventory) == 2
-    assert item_d in jolie.inventory
-    assert item_e in jolie.inventory
-    assert not result
+    assert item_d not in fatimah.inventory 
+    assert item_a and item_b and item_c in fatimah.inventory
+    assert item_d and item_e in jolie.inventory
+    assert result == False
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_items_when_their_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -83,16 +78,14 @@ def test_swap_items_when_their_item_is_missing_returns_false():
     result = fatimah.swap_items(jolie, item_b, item_c)
 
     assert len(fatimah.inventory) == 3
-    assert item_d not in fatimah.inventory
-    assert item_a in fatimah.inventory
-    assert item_b in fatimah.inventory
-    assert item_c in fatimah.inventory
     assert len(jolie.inventory) == 2
-    assert item_d in jolie.inventory
-    assert item_e in jolie.inventory
-    assert not result
+    assert item_d not in fatimah.inventory 
+    assert item_a and item_b and item_c in fatimah.inventory
+    assert item_d and item_e in jolie.inventory
+    assert result == False
 
-@pytest.mark.skip
+
+# @pytest.mark.skip
 def test_swap_items_from_my_empty_returns_false():
     fatimah = Vendor(
         inventory=[]
@@ -110,9 +103,9 @@ def test_swap_items_from_my_empty_returns_false():
 
     assert len(fatimah.inventory) == 0
     assert len(jolie.inventory) == 2
-    assert not result
+    assert result == False 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_swap_items_from_their_empty_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
@@ -131,4 +124,4 @@ def test_swap_items_from_their_empty_returns_false():
 
     assert len(fatimah.inventory) == 3
     assert len(jolie.inventory) == 0
-    assert not result
+    assert result == False 
