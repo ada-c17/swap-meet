@@ -7,8 +7,3 @@ class Clothing(Item):
     def __str__(self):
         return "The finest clothing you could wear."
     
-    def condition_description(self):
-        return super().condition_description()
-
-    def age_description(self):
-        return super().age_description()

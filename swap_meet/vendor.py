@@ -29,19 +29,19 @@ class Vendor:
                 item_list.append(item)
         return item_list
     
-    def swap_items(self, Vendor, my_item, their_item):
+    def swap_items(self, other, my_item, their_item):
         """Swaps items betwen self and another vendor's inventory"""
 
         # check valid input
-        if my_item not in self.inventory or their_item not in Vendor.inventory:
+        if my_item not in self.inventory or their_item not in other.inventory:
             return False
         else:
             # remove items from original inventory
-            my_swap_item = self.remove(my_item)
-            their_swap_item = Vendor.remove(their_item)
+            self.remove(my_item)
+            other.remove(their_item)
             # add items to new inventory 
-            self.add(their_swap_item)
-            Vendor.add(my_swap_item)
+            self.add(their_item)
+            other.add(my_item)
             return True
     
     def swap_first_item(self, Vendor):
@@ -84,12 +84,12 @@ class Vendor:
             return False
         else:
             # swap items if valid
-            self.swap_items(other, their_desired_item, my_desired_item)
-            return True
+            return self.swap_items(other, their_desired_item, my_desired_item)
+        
 
     def get_newest_item(self):
-        """Returns newest item from inventory"""
-        
+        """Returns newest item from inventory items with known ages"""
+
         potential_items = []
         for item in self.inventory:
             if item.age:
@@ -111,5 +111,4 @@ class Vendor:
         if not my_newest or not their_newest:
             return False
         else:
-            self.swap_items(other, my_newest, their_newest)
-            return True
+            return self.swap_items(other, my_newest, their_newest)
