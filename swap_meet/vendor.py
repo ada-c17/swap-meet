@@ -34,23 +34,18 @@ class Vendor():
 
   def swap_first_item(self, vendor):
     if len(vendor.inventory) and len(self.inventory) != 0:
-      self_item = self.inventory[0]
-      vendor_item = vendor.inventory[0]
-      
-      self.inventory.remove(self_item)
-      vendor.inventory.append(self_item)
-      vendor.inventory.remove(vendor_item)
-      self.inventory.append(vendor_item)
+      self_first_item = self.inventory[0]
+      vendor_first_item = vendor.inventory[0]
+      swapped_item = self.swap_items(vendor, self_first_item, vendor_first_item)
       return True
     else:
       return False
-  
+
   def get_best_by_category(self, string_category):
     max_condition = 0
     stored_item = None 
     inventory_by_cat = self.get_by_category(string_category)
     for item in inventory_by_cat:
-      print(item.category)
       if item.condition >= max_condition:
         max_condition = item.condition
         stored_item = item #include this to return item
@@ -61,3 +56,8 @@ class Vendor():
     best_their_item = other.get_best_by_category(my_priority)
     best_item_swapped = self.swap_items(other, best_self_item, best_their_item)
     return best_item_swapped #should be True
+
+  # def swap_by_newest(self, age):
+  #   stored_age = self.get_best_by_category(age)
+  #   print(stored_age.age)
+  #   return stored_age

@@ -1,6 +1,7 @@
 class Item():
-  def __init__ (self, category = ""):
+  def __init__ (self, category = "", age =int()):
     self.category = category
+    self.age = age
 
   def __str__(self):
     return "Hello World!"
