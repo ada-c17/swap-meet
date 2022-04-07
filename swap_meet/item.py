@@ -1,12 +1,45 @@
 class Item:
+    '''
+    A class to represent an item object
+
+    ...
+
+    ---Attributes---
+    category : str, optional
+        empty string by default, otherwise a specific category represented by a string
+    condition : int or float, optional
+        zero by default, otherwise a number representing the condition of the item
+
+    ---Methods---
+    __str__():
+        sets dunder str to a string
+
+    condition_description():
+        based on an item instance's numerical condition, returns a string description of that condition
+
+    '''
     def __init__(self, category="", condition=0):
+        '''
+        Constructs all the necessary attributes for the item object
+
+        ---Paramters---
+        category : str, optional
+            empty string by default, otherwise a specific category represented by a string
+        condition : int or float, optional
+            zero by default, otherwise a number representing the condition of the item
+        '''
         self.category = category
         self.condition = condition
 
+
     def __str__(self):
+        '''sets dunder str to a string'''
         return "Hello World!"
 
     def condition_description(self):
+        '''
+        based on an item instance's numerical condition, returns a string description of that condition
+        '''
         descriptors = [
             "Mint",
             "Like New",
@@ -15,7 +48,6 @@ class Item:
             "Well Used",
             "Bad Condition",
         ]
-
         if 1 > self.condition >= 0:
             return descriptors[0]
         elif 2 > self.condition >= 1:
