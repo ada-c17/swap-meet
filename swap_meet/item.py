@@ -5,16 +5,23 @@ class Item:
         self.category = category
         self.condition = condition
 
-    # String-ify 'Item' using 'str()'
     def __str__(self):
+        """
+        String-ify an instance of 'Item' using 'str()'
+        """
         return "Hello World!"
     
     def condition_description(self):
-        # 0 - 1 --> "Don't touch with bare hands"
-        # 1 - 2 --> "Is it worth it? Probably not."
-        # 2 - 3 --> "Meh, it's neutral."
-        # 3 - 4 --> "It's a good find."
-        # 4 - 5 --> "Top tier item! Must have."
+
+        """
+        This function provides an item description based on self.condition
+        
+        * Condition 0 - 1 --> "Don't touch with bare hands"
+        * Condition 1 - 2 --> "Is it worth it? Probably not."
+        * Condition 2 - 3 --> "Meh, it's neutral."
+        * Condition 3 - 4 --> "It's a good find."
+        * Condition 4 - 5 --> "Top tier item! Must have."
+        """
 
         if (self.condition >= 0) and (self.condition <= 1):
             return "Don't touch with bare hands."
