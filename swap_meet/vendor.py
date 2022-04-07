@@ -48,15 +48,43 @@ class Vendor:
         return True
 
     def get_best_by_category(self, category):
-        self.category = category
-        highest_rank = 0.0
+        matched_category=[]
         for item in self.inventory:
-            if self.condition == 5.0:
-                if item.category == category:
-                    return item
-                else:
-                    return None
+            if item.category == category:
+                matched_category.append(item)
+
+        if len(matched_category) == 0:
+            return None
+        highest_condition = matched_category[0]
+        for item in matched_category:
+            if item.condition > highest_condition.condition:
+                highest_condition = item
+                return item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_best_item = self.get_best_by_category(their_priority)
+        their_best_item = other.get_best_by_category(my_priority)
+        if my_best_item and their_best_item:
+            self.swap_items(other, my_best_item, their_best_item)
+            return True
+        return False
             
+    def swap_by_newest(self, friend):
+        if self.inventory == [] or friend.inventory == []:
+            return None
+        my_newest_item = self.inventory[0]
+        for item in self.inventory:
+            if item.age < my_newest_item.age:
+                my_newest_item = item
+
+        friend_newest_item = friend.inventory[0]
+        for item in friend.inventory:
+            if item.age < friend_newest_item.age:
+                friend_newest_item = item
+
+        self.swap_items(friend, my_newest_item, friend_newest_item)
+        return True
+
 
     
     
