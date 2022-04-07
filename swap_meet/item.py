@@ -4,6 +4,7 @@ class Item:
     def __init__(self, category = ""):
         self.category = category
         self.condition = 0
+        self.age = 0
 
     # method to stringify an Item
     def __str__(self):
@@ -20,3 +21,15 @@ class Item:
             5 : "amazing"
         }
         return conditions[self.condition]
+
+    # method to describe age in words based on value
+    def age_description(self):
+        age = {
+            0 : "ancient",
+            1 : "retro",
+            2 : "last season's",
+            3 : "classic",
+            4 : "fresh",
+            5 : "brand new"
+        }
+        return age[self.age]
