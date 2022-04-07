@@ -8,7 +8,7 @@ class Decor(Item):
     Attributes
     ----------
     category: str
-        category of item that defaults to "Electronics"
+        category of item that defaults to "Decor"
     condition: float
         describes condition of item from a range of 0-5
     age: float
