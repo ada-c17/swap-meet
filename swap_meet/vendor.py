@@ -25,13 +25,28 @@ class Vendor:
                 items_in_category.append(item)
         return items_in_category
 
-    def swap_items(self, vendor_to_swap_with, my_item, their_item):
-        if my_item in self.inventory and their_item in vendor_to_swap_with.inventory:
-            self.inventory.remove(my_item)
-            vendor_to_swap_with.inventory.append(my_item)
+    def swap_items(self, vendor_to_swap_with, self_item, their_item):
+        if self_item in self.inventory and their_item in vendor_to_swap_with.inventory:
+            self.inventory.remove(self_item)
+            vendor_to_swap_with.inventory.append(self_item)
             self.inventory.append(their_item)
             vendor_to_swap_with.inventory.remove(their_item)
             return True
         else:
             return False
 
+    def swap_first_item(self, vendor_to_swap_with):
+        if len(self.inventory) >= 1 and len(vendor_to_swap_with.inventory) >= 1:
+            self_item = self.inventory[0]
+            their_item = vendor_to_swap_with.inventory[0]
+            self.swap_items(vendor_to_swap_with, self_item, their_item)
+            return True
+        else:
+            return False
+
+
+
+# take the first item out of vendor_to_swap_with
+# add it to your items
+# take the first item out of your items
+# add it to vendor_to_swap_with
