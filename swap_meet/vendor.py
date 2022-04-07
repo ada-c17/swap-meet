@@ -28,8 +28,20 @@ class Vendor:
         other_vendor.remove(their_item)
         self.add(their_item)
         return True
+    
+    # Wave 4
+    def swap_first_item(self, other_vendor):
+        if len(self.inventory) == 0 or len(other_vendor.inventory) == 0: 
+            return False
 
-        
-        
+        vendor_first_item = self.inventory[0]
+        friend_first_item = other_vendor.inventory[0]
 
+        self.remove(vendor_first_item)
+        self.add(friend_first_item)
+
+        other_vendor.remove(friend_first_item)
+        other_vendor.add(vendor_first_item)
+
+        return True
 
