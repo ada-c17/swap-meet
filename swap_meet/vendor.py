@@ -24,12 +24,12 @@ class Vendor:
         # isolates all the items matching a specific category
         # and returns them in the form of a list
         self.category = category
-        item_list = []
+        category_list = []
         for cat in self.inventory:
             if cat.category == self.category:
-                item_list.append(cat)
+                category_list.append(cat)
 
-        return item_list
+        return category_list
 
     def get_best_by_category(self, category):
         # determine which item is in the best condition
@@ -44,7 +44,7 @@ class Vendor:
         if best_cat:
             # retreive the best condition
 
-            # the attrgetter allows me to just evaluate the condition
+            # the attrgetter allows me to isolate and evaluate the condition
             # within the given instance
             best_item = max(best_cat, key=attrgetter("condition"))
         

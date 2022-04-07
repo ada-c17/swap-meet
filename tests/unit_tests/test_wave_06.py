@@ -82,16 +82,16 @@ def test_swap_best_by_category():
     # - That the results is truthy
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
+
     assert len(tai.inventory) == 3
-    assert item_c not in tai.inventory
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_f in tai.inventory
     assert len(jesse.inventory) == 3
+
+    assert item_c not in tai.inventory
     assert item_f not in jesse.inventory
-    assert item_d in jesse.inventory
-    assert item_e in jesse.inventory
-    assert item_c in jesse.inventory
+
+    assert item_a and item_b and item_f in tai.inventory    
+    assert item_c and item_d and item_e in jesse.inventory
+
     assert result
 
 # @pytest.mark.skip
@@ -125,16 +125,16 @@ def test_swap_best_by_category_reordered():
     # - That result is truthy
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
+    
     assert len(tai.inventory) == 3
-    assert item_c not in tai.inventory
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_f in tai.inventory
     assert len(jesse.inventory) == 3
+
+    assert item_c not in tai.inventory
     assert item_f not in jesse.inventory
-    assert item_d in jesse.inventory
-    assert item_e in jesse.inventory
-    assert item_c in jesse.inventory
+
+    assert item_a and item_b and item_f in tai.inventory    
+    assert item_c and item_d and item_e in jesse.inventory
+
     assert result
 
 # @pytest.mark.skip
@@ -159,9 +159,7 @@ def test_swap_best_by_category_no_inventory_is_false():
     assert not result
     assert len(tai.inventory) == 0
     assert len(jesse.inventory) == 3
-    assert item_a in jesse.inventory
-    assert item_b in jesse.inventory
-    assert item_c in jesse.inventory
+    assert item_a and item_b and item_c in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_other_inventory_is_false():
@@ -185,9 +183,7 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     assert not result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 0
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_c in tai.inventory
+    assert item_a and item_b and item_c in tai.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_match_is_false():
@@ -221,13 +217,11 @@ def test_swap_best_by_category_no_match_is_false():
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories
     assert len(tai.inventory) == 3
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_c in tai.inventory
     assert len(jesse.inventory) == 3
-    assert item_d in jesse.inventory
-    assert item_e in jesse.inventory
-    assert item_f in jesse.inventory
+
+    assert item_a and item_b and item_c in tai.inventory
+    assert item_d and item_e and item_f in jesse.inventory
+    
     assert not result
 
 # @pytest.mark.skip
@@ -262,11 +256,9 @@ def test_swap_best_by_category_no_other_match_is_false():
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories
     assert len(tai.inventory) == 3
-    assert item_a in tai.inventory
-    assert item_b in tai.inventory
-    assert item_c in tai.inventory
     assert len(jesse.inventory) == 3
-    assert item_d in jesse.inventory
-    assert item_e in jesse.inventory
-    assert item_f in jesse.inventory
+
+    assert item_a and item_b and item_c in tai.inventory
+    assert item_d and item_e and item_f in jesse.inventory
+    
     assert not result
