@@ -16,6 +16,6 @@ class Item:
         elif self.condition == 3:
             return "This item is in good condition."
         elif self.condition == 4:
-            return "This item is in great condtion."
+            return "This item is in great condition."
         elif self.condition == 5:
             return "This item is brand new!"

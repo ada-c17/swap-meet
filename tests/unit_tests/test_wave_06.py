@@ -76,7 +76,7 @@ def test_swap_best_by_category():
         their_priority="Decor"
     )
 
-    raise Exception("Complete this test according to comments below.")
+    # raise Exception("Complete this test according to comments below.")
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
@@ -84,8 +84,18 @@ def test_swap_best_by_category():
     # - That the results is truthy
     assert result
     # - That tai and jesse's inventories are the correct length
-    
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
+    assert item_a in tai.inventory
+    assert item_b in tai.inventory
+    assert item_f in tai.inventory
+    assert item_c not in tai.inventory
+
+    assert item_c in jesse.inventory
+    assert item_d in jesse.inventory
+    assert item_e in jesse.inventory
+    assert item_f not in jesse.inventory
 
 @pytest.mark.skip
 def test_swap_best_by_category_reordered():
@@ -117,6 +127,7 @@ def test_swap_best_by_category_reordered():
     # *********************************************************************
     # Assertions should check:
     # - That result is truthy
+    assert result
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
 
@@ -202,6 +213,7 @@ def test_swap_best_by_category_no_match_is_false():
     # *********************************************************************
     # Assertions should check:
     # - That result is falsy
+    assert not result
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories
 
@@ -235,5 +247,6 @@ def test_swap_best_by_category_no_other_match_is_false():
     # *********************************************************************
     # Assertions should check:
     # - That result is falsy
+    assert not result
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories

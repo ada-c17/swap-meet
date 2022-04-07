@@ -1,6 +1,3 @@
-from multiprocessing.sharedctypes import Value
-
-
 class Vendor:
     def __init__(self, inventory=None):
         if not inventory:
@@ -81,4 +78,12 @@ class Vendor:
         except ValueError:
             return None
         
-            
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        '''
+        1) The best item in my inventory that matches `their_priority` category is swapped with the best item in `other`'s inventory that matches 
+            It returns `True`
+        2) If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
+        3) If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False  `
+        '''
+        if my_priority in other.inventory
+        pass
