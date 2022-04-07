@@ -44,10 +44,8 @@ class Vendor:
         my_item = self.inventory[0]
         their_item = vendor.inventory[0]
 
-        self.add(their_item)
-        self.remove(my_item)
-        vendor.add(my_item)
-        vendor.remove(their_item)
+        self.swap_items(vendor, my_item, their_item)
+
         return True
 
     def get_best_by_category(self, category):
