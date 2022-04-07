@@ -113,7 +113,7 @@ class Vendor:
             return True
     
 
-    def get_best_by_category(self, item_category):
+    def get_best_by_category(self, best_category):
         # Function will get the item with the best condition in a certain category
 
         # Look through the instance's 'inventory' for the item with 
@@ -128,7 +128,7 @@ class Vendor:
         
             Return a single item even if there's duplicates
         """
-        category_items = self.get_by_category(item_category)
+        category_items = self.get_by_category(best_category)
 
         if not category_items:
             return None
@@ -164,31 +164,10 @@ class Vendor:
         # Returning the best item in those categories
 
 
-        # if (not my_best_item_to_swap) or (not their_best_item_to_swap):
-        #     return False 
-        # else:
-        #     return True
-
-
         swap_the_best = self.swap_items(other, my_best_item_to_swap, their_best_item_to_swap)
-        # return swap_the_best
+
         if not swap_the_best:
             return False
         else:
             return True
-        
-
-        # if (my_best_item_to_swap not in other.inventory) or (their_best_item_to_swap not in self.inventory):
-        #     return False
-        # else:
-        #     # Remove item from this Vendor's inventory
-        #     self.inventory.remove(my_best_item_to_swap)
-        #     # Add to other's inventory
-        #     other.inventory.append(my_best_item_to_swap)
-
-        #     # Remove item from other's inventory
-        #     other.inventory.remove(their_best_item_to_swap)
-        #     # Add to this Vendor's inventory
-        #     self.inventory.remove(my_best_item_to_swap)
-
-        #     return True
+            
