@@ -75,3 +75,28 @@ class Vendor:
                 categorized.append(item)
 
         return categorized
+
+    def swap_items(self, vendor, my_item, their_item):
+        """
+        Swaps an item from a vendor (self) to an item from a friend (vendor).
+
+        Parameters
+        ----------
+            vendor: instance of Vendor
+                friend that vendor is swapping with
+            my_item: instance of Item
+                item vendor intends to swap
+            their_item: instance of Item
+                item friend intends to swap
+        Returns
+        -------
+        True if items are swapped, False if items cannot be swapped.
+        """
+        if my_item not in self.inventory or their_item not in vendor.inventory:
+            return False
+        else:
+            self.add(their_item)
+            self.remove(my_item)
+            vendor.add(my_item)
+            vendor.remove(their_item)
+            return True
