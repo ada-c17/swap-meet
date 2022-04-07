@@ -43,10 +43,3 @@ class Vendor:
             return True
         else:
             return False
-
-
-
-# take the first item out of vendor_to_swap_with
-# add it to your items
-# take the first item out of your items
-# add it to vendor_to_swap_with
