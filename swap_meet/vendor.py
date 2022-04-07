@@ -58,3 +58,14 @@ class Vendor:
 
         matching_items.sort(key = lambda x: x.condition, reverse = True)
         return matching_items[0]
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_item = self.get_best_by_category(their_priority)
+        their_item = other.get_best_by_category(my_priority)
+
+        if my_item is None or their_item is None:
+            return False
+
+        self.swap_items(other, my_item, their_item)
+
+        return True
