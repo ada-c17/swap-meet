@@ -48,3 +48,12 @@ class Vendor:
             items_in_category.sort(key=lambda item: item.condition, reverse=True)
             return items_in_category[0]
         return None
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        best_their_priority = self.get_best_by_category(their_priority)
+        best_my_priority = other.get_best_by_category(my_priority)
+        
+        if best_their_priority and best_my_priority:
+            self.swap_items(other, best_their_priority, best_my_priority)
+            return True
+        return False
