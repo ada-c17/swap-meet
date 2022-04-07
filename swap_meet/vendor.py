@@ -78,7 +78,7 @@ class Vendor:
 
     def swap_items(self, vendor, my_item, their_item):
         """
-        Swaps an item from a vendor (self) to an item from a friend (vendor).
+        Swaps a specified item from a vendor (self) for a specified item from a friend (vendor).
 
         Parameters
         ----------
@@ -99,4 +99,24 @@ class Vendor:
             self.remove(my_item)
             vendor.add(my_item)
             vendor.remove(their_item)
+            return True
+
+    def swap_first_item(self, vendor):
+        """
+        Swaps first item from a vendor (self) for first item from a friend (vendor).
+
+        Parameters
+        ----------
+            vendor: instance of Vendor
+                friend that vendor is swapping with
+        Returns
+        -------
+        True if items are swapped, False if items cannot be swapped.
+        """
+        if len(self.inventory) == 0 or len(vendor.inventory) == 0:
+            return False
+        else:
+            my_item = self.inventory[0]
+            their_item = vendor.inventory[0]
+            self.swap_items(vendor, my_item, their_item)
             return True
