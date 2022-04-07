@@ -8,14 +8,14 @@ class Item:
     
     def condition_description(self):
         if self.condition == 0:
-            return "Distressed"
+            return "Poor"
         if self.condition == 1:
-            return "Used fair"
+            return "Fair"
         if self.condition == 2:
-            return "Used good"
+            return "Good"
         if self.condition == 3:
-            return "Used very good"
+            return "Very good"
         if self.condition == 4:
-            return "Used like new"
+            return "Like new"
         if self.condition ==5:
             return "New"
