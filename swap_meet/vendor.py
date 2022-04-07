@@ -90,10 +90,9 @@ class Vendor:
         '''
         if not self.inventory or not swap_friend.inventory:
             return False
-        my_item = self.inventory.pop(0)
-        their_item = swap_friend.inventory.pop(0)
-        self.add(their_item)
-        swap_friend.add(my_item)
+        my_item = self.inventory[0]
+        their_item = swap_friend.inventory[0]
+        self.swap_items(swap_friend, my_item, their_item)
         return True
         
     def get_best_by_category(self, category):
