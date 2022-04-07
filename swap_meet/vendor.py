@@ -113,6 +113,7 @@ class Vendor:
 
             return True
     
+    
     def get_best_by_category(self, item_category):
         # Function will get the item with the best condition in a certain category
 
@@ -128,17 +129,19 @@ class Vendor:
         
             Return a single item even if there's duplicates
         """
-        # max_rated = 0
-        best_item = self.inventory[0]
+        category_items = self.get_by_category(item_category)
 
-        for product in self.inventory:
-            if product.category == item_category:
-                if product.condition >= best_item.condition:
-                    max_rated = product.condition
-                    return product
-            else:
-                return None
-        # pass
+        if not category_items:
+            return None
+
+        best_item = category_items[0]
+
+        for product in category_items:
+            if product.condition >= best_item.condition:
+                best_item = product
+
+        return best_item
+        
 
 
 
@@ -157,7 +160,16 @@ class Vendor:
                 with the best item in 'other's inventory that matches 'my_priority'
             2. Return False if item priorities don't match and swap doesn't happen
         """
+        
+        # Category the Vendor wants to receive
+        my_category_to_swap = self.get_best_by_category(my_priority)
+        # Category the other Vendor wants to receive
+        their_category_to_swap = self.get_best_by_category(their_priority)
+        # Returning the best item in that categories
 
-        # # if other.category not in self.inventory
-        # return self.inventory
-        pass 
+        if (not my_category_to_swap) or (not their_category_to_swap):
+            return False 
+
+
+        # swap_the_best = self.swap_items(other, my_category_to_swap, their_category_to_swap)
+        # return swap_the_best
