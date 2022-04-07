@@ -1,6 +1,3 @@
-from operator import attrgetter
-import copy
-
 class Vendor:
     
     def __init__(self, inventory = None):
