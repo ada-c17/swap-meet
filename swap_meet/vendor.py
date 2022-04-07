@@ -1,12 +1,60 @@
 from .item import Item
 class Vendor:
+    """
+    A class to represent a vendor.
+    
+    ...
+    Attributes:
+
+    inventory: list
+        a list of item class or item child class objects, defaults to None which results in an empty list
+    
+    ...
+    Methods:
+
+    add(new_item):
+        Adds provided item to instance inventory and returns the item. 
+
+    remove(discarded_item):
+        Removes provided item from instance inventory and returns the item.
+        - Returns False if item not already in inventory.
+
+    get_by_category(category_string):
+        Returns list of items of provided category from instance inventory.
+
+    swap_items(other, my_item, their_item):
+        Swaps provided items between two instances' inventories and returns True.
+        - Returns False if either item not found.
+
+    swap_first_item(other):
+        Swaps first items of two instances' inventories and returns True.
+        - Returns false if either inventory is empty.
+
+    get_best_by_category(desired_category):
+        Returns item of provided category with best condition from an instance's inventory. 
+        - Returns None if no items of provided category in inventory.
+
+    swap_best_by_category(other, my_priority, their_priority):
+        Swaps best items in provided categories between two instances' inventories and returns True.
+        - Returns False if either item not found. 
+
+    get_newest_item():
+        Returns newest item from instance's inventory items with known ages.
+        - Returns None if all items ages are unknown.
+
+    swap_by_newest(other):
+        Swaps newest items of two instances' inventories and returns True.
+        - Returns False if either or both inventory items' ages are all unknown.
+    
+    """
+
     def __init__(self, inventory = None):
         if inventory is None:
             inventory = []
         self.inventory = inventory
     
     def add(self, new_item):
-        """Add a new item to inventory"""
+        """Add provided item to inventory"""
 
         self.inventory.append(new_item)
         return new_item
@@ -71,7 +119,6 @@ class Vendor:
             best_item = max(potential_items, key = lambda item: item.condition)
             return best_item
 
-
     def swap_best_by_category(self, other, my_priority, their_priority):
         """Swap best items in provided categories between self and another vendor"""
 
@@ -86,7 +133,6 @@ class Vendor:
             # swap items if valid
             return self.swap_items(other, their_desired_item, my_desired_item)
         
-
     def get_newest_item(self):
         """Returns newest item from inventory items with known ages"""
 

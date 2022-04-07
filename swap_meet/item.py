@@ -1,4 +1,31 @@
 class Item:
+    """
+    A class to represent an item.
+
+    ...
+    Attributes:
+
+    condition : int or float
+        an optional attribute describing the condition of the item, defaulting to 0. higher numbers indicate better condition.
+    age: int or float
+        an optional attribute describing how many years old an item is, defaulting to None. cannot be negative.
+    category: str
+        an optional attribute to describe the kind of item, defaulting to an empty string.
+    
+    ...
+    Methods:
+
+    __str__:
+        represents class objects as a string.
+    
+    condition_description():
+        Returns string describing the condition of the item
+    
+    age_description():
+        Returns string describing item's age
+
+    """
+    
     def __init__(self, condition = 0, age = None, category = ""):
         self.condition = condition
         self.category = category
@@ -11,7 +38,7 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
-        """Returns strings describing the condition of item instance"""
+        """Returns string describing the condition of the item"""
 
         if self.condition <= 1:
             return "I mean I wouldn't touch this with a ten foot pole but, uh, you do you."
@@ -27,7 +54,7 @@ class Item:
             return "Oh my god BUY THIS NOW ITS CONDITION IS OUT OF THIS WORLD"
     
     def age_description(self):
-        """Returns strings describing item's age"""
+        """Returns string describing item's age"""
 
         if self.age is None:
             return "The age of this item is unknown. Please judge it by its condition."
