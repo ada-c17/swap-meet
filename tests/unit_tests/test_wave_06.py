@@ -57,6 +57,7 @@ def test_best_by_category_with_duplicates():
     assert best_item.condition == pytest.approx(4.0)
 
 # ---------- TEST FOUR ---------- #
+# ---------- PASSED ---------- # 
 # @pytest.mark.skip
 def test_swap_best_by_category():
     # Arrange
@@ -83,10 +84,6 @@ def test_swap_best_by_category():
         their_priority="Decor"
     )
 
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
     # Assertions should check:
     # - That the results is truthy
     assert result == True
@@ -125,10 +122,6 @@ def test_swap_best_by_category_reordered():
         their_priority="Decor"
     )
 
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
     # Assertions should check:
     # - That result is truthy
     assert result == True
@@ -223,10 +216,7 @@ def test_swap_best_by_category_no_match_is_false():
         their_priority="Clothing"
     )
 
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
+
     # Assertions should check:
     # - That result is falsy
     # - That tai and jesse's inventories are the correct length
@@ -262,10 +252,7 @@ def test_swap_best_by_category_no_other_match_is_false():
         their_priority="Decor"
     )
 
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
+
     # Assertions should check:
     # - That result is falsy
     assert result == False
