@@ -18,9 +18,9 @@ class Item:
 
     # Wave 3
     def __str__(self):
-        """Return value in string format if category or condition is empty """
-        if not self.category or not self.condition:
-            return "Hello World!"
+        """Printing 'Hello World' when printing instance of Item class."""
+        
+        return "Hello World!"
 
 
     # Wave 5
