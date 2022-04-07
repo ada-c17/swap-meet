@@ -10,11 +10,11 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
-    # range 0 - 1 --> "Don't touch with bare hands"
-    # range 1 - 2 --> "Is it worth it? Probably not."
-    # range 2 - 3 --> "Meh, it's neutral."
-    # range 3 - 4 --> "It's a good find."
-    # range 4 - 5 --> "Top tier item! Must have."
+        # 0 - 1 --> "Don't touch with bare hands"
+        # 1 - 2 --> "Is it worth it? Probably not."
+        # 2 - 3 --> "Meh, it's neutral."
+        # 3 - 4 --> "It's a good find."
+        # 4 - 5 --> "Top tier item! Must have."
 
         if (self.condition >= 0) and (self.condition <= 1):
             return "Don't touch with bare hands."
