@@ -49,7 +49,15 @@ class Vendor:
             return False
         
         return self.swap_items(other, my_item, their_item)
-
+    
+    # ************************************ Optional Enhancement ************************************
+    # The swap_by_newest method swap the newest item(smallest age) cross categories with another vendor.
+    # It takes in one argument: other, which represents another vendor instance to trade with
+    # If one of the vendor (self of other) has no inventory, the trade off won't happen and return False.
+    # If there's a tie, swap the first newest item. 
+    # After swap, return True. 
+     # *********************************************************************************************
+     
     def swap_by_newest(self, other):
         my_item = self.get_newest()
         their_item = other.get_newest()
