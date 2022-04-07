@@ -58,3 +58,18 @@ class Vendor:
             swap_vendor.inventory[0] = self_first_item
             return True
         return False
+
+    def get_best_by_category(self, category_str):
+        """get the item with the best condition in a certain category"""
+        category_items = self.get_by_category(category_str)
+        if len(category_items) > 1:
+            best_item = category_items[0]
+        else:
+            return None
+
+        for item in category_items:
+            if item.condition > best_item.condition:
+                best_item = item
+        return best_item
+
+    # def swap_best_by_category()
