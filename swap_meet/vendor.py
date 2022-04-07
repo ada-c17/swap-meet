@@ -85,5 +85,5 @@ class Vendor:
         2) If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
         3) If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False  `
         '''
-        if my_priority in other.inventory
+        # if my_priority in other.inventory
         pass
