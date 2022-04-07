@@ -14,6 +14,7 @@ class Vendor():
       return item
     else:
       return False
+
   def get_by_category(self,string_category):
     inventory_same_category = []
     for item in self.inventory:
@@ -43,3 +44,20 @@ class Vendor():
       return True
     else:
       return False
+  
+  def get_best_by_category(self, string_category):
+    max_condition = 0
+    stored_item = None 
+    inventory_by_cat = self.get_by_category(string_category)
+    for item in inventory_by_cat:
+      print(item.category)
+      if item.condition >= max_condition:
+        max_condition = item.condition
+        stored_item = item #include this to return item
+    return stored_item
+
+  def swap_best_by_category(self,other,my_priority,their_priority):
+    best_self_item = self.get_best_by_category(their_priority)
+    best_their_item = other.get_best_by_category(my_priority)
+    best_item_swapped = self.swap_items(other, best_self_item, best_their_item)
+    return best_item_swapped #should be True
