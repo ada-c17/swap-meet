@@ -1,8 +1,7 @@
 class Vendor:
-    # TODO: Create a better docstring and add comments in parts to explain logic
-    '''Creating Vendor class that has an inventory attribute which is an optional argument. The add instance method adds a new item to inventory and the remove instance method
-    removes an item if that item is found in the inventory list. If item is not found in list to remove, False is returned. '''
-    def __init__(self, inventory=None): 
+    '''Creating Vendor class that has an inventory attribute which is an optional argument. Will be able to add, remove, look at
+    item categories and item ages and be able to swap items with friends.'''
+    def __init__(self, inventory=None): # O(1)
         if inventory is None: # shouldn't use mutable type as default parameter, so use None and then assign to empty list # O(1)
             inventory = [] 
         self.inventory = inventory 
@@ -18,17 +17,16 @@ class Vendor:
         return False 
 
     def get_by_category(self, category): # O(n)
-        items_same_categories = [] 
-        for item in self.inventory: # O(n)
-            if item.category == category: # O(1)
-                items_same_categories.append(item) # O(1)      
+        '''Using list comprehension to store all items in self.inventory that have same category as category arg.
+        Stores those items in items_same_categories list.'''
+        items_same_categories = [item for item in self.inventory if item.category == category] # O(n)
         return items_same_categories 
 
     def swap_items(self, vendor, my_item, their_item): # O(1)
         if my_item in self.inventory and their_item in vendor.inventory: # O(1)
-            vendor.inventory.append(my_item) # O(1)
+            vendor.add(my_item) # O(1)
             self.remove(my_item) # O(1)
-            vendor.inventory.remove(their_item) # O(1)
+            vendor.remove(their_item) # O(1)
             self.add(their_item) # O(1)
             return True
         return False 
@@ -41,37 +39,36 @@ class Vendor:
             return first_items_swapped
     
     def get_best_by_category(self, category): # O(n)
-        # TODO: write comments for lambda f(x)
+        '''High order function. Using max with key that uses lambda function. Lambda function uses item as an argument and returns item.condition.
+        Max sorts the items_same_categories list by customized key order and returns item with max item.condition.'''
         items_same_categories = self.get_by_category(category) # O(n)
         if len(items_same_categories) != 0:
             return max(items_same_categories, key = lambda item: item.condition) # O(n)
     
-        # item_best_condition = None
-        # max_condition = 0.0
-        # for item in items_same_categories: # O(n)
-        #     if item.condition > max_condition: # O(1)
-        #         max_condition = item.condition
-        #         item_best_condition = item 
-        # return item_best_condition
-    
     def swap_best_by_category(self, other, my_priority, their_priority): # O(n)
+        '''Using the get_best_by_category and swap_items as helper functions to swap
+        items based on the category and the condition'''
         vendor_best_item_by_category = self.get_best_by_category(their_priority) # O(n)
         other_best_item_by_category = other.get_best_by_category(my_priority) # O(n)
         best_swapped_items = self.swap_items(other, vendor_best_item_by_category, other_best_item_by_category) # O(1)
         return best_swapped_items 
 
-    def get_by_newest(self, category):
+    def get_by_newest(self, category): # O(n)
+        '''Looks at items in a certain category (passed as arg) and returns the item with the minimum age.
+        High order function. Using min with key that uses lambda function. Lambda function uses item as an argument and returns item.age.
+        Min sorts the items_same_categories list by customized key order and returns item with min item.age.'''
         items_same_categories = self.get_by_category(category) # O(n)
-        print(items_same_categories)
-        if len(items_same_categories) != 0:
-            return min(items_same_categories, key = lambda item: item.age)
+        if len(items_same_categories) != 0: # O(1)
+            return min(items_same_categories, key = lambda item: item.age) # O(n)
 
-    def swap_by_newest(self, other , my_priority_newest, their_priority_newest):
-        vendor_newest_item = self.get_by_newest(their_priority_newest)
-        other_newest_item = other.get_by_newest(my_priority_newest)
-        newest_swapped_items = self.swap_items(other, vendor_newest_item, other_newest_item)
+    def swap_by_newest(self, other, my_priority_newest, their_priority_newest): # O(n)
+        '''Using get_by_newest and swap_items as helper functions to swap items 
+        based on the category and the age'''
+        vendor_newest_item = self.get_by_newest(their_priority_newest) # O(n)
+        other_newest_item = other.get_by_newest(my_priority_newest) # O(n)
+        newest_swapped_items = self.swap_items(other, vendor_newest_item, other_newest_item) # O(1)
         return newest_swapped_items
-            
+        
 
 
 

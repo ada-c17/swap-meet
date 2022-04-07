@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, category="", condition=0, age=0): # str are immutable, so okay to use as default parameter
+    def __init__(self, category="",condition=0, age=0): # str and int are immutable, so okay to use as default parameter
         self.category = category
         self.condition = condition
         self.age = age 
