@@ -56,6 +56,21 @@ class Vendor:
         swap_items_result = self.swap_items(other, their_swap_item, my_swap_item)
         
         return swap_items_result
+    
+    def get_newest_item(self):
+        newest_item = None
+        age = 1000
+        for item in self.inventory:
+            if item.age < age:
+                age = item.age
+                newest_item = item
+        return newest_item
+
+    def swap_by_newest(self, another_vendor):
+        my_item = self.get_newest_item()
+        their_item = another_vendor.get_newest_item()
+
+        return self.swap_items(another_vendor, my_item, their_item)
 
 
 
