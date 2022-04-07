@@ -7,6 +7,7 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
+        """Returns a description of item condition."""
         if self.condition == 5.0:
             return "This item is brand new and in perfect condition."    
         elif self.condition >= 4.0:
