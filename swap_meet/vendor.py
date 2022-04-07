@@ -1,5 +1,3 @@
-# from .item import Item
-
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
@@ -43,3 +41,10 @@ class Vendor:
             return True
         else:
             return False
+
+    def get_best_by_category(self,category):
+        items_in_category = self.get_by_category(category)
+        if len(items_in_category) > 0:
+            items_in_category.sort(key=lambda item: item.condition, reverse=True)
+            return items_in_category[0]
+        return None
