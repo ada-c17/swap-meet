@@ -22,4 +22,4 @@ class Item:
         '''
         Returns this string when printing this class.
         '''
-        return "These are your items!"
+        return "Hello World!"
