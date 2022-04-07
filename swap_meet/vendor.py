@@ -1,3 +1,4 @@
+from unicodedata import category
 from swap_meet.item import Item
 
 class Vendor:
@@ -45,3 +46,25 @@ class Vendor:
         self.inventory.insert(0, friend_first_item)
         friend.inventory.insert(0, self_first_item)
         return True    
+
+    def get_best_by_category(self, category_str):
+        max_condition = 0
+        item_with_max = None
+
+        for elem in self.inventory:
+            if elem.category == category_str:
+                if elem.condition >= max_condition:
+                    max_condition = elem.condition
+                    item_with_max = elem
+
+        return item_with_max           
+
+
+    def swap_best_by_category(self, other, my_priority,\
+        their_priority):
+        my_best_item = self.get_best_by_category(their_priority)
+        their_best_item = other.get_best_by_category(my_priority)
+
+        if my_best_item is None or their_best_item is None:
+            return False
+        return self.swap_items(other, my_best_item, their_best_item)
