@@ -42,20 +42,18 @@ class Vendor:
         return True
 
     def get_best_by_category(self, desired_category):
-        current_highest_rated = None
-        for i in self.inventory:
-            if i.category == desired_category:
-                if not current_highest_rated:
-                    current_highest_rated = i
-                elif i.condition > current_highest_rated.condition:
-                    current_highest_rated = i
-        
-        return current_highest_rated
-        
+
+        try:
+            highest_rated = max([x for x in self.inventory if x.category==desired_category], key = lambda x: x.condition)
+            return highest_rated       
+        except ValueError:
+            return None
+
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         my_highest_rated = self.get_best_by_category(their_priority)
         their_highest_rated = other.get_best_by_category(my_priority)
+        
         if my_highest_rated and their_highest_rated:
             self.swap_items(other, my_highest_rated, their_highest_rated)
             return True
