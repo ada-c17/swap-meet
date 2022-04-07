@@ -1,8 +1,25 @@
+from unittest import result
 import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-def swap_by_newest():
+def test_get_newest_item():
+    item_a = Item(age=10)
+    item_b = Item(age=9)
+    item_c = Item(age=8)
+    fatimah = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    result = fatimah.get_newest_item()
+
+    # assert result
+    assert result == item_c
+    assert result != item_a
+
+
+
+def test_swap_by_newest():
     item_a = Item(age=10)
     item_b = Item(age=9)
     item_c = Item(age=8)
@@ -16,7 +33,7 @@ def swap_by_newest():
         inventory=[item_d, item_e]
     )
 
-    result = fatimah.swap_by_newest(jolie, fatimah)
+    result = fatimah.swap_by_newest(jolie)
 
     assert len(fatimah.inventory) == 3
     assert item_c not in fatimah.inventory
