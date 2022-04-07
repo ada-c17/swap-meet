@@ -27,10 +27,6 @@ class Vendor:
         my_index = self.inventory.index(my_item)
         their_index = other.inventory.index(their_item)
         self.inventory[my_index] , other.inventory[their_index] = other.inventory[their_index] , self.inventory[my_index]
-        # self.inventory.remove(my_item)
-        # self.inventory.append(their_item)
-        # other.inventory.remove(their_item)
-        # other.inventory.append(my_item)
         return True
 
 
