@@ -10,7 +10,6 @@ class Item:
     }
 
     def __init__(self, category="", condition=0, age=None):
-        
         self.category = category
         self.condition = condition
         self.age = age
@@ -46,4 +45,4 @@ class Item:
     
 
     def condition_description(self):
-        return Item.CONDITION_RATINGS.get(int(self.condition), None)
+        return type(self).CONDITION_RATINGS.get(int(self.condition), None)
