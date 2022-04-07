@@ -1,15 +1,35 @@
 class Vendor:
+    '''
+    A class for a Vendor at a swap-meet who has items. The Vendor may want to 
+        trade with other vendors based on item category, condition, or both.
+    '''
+
     def __init__(self, inventory=None):
+        '''
+        Parameter: inventory (list): optional list of vendor inventory. 
+        None if not defined, w/attribute set to an empty string. 
+        Otherwise set to input parameter.
+        '''
         if inventory is None:
             self.inventory = []
         else:
             self.inventory = inventory
 
     def add(self, item):
+        '''
+        Adds an item to a vendor's inventory
+        Parameter: item (string, or class object) representing a swappable item
+        Returns: the added item
+        '''
         self.inventory.append(item)
         return item
 
     def remove(self, item):
+        '''
+        Removes an item from a vendor's inventory
+        Parameter: item (string, or class object) representing a swappable item
+        Returns: the removed item
+        '''
         if item in self.inventory:
             self.inventory.remove(item)
             return item
@@ -17,27 +37,41 @@ class Vendor:
             return False
 
     def get_by_category(self, category):
+        '''
+        Gets a list of every item a vendor has that is in a certain category
+        Parameter: category (string) representing the category of a swappable item
+        Returns: a list of items with the correct category
+        '''
         items_in_category = []
         for item in self.inventory:
             if item.category == category:
                 items_in_category.append(item)
         return items_in_category
 
-    def swap_items(self, vendor_to_swap_with, self_item, their_item):
-        if self_item in self.inventory and their_item in vendor_to_swap_with.inventory:
-            self.inventory.remove(self_item)
-            vendor_to_swap_with.inventory.append(self_item)
-            self.inventory.append(their_item)
-            vendor_to_swap_with.inventory.remove(their_item)
+    def swap_items(self, other_vendor, self_item, their_item):
+        '''
+        Facilitates a swap between two vendors for two given items, and updates
+            each vendor's inventory list accordingly.
+        Parameters: 
+            other vendor (another Vendor instance)
+            self_item (string): an item in the Vendor's own inventory
+            their_item (string): an item in the other Vendor's inventory
+        Returns: True if the swap was completed, otherwise False
+        '''
+        if self_item in self.inventory and their_item in other_vendor.inventory:
+            self.remove(self_item)
+            other_vendor.add(self_item)
+            self.add(their_item)
+            other_vendor.remove(their_item)
             return True
         else:
             return False
 
-    def swap_first_item(self, vendor_to_swap_with):
-        if len(self.inventory) >= 1 and len(vendor_to_swap_with.inventory) >= 1:
+    def swap_first_item(self, other_vendor):
+        if len(self.inventory) >= 1 and len(other_vendor.inventory) >= 1:
             self_item = self.inventory[0]
-            their_item = vendor_to_swap_with.inventory[0]
-            self.swap_items(vendor_to_swap_with, self_item, their_item)
+            their_item = other_vendor.inventory[0]
+            self.swap_items(other_vendor, self_item, their_item)
             return True
         else:
             return False
