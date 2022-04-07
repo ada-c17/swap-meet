@@ -1,30 +1,87 @@
 class Vendor:
-    '''A class that represents a participant at the swap meet.'''
+    '''A class to represent a participant at the swap meet.
+
+    Provides methods for accessing and updating the inventory of a swap
+    meet participant. Methods are written to work with objects of the 
+    swap_meet.item.Item class.
+    
+    Attributes
+    ----------
+    inventory : list
+        stores references to items the Vendor can trade
+    
+    Methods
+    -------
+    add(item | item_collection):
+        adds one or more items to the inventory
+
+    remove(item | item_collection):
+        removes one or more items from the inventory
+    
+    get_by_category(category):
+        returns a list of items in inventory that match 'category'
+    
+    swap_items(other_vendor, own_item, swap_item):
+        swaps a specified item in inventory with a specified item in the
+        inventory of another vendor
+    
+    swap_first_item(other_vendor):
+        swaps the first item in inventory w/ the first item in the 
+        inventory of another vendor
+
+    get_best_by_category(category):
+        returns the item in the best condition from the items in inventory
+        that match the given category
+
+    swap_best_by_category(other_vendor, my_priority, their_priority):
+        given a category of interest and another vendor's category of interest,
+        finds the item in the best condition of each category in the other
+        participant's inventory and exchanges the two items between inventories
+    '''
 
     def __init__(self, inventory = None):
-        self.inventory = inventory if inventory else []
+        '''Creates a Vendor object with an inventory attribute.
+        
+        Parameters
+        ----------
+            inventory : list  (optional)
+                Value assigned to the object's 'inventory' attribute. If no 
+                value is passed in, or if the input value is not a list, 
+                defaults to assigning an empty list to 'inventory' attribute.
+        '''
+
+        if type(inventory) == list:
+            self.inventory = inventory
+        else:
+            self.inventory = []
     
     def add(self, add_value):
         '''Adds one or more items to the inventory. 
         
         As input, accepts either a single item, or an iterable of multiple
         items. If the input value is a single item, it is appended to the
-        inventory. If the input value is an iterable, the 'add_multiple()'
-        instance method is called on the value. 
+        inventory. If the input value is a collection of objects, the 
+        'add_multiple()' instance method is called on the value. 
         
         Items that are already in the inventory are silently ignored.
         
         Returns the input value.
+
+        Parameters
+        ----------
+            add_value : Item | [list | tuple | set]
+                The Item object(s) to be added to the inventory. Multiple
+                Items must be passed in as either a list, a tuple, or a set.
         '''
 
         if hasattr(add_value, '__iter__') and type(add_value) is not str:
-            return self.add_multiple(add_value)
+            return self._add_multiple(add_value)
         
         if add_value not in self.inventory:
             self.inventory.append(add_value)
         return add_value
     
-    def add_multiple(self, items):
+    def _add_multiple(self, items):
         '''Adds multiple items to the inventory.'''
 
         if type(items) is dict:
@@ -48,17 +105,23 @@ class Vendor:
         
         Returns the input value or False in the case that input contains an
         item not present in the inventory.
+
+        Parameters
+        ----------
+            remove_value : Item | [list | tuple | set]
+                The Item object(s) to be removed from the inventory. Multiple
+                Items must be passed in as either a list, a tuple, or a set.
         '''
 
         if hasattr(remove_value, '__iter__') and type(remove_value) is not str:
-            return self.remove_multiple(remove_value)
+            return self._remove_multiple(remove_value)
         
         if remove_value not in self.inventory:
             return False
         self.inventory.remove(remove_value)
         return remove_value
     
-    def remove_multiple(self, items):
+    def _remove_multiple(self, items):
         '''Removes multiple items from the inventory.'''
 
         if type(items) is dict:
@@ -70,7 +133,13 @@ class Vendor:
             self.inventory.remove(item)
     
     def get_by_category(self, category):
-        '''Returns a list of all items in inventory of input category.'''
+        '''Returns a list of all items in inventory of input category.
+        
+        Parameters
+        ----------
+            category : str
+                The category of item by which to filter inventory.
+        '''
 
         return [item for item in self.inventory 
                 if item.category == category]
@@ -80,6 +149,16 @@ class Vendor:
         
         Returns False if either input item is not found in the inventory of 
         the appropriate vendor. Otherwise, returns True.
+
+        Parameters
+        ----------
+            other_vendor : Vendor
+                The other participant in the swap.
+            own_item : Item
+            swap_item : Item
+                The items to be swapped. 'own_item' must be present in the
+                local 'inventory' and 'swap_item' must be in the 'inventory'
+                of the 'other_vendor' object. 
         '''
 
         try:
@@ -97,6 +176,11 @@ class Vendor:
         '''Swaps first item in inventory with another vendor's first item.
         
         Returns False if either inventory is empty. Otherwise, returns True.
+
+        Parameters
+        ----------
+            other_vendor : Vendor
+                The other participant in the swap.
         '''
 
         if not (self.inventory and other_vendor.inventory):
@@ -107,7 +191,13 @@ class Vendor:
         return True
     
     def get_best_by_category(self, category):
-        '''Returns the item in the best condition of the input category.'''
+        '''Returns the item in the best condition of the input category.
+        
+        Parameters
+        ----------
+            category : str
+                The value by which to filter items in the inventory. 
+        '''
 
         items = self.get_by_category(category)
         if len(items) == 0:
@@ -125,6 +215,14 @@ class Vendor:
 
         Returns False if two appropriate items aren't found. Otherwise
         returns True.
+
+        Parameters
+        ----------
+            other : Vendor
+                The other participant in the swap.
+            my_priority : str
+            their_priority : str
+                The two categories by which to filter items
         '''
         
         own_item = self.get_best_by_category(their_priority)
