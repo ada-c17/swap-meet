@@ -3,9 +3,9 @@ class Clothing(Item):
     """Child class that inherits attributes and methods from Item class as parent class:"""
 
 
-    def __init__(self, condition = None):
-        """Setting category as default with "Clothing" which inherits attributes from Item class."""
-        super().__init__(category= "Clothing", condition = condition)
+    def __init__(self, condition = None, age = None):
+        """Setting category attribute as default with "Clothing" and inherits attributes from Item class."""
+        super().__init__(category= "Clothing", condition = condition, age = age)
         
 
     def __str__(self):
