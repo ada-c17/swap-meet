@@ -23,7 +23,7 @@ class Vendor:
     def get_by_category(self, category):
         items=[]
         for item in self.inventory:
-            if str(item.category) == category:
+            if item.category == category:
                 items.append(item)
         return items
 
@@ -70,6 +70,8 @@ class Vendor:
         return False
             
     def swap_by_newest(self, friend, my_newest_item, friend_newest_item):
+        """Finding the newest item in my list and in my friend list and then swap them."""
+
         if self.inventory == [] or friend.inventory == []:
             return None
         my_newest_item = self.inventory[0]
