@@ -161,6 +161,10 @@ In Wave 6 we will write two methods, `get_best_by_category` and `swap_best_by_ca
     - If there are no items in the `inventory` that match the category, it returns `None`
     - It returns a single item even if there are duplicates (two or more of the same item with the same condition)
 
+
+
+
+
 The remaining tests in wave 6 imply:
 
 - `Vendor`s have a method named `swap_best_by_category`, which will swap the best item of certain categories with another `Vendor`
