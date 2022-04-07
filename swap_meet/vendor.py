@@ -8,8 +8,6 @@ class Vendor:
 
     def add(self, item):
         self.inventory.append(item)
-        #inv =inventory.append(item)
-        #print(len(inv))
         return item
         
 
@@ -63,6 +61,26 @@ class Vendor:
         their_best = other.get_best_by_category(my_priority)
         if my_best!=None and their_best != None:
             the_swap = self.swap_items(other, my_best, their_best)
+            return True
+        else: 
+            return False    
+
+
+    def get_newest(self):
+        older = 3165416113516421351612015164
+        newest_item = None
+        for item in self.inventory:
+            if item.age <= older:
+                older = item.age
+                newest_item =item
+        return newest_item
+
+
+    def swap_by_newest(self, other):
+        my_newest = self.get_newest()
+        their_newest = other.get_newest()
+        if my_newest!=None and their_newest != None:
+            the_swap = self.swap_items(other, my_newest, their_newest)
             return True
         else: 
             return False    
