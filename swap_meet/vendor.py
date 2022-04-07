@@ -18,6 +18,18 @@ class Vendor:
         Removes an item from inventory.
     get_by_category(category)
         Get all items in inventory that fall under a specified category.
+    swap_items(vendor, my_item, their_item)
+        Swaps a specified item from a vendor (self) for a specified item from a
+        friend (vendor).
+    swap_first_item(vendor)
+        Swaps first item from a vendor (self) for first item from a friend (vendor).
+    get_best_by_category(specified_category)
+        Finds the highest condition item in inventory that matches specified
+        category.
+    swap_best_by_category(other, my_priority, their_priority)
+        Swaps items between self and other if item of other's prioritized category
+        exists in self's inventory and item of self's prioritized category is in
+        other's inventory.
     """
 
     def __init__(self, inventory=None):
@@ -78,7 +90,8 @@ class Vendor:
 
     def swap_items(self, vendor, my_item, their_item):
         """
-        Swaps a specified item from a vendor (self) for a specified item from a friend (vendor).
+        Swaps a specified item from a vendor (self) for a specified item from a
+        friend (vendor).
 
         Parameters
         ----------
@@ -120,3 +133,57 @@ class Vendor:
             their_item = vendor.inventory[0]
             self.swap_items(vendor, my_item, their_item)
             return True
+
+    def get_best_by_category(self, specified_category):
+        """
+        Finds the highest condition item in inventory that matches specified
+        category.
+
+        Parameters
+        ----------
+            specified_category: str
+                category to filter conditions of items
+        Returns
+        -------
+        Item with the highest condition in specified category.
+        """
+        if len(self.inventory) == 0:
+            return None
+
+        best_item = self.inventory[0]
+
+        for item in self.inventory:
+            if item.category == specified_category and item.condition > \
+                best_item.condition:
+                best_item = item
+
+        if best_item.category != specified_category:
+            return None
+
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """
+        Swaps items between self and other if item of other's prioritized category
+        exists in self's inventory and item of self's prioritized category is in
+        other's inventory.
+
+        Parameters
+        ----------
+            other: instance of Vendor
+                vendor trading with
+            my_priority: str
+                category first vendor wants
+            their_priority: str
+                category other vendor wants
+        Returns
+        -------
+        True if items are swapped and False if items are not swapped.
+        """
+        if other.get_best_by_category(my_priority) and \
+            self.get_best_by_category(their_priority):
+            self.swap_items(other, self.get_best_by_category(their_priority), \
+                other.get_best_by_category(my_priority))
+            return True
+        else:
+            return False
