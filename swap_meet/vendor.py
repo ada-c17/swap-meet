@@ -39,6 +39,7 @@ class Vendor:
             return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
 
     def get_best_by_category(self, category):
+        '''Returns the best item in vendor inventory by category. If multiple items, returns the item with the highest condition'''
         items_list = self.get_by_category(category)
         if not items_list:
             return None
@@ -49,6 +50,8 @@ class Vendor:
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
+        '''Takes in a priority item category for self and another vendor, other. Uses get_best_by_category function to swap
+        the highest rated items of each vendor's priority category from self inventory and other inventory.'''
         my_item = self.get_best_by_category(their_priority)
         their_item = other.get_best_by_category(my_priority)
         if not my_item or not their_item:
