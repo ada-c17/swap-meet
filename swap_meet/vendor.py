@@ -128,13 +128,16 @@ class Vendor:
         
             Return a single item even if there's duplicates
         """
-        # max_rated = self.inventory[0]
+        # max_rated = 0
+        best_item = self.inventory[0]
 
-        # for product in self.inventory:
-        #     if product.category == item_category:
-        #         if product.condition >= max_rated.condition:
-        #             max_rated = product
-        #             return product
+        for product in self.inventory:
+            if product.category == item_category:
+                if product.condition >= best_item.condition:
+                    max_rated = product.condition
+                    return product
+            else:
+                return None
         # pass
 
 
