@@ -48,35 +48,15 @@ class Vendor:
         return False
     
     def get_best_by_category(self, specific_category):
-        '''
-        1) create a highest condition variable set 0
-        2) iterate over the vendor's inventory
-        3) check if the specific category is clothing
-        4) if the condition is greater than the highest condtion, reassign highest condition
-        5) return the highest condtion
-        6) otherwise none
-        '''
-        # highest_condition = 0
+        best_by_category = None
+        highest_condition = 0
         
-        # for item in self.inventory:
-        #     if specific_category == item.category and item.condition > highest_condition:
-        #             highest_condition = item.condition
-        #     return item
-        # return None
-        try:
-            categories = {}
-            # {2.0: 'Clothing', 4.0: 'Clothing', 3.0: 'Clothing'}
-            for item in self.inventory:
-                if specific_category == item.category:
-                        categories[item.condition] = item.category
+        for item in self.inventory:
+            if item.category == specific_category and item.condition > highest_condition:
+                    best_by_category = item
+                    highest_condition = item.condition
 
-            highest_condition = max(categories.keys())
-            # 4.0
-            for item in self.inventory:
-                if item.category == specific_category and item.condition == highest_condition:
-                    return item
-        except ValueError:
-            return None
+        return best_by_category
         
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
@@ -86,4 +66,20 @@ class Vendor:
         3) If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False  `
         '''
         # if my_priority in other.inventory
-        pass
+        test = 0
+        my_best_item = None
+        for item in other.inventory:
+            if item.category == my_priority and item.condition > test:
+                test = item.condition
+                my_best_item = item
+        
+        test2 = 0
+        their_best_item = None
+        for item in self.inventory:
+            if item.category == their_priority and item.condition > test:
+                test_2 = item.condition
+                their_best_item = item
+               
+        # if best_item:
+        #     return True
+        # return False
