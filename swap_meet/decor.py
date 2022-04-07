@@ -4,14 +4,14 @@ class Decor(Item):
 
 
     def __init__(self, condition = None, age = None):
-        """Setting category as default with "Decor" which inherits attributes from Item class."""
+        """Setting category attribute as default with "Decor" and inherits attributes from Item class."""
         super().__init__(category= "Decor", condition = condition, age = age)
         
 
     def __str__(self):
-        """Overriding method from Item class by returning differenct value in string format if condition is empty."""
-        if not self.condition:
-            return "Something to decorate your space."
+        """Printing the returnning message string when printing instance of Decor class."""
+        
+        return "Something to decorate your space."
 
 
     
