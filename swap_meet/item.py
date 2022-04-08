@@ -32,3 +32,4 @@ class Item:
             condition_description = "New"
 
         return condition_description
+        
