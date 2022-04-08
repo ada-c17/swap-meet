@@ -2,11 +2,7 @@
 class Vendor:
     def __init__(self, inventory = None):
         """
-        You should not make the default parameter 
-        a mutable objest. Set inventory as an 
-        empty list.
-            Parameters: inventory(list) = If no parameter passed in,
-            inventory is an empty list
+        Provides vendor information
         """
         if not inventory:
             inventory = []
@@ -17,26 +13,25 @@ class Vendor:
         Adds items to inventory list
 
             Parameters:
-                    added_item(str): String of item added inventory(list)
+                    added_item(str): String of item to added to inventory(list)
             
 
             Returns:
-                    added_item(str): String of item added inventory(list)
+                    added_item(str): String of item addeded to inventory(list)
         """
         self.inventory.append(added_item)
         return added_item
 
     def remove(self, remove_item):
         """
-        Checks to make sure remove_item is in inventory
-        Removes items to inventory list
+        Removes items from inventory list
 
             Parameters:
-                    remove_item(str): String of item remove inventory(list)
+                    remove_item(str): String of item to remove from inventory(list)
             
 
             Returns:
-                    remove_item(str): String of item remove inventory(list)
+                    remove_item(str): Item removed inventory(list)
         """
         if remove_item not in self.inventory:
             return False
@@ -63,16 +58,14 @@ class Vendor:
 
     def swap_items(self, friend, my_item, friend_item):
         """
-        Remove items (my_item & friend_item) in each respective
-        list (self.inventory & friend.inventory) and appends it 
-        the other list
+        Remove items in lists and appends the other list
         (my_items to friend list and friend_items to my list)
 
-            Parameters: friend(Vendor) = An instance
+            Parameters: friend(Vendor) = Provides 2nd inventory
                         
-                        my_item(str) = An instance of Item
+                        my_item(str) = Item to switch from self inventory
                         
-                        friend_item(str) = An instance of Item
+                        friend_item(str) = Item to switch from friend's inventory 
             
 
             Returns:
@@ -96,14 +89,11 @@ class Vendor:
 
     def swap_first_item(self, friend):
         """
-        Envoke swap_items as helper method to remove first items in 
-        each list (self.inventory & friend.inventory) and put at the 
-        end of the other list (my inventory[first item]) to friend's 
-        inventory[first item] and friend's inventory[first item] to 
-        my inventory[first item])
+        Call swap_items method to switch first items in each list.
+        (self.inventory[first item] to friend.inventory[first item] 
+        and friend.inventory[first item] to my.inventory[first item])
 
-            Parameters: friend(instance of Vendor class) = An instance 
-                        of Vender class
+            Parameters: friend(Vendor) = Provides 2nd inventory
 
 
             Returns:
@@ -120,6 +110,15 @@ class Vendor:
             return True
 
     def get_best_by_category(self, category):
+        """
+        Call get_by_category method to find category with the highest category rating.
+
+            Parameters: category(Item) = Category we are looking for in inventory
+
+
+            Returns:
+                    best_item(str): Item that meets the criteria and has the highest criteria.
+        """
         if not category:
             return False
         best_condition = 0
