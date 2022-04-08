@@ -10,8 +10,6 @@ class Decor(Item):
 
     def __str__(self):
         stringfied_item = "Something to decorate your space."
-        Item = stringfied_item
-        Item = str(Item)
         return str(stringfied_item)
 
     

@@ -7,21 +7,19 @@ class Item:
 
     def __str__(self):
         stringfied_item = "Hello World!"
-        Item = stringfied_item
-        Item = str(Item)
         return str(stringfied_item)
     
     def condition_description(self):
         if self.condition == 1:
-            result = str("Value one")
+            result = str("Rating one *")
         elif self.condition == 2:
-            result = str("Value two")
+            result = str("Rating two **")
         elif self.condition == 3:
-            result = str("Value three")
+            result = str("Rating three ***")
         elif self.condition == 4:
-            result = str("Value four")
+            result = str("Rating four ****")
         elif self.condition ==5:
-            result = str("Value five")
+            result = str("Rating five *****")
         return result 
     
     

@@ -252,11 +252,6 @@ def test_swap_best_by_category_no_other_match_is_false():
         my_priority="Electronics",
         their_priority="Decor"
     )
-
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
     # Assertions should check:
     # - That result is falsy
     assert result == False

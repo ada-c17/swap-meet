@@ -22,9 +22,8 @@ class Vendor:
         category_list = []
         try:
             for item in range(len(self.inventory)):
-                if self.inventory[item].category == category:
+                if self.inventory[item].category is category:
                     category_list.append(self.inventory[item])
-            # return category_list
         except ValueError as error:
             print(f"There are no {category} in inventory")
         return category_list
@@ -35,14 +34,12 @@ class Vendor:
         if my_item not in self.inventory or their_item not in Friend.inventory:
             return False
         for x in range(len(self.inventory)):
-            if self.inventory[x] == my_item:
+            if self.inventory[x] is my_item:
                 index1 = x
         for y in range(len(Friend.inventory)):
-            if Friend.inventory[y] == their_item:
+            if Friend.inventory[y] is their_item:
                 index2 = y
         self.inventory[index1],Friend.inventory[index2] = Friend.inventory[index2],self.inventory[index1]
-        print(f"Self {self.inventory}")
-        print(f'Friend {Friend.inventory}')
         return True
     
     def swap_first_item(self,Friend):
@@ -56,24 +53,23 @@ class Vendor:
         counter = 0
         counter_category = 0
         for x in range(len(self.inventory)):
-            if category  == self.inventory[x].category:
+            if category  is self.inventory[x].category:
                 counter_category += 1
-        if counter_category == 0:
+        if counter_category is 0:
             return None
         for x in range(len(self.inventory)):
-            if self.inventory[x].category == category:
+            if self.inventory[x].category is category:
                 if self.inventory[x].condition > best_condition:
                     best_condition = self.inventory[x].condition
                     best_condition_index = x
-        return self.inventory[best_condition_index]
-    
+        return self.inventory[best_condition_index]        
+
     def swap_best_by_category(self,other,my_priority,their_priority):
         my_swap = self.get_best_by_category(their_priority)
         their_swap = other.get_best_by_category(my_priority)
-        if my_swap == False or their_swap == False:
+        if my_swap is False or their_swap is False:
             return False
         result = self.swap_items(other,my_swap,their_swap)
-        print(self.inventory)
-        print(other.inventory)
         return result
 
+    
