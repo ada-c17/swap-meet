@@ -18,17 +18,16 @@ class Item:
 
     # Wave 3
     def __str__(self):
-        """Printing 'Hello World' when printing instance of Item class."""
-        
+        """Printing the returning message string when printing instance of Item class."""
         return "Hello World!"
 
 
     # Wave 5
     def condition_description(self):
         """Return item description base on its condition."""
-        # if condition is integer or float, return string value base on condition value
+        # validate the condition value before 
         if isinstance(self.condition, int) or isinstance(self.condition, float):
-            if self.condition == 0:
+            if self.condition < 1:
                 return "New condition"
             elif self.condition < 4:
                 return "Still useable"
