@@ -157,8 +157,8 @@ class Vendor:
             own_item : Item
             swap_item : Item
                 The items to be swapped. 'own_item' must be present in the
-                local 'inventory' and 'swap_item' must be in the 'inventory'
-                of the 'other_vendor' object. 
+                local 'inventory' and 'swap_item' must be present in the 
+                'inventory' attribute of the 'other_vendor' object. 
         '''
 
         try:
