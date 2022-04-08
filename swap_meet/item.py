@@ -1,4 +1,5 @@
 class Item:
+    CONDITION_DESCRIPTIONS = {0:"Poor", 1: "Okay", 2: "Fair", 3: "Good", 4: "Excellent", 5: "Pristine"}
 
     def __init__(self, category = "", condition = 0.0):
         self.category = category
@@ -8,5 +9,5 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        CONDITION_DESCRIPTIONS = {0:"Zero", 1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five"}
-        return CONDITION_DESCRIPTIONS[int(self.condition)]
+
+        return Item.CONDITION_DESCRIPTIONS[int(self.condition)]
