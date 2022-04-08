@@ -1,8 +1,12 @@
 from .item import Item
 
 class Vendor:
-    def __init__(self,inventory = []):
-        self.inventory = inventory
+    def __init__(self,inventory = None):
+        if inventory is None:
+            self.inventory = []
+        else:
+            self.inventory = inventory
+        
 
     
     def add(self,item):
@@ -25,26 +29,26 @@ class Vendor:
         return category_list
             
 
-    def swap_items(self,vendor,my_item,their_item):
-        if my_item in self.inventory and their_item in vendor.inventory:
+    def swap_items(self,other,my_item,their_item):
+        if my_item in self.inventory and their_item in other.inventory:
             self.inventory.remove(my_item)
-            vendor.inventory.append(my_item)
-            vendor.inventory.remove(their_item) 
+            other.inventory.append(my_item)
+            other.inventory.remove(their_item) 
             self.inventory.append(their_item)
             return True
         else:
             return False
 
-    def swap_first_item (self,vendor):
-        if len(self.inventory) > 0 and len(vendor.inventory) > 0:
+    def swap_first_item (self,other):
+        if len(self.inventory) > 0 and len(other.inventory) > 0:
     
             item = self.inventory[0]
-            vendor_item = vendor.inventory[0]
+            other_item = other.inventory[0]
 
             self.inventory.remove(item)
-            vendor.inventory.insert(0,item) 
-            vendor.inventory.remove(vendor_item)
-            self.inventory.insert(0,vendor_item)
+            other.inventory.insert(0,item) 
+            other.inventory.remove(other_item)
+            self.inventory.insert(0,other_item)
             return True
         else:
             return False
@@ -67,40 +71,43 @@ class Vendor:
             
     def swap_best_by_category(self,other,my_priority,their_priority):
         my_dict ={}
+        match_found = False
         for item in self.inventory:
-            if item.category == their_priority.category:
-                dict[item]= item.condition
+            if item.category == their_priority:
+                my_dict[item]= item.condition
                 best_item_my_inventory = max(my_dict,key=my_dict.get)
+                match_found = True
+
+        if match_found is False:
+            return False
 
         other_dict ={}
+        match_found_other = False
+        
         for item in other.inventory:
-            if item.category == my_priority.category:
-                dict[item]= item.condition
+            if item.category == my_priority:
+                other_dict[item]= item.condition
                 best_item_other_inventory = max(other_dict,key=other_dict.get)
+                match_found_other = True
 
+        if match_found_other is False:
+            return False
 
         if len(self.inventory) > 0 and len(other.inventory) > 0:
     
             self.inventory.remove(best_item_my_inventory)
-            other.inventory.insert(best_item_my_inventory) 
+            other.inventory.append(best_item_my_inventory) 
             other.inventory.remove(best_item_other_inventory)
-            self.inventory.insert(best_item_other_inventory)
+            self.inventory.append(best_item_other_inventory)
             return True
         else:
             return False
 
 
-            
-
-
-            
 
 
 
 
-
-vendor = Vendor()
-other = Vendor()
 
 
 
