@@ -73,7 +73,7 @@ class Vendor:
         return self.swap_items(other, my_best_item, their_best_item)
         
     
-    def swap_by_newest(self):
+    def get_by_newest(self):
         # Set minimum ages to float infinity
         new_ages = float("inf")
         # Set minimum items to None list
@@ -91,5 +91,7 @@ class Vendor:
                     items.append(item)
         return items
     
+    
+
     
 

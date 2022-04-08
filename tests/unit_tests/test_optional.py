@@ -10,8 +10,12 @@ def test_item_by_age():
     vendor = Vendor([age_1, age_2, age_3]
     )
     
-    age_items = vendor.swap_by_newest()
+    age_items = vendor.get_by_newest()
 
     assert age_items != age_1
     assert age_items != age_2
     assert age_items != age_3
+
+
+    
+
