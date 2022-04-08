@@ -69,15 +69,16 @@ class Vendor:
             return True
     
     def get_best_by_category(self, a_category):
-        '''iterate through this instance's inventory for item.category ==5
+        '''iterate through this instance's inventory for item.category 
+            highest rating from 0-5
             return item 
             else return None 
         '''
             
-        g = self.get_by_category(a_category)
+        items_in_category = self.get_by_category(a_category)
         highest_rating = 0
         highest_item = None
-        for item in g:
+        for item in items_in_category:
             if item.condition > highest_rating:
                 highest_rating = item.condition
                 highest_item = item 
@@ -85,6 +86,10 @@ class Vendor:
         return highest_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
+        '''self and instance of vendor other want to swap items
+        of their category of choice with the best rating
+        return false if category not in their inventory
+        else: swap and return true '''
         other_item = other.get_best_by_category(my_priority)
         my_item = self.get_best_by_category(their_priority)
         if not my_item or not other_item:

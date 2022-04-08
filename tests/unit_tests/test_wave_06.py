@@ -71,9 +71,9 @@ def test_swap_best_by_category():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Clothing",
-        their_priority="Decor"
+        jesse,
+        "Clothing",
+        "Decor"
     )
 
     # raise Exception("Complete this test according to comments below.")
@@ -141,9 +141,9 @@ def test_swap_best_by_category_no_inventory_is_false():
     )
 
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Clothing",
-        their_priority="Decor"
+        jesse,
+        "Clothing",
+        "Decor"
     )
 
     assert not result
@@ -167,9 +167,9 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     )
 
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Decor",
-        their_priority="Clothing"
+        jesse,
+        "Decor",
+        "Clothing"
     )
 
     assert not result
@@ -198,9 +198,9 @@ def test_swap_best_by_category_no_match_is_false():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Clothing",
-        their_priority="Clothing"
+        jesse,
+        "Clothing",
+        "Clothing"
     )
 
     # raise Exception("Complete this test according to comments below.")
@@ -236,9 +236,9 @@ def test_swap_best_by_category_no_other_match_is_false():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Electronics",
-        their_priority="Decor"
+        jesse,
+        "Electronics",
+        "Decor"
     )
 
     # raise Exception("Complete this test according to comments below.")
