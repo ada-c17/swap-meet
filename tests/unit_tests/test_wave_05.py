@@ -57,3 +57,20 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+
+                ####################################
+# Test 43(last)- Check for other condition values to obtain full code coverage
+#@pytest.mark.skip
+def test_condition_description_returns_correct_description_for_that_value():
+    items = [
+        Decor(condition=0),
+        Clothing(condition=1),
+        Electronics(condition=2),
+        Clothing(condition=3),
+        Decor(condition=4),
+        Electronics(condition=5)
+    ]
+    
+    for item in items:
+        assert item.condition_description()
