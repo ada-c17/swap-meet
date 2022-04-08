@@ -92,16 +92,16 @@ class Vendor:
             other.add(my_item)
             return True
     
-    def swap_first_item(self, Vendor):
+    def swap_first_item(self, other):
         """Swaps first item in self and another vendor's inventory"""
 
         # check valid input
-        if not self.inventory or not Vendor.inventory:
+        if not self.inventory or not other.inventory:
             return False
         else:
             my_first_item = self.inventory[0]
-            vendor_first_item = Vendor.inventory[0]
-            self.swap_items(Vendor, my_first_item, vendor_first_item)
+            vendor_first_item = other.inventory[0]
+            self.swap_items(other, my_first_item, vendor_first_item)
             return True
     
     def get_best_by_category(self, desired_category):
