@@ -42,8 +42,7 @@ class Vendor:
             print("Item not found")
             return False
         else:
-            self.inventory[0] = their_item
-            vendor.inventory[0] = your_item
+            self.swap_items(vendor, your_item, their_item)
             return True
 
     def get_best_by_category(self, category):
