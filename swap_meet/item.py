@@ -5,12 +5,12 @@ class Item:
     ...
     Attributes:
 
-    condition : int or float
-        an optional attribute describing the condition of the item, defaulting to 0. higher numbers indicate better condition.
-    age: int or float
-        an optional attribute describing how many years old an item is, defaulting to None. cannot be negative.
-    category: str
-        an optional attribute to describe the kind of item, defaulting to an empty string.
+    condition : int or float, optional
+        attribute describing the condition of the item, defaulting to 0. higher numbers indicate better condition.
+    age: int or float, optional
+        attribute describing how many years old an item is, defaulting to None. cannot be negative.
+    category: str, optional
+        attribute to describe the kind of item, defaulting to an empty string.
     
     ...
     Methods:
