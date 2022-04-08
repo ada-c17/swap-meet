@@ -1,76 +1,87 @@
+
 import pytest
-from swap_meet.vendor import Vendor
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
+from swap_meet.vendor import Vendor
 
 #@pytest.mark.skip
-def test_best_by_category():
-    item_a = Clothing(condition=2.0)
-    item_b = Decor(condition=2.0)
-    item_c = Clothing(condition=4.0)
-    item_d = Decor(condition=5.0)
-    item_e = Clothing(condition=3.0)
+def test_items_have_age_as_float():
+    items = [
+        Clothing(age=3.5),
+        Decor(age=3.5),
+        Electronics(age=3.5)
+    ]
+    for item in items:
+        assert item.age == pytest.approx(3.5)
+
+#@pytest.mark.skip
+def test_newest_by_category():
+    item_a = Clothing(age=2.0)
+    item_b = Decor(age=2.0)
+    item_c = Clothing(age=4.0)
+    item_d = Decor(age=5.0)
+    item_e = Clothing(age=3.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c, item_d, item_e]
     )
 
-    best_item = tai.get_best_by_category("Clothing")
+    newest_item = tai.get_newest_by_category("Clothing")
 
-    assert best_item.category == "Clothing"
-    assert best_item.condition == pytest.approx(4.0)
+    assert newest_item.category == "Clothing"
+    assert newest_item.age == pytest.approx(2.0)
 
 #@pytest.mark.skip
-def test_best_by_category_no_matches_is_none():
-    item_a = Decor(condition=2.0)
-    item_b = Decor(condition=2.0)
-    item_c = Decor(condition=4.0)
+def test_newest_by_category_no_matches_is_none():
+    item_a = Decor(age=2.0)
+    item_b = Decor(age=2.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
     )
 
-    best_item = tai.get_best_by_category("Electronics")
+    newest_item = tai.get_newest_by_category("Electronics")
 
-    assert best_item is None
+    assert newest_item is None
 
 #@pytest.mark.skip
-def test_best_by_category_with_duplicates():
+def test_newest_by_category_with_duplicates():
     # Arrange
-    item_a = Clothing(condition=2.0)
-    item_b = Clothing(condition=4.0)
-    item_c = Clothing(condition=4.0)
+    item_a = Clothing(age=2.0)
+    item_b = Clothing(age=4.0)
+    item_c = Clothing(age=2.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
     )
 
     # Act
-    best_item = tai.get_best_by_category("Clothing")
+    newest_item = tai.get_newest_by_category("Clothing")
 
     # Assert
-    assert best_item.category == "Clothing"
-    assert best_item.condition == pytest.approx(4.0)
+    assert newest_item.category == "Clothing"
+    assert newest_item.age == pytest.approx(2.0)
 
 #@pytest.mark.skip
-def test_swap_best_by_category():
+def test_swap_newest_by_category():
     # Arrange
     # me
-    item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
     )
 
     # them
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
     jesse = Vendor(
         inventory=[item_d, item_e, item_f]
     )
 
     # Act
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Clothing",
         their_priority="Decor"
@@ -87,30 +98,30 @@ def test_swap_best_by_category():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
-    assert item_f in tai.inventory
-    assert item_c in jesse.inventory
-    assert item_f not in jesse.inventory
-    assert item_c not in tai.inventory
+    assert item_d in tai.inventory
+    assert item_a in jesse.inventory
+    assert item_d not in jesse.inventory
+    assert item_a not in tai.inventory
 
 #@pytest.mark.skip
-def test_swap_best_by_category_reordered():
+def test_swap_newest_by_category_reordered():
     # Arrange
-    item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_c, item_b, item_a]
     )
 
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
     jesse = Vendor(
         inventory=[item_f, item_e, item_d]
     )
 
     # Act
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Clothing",
         their_priority="Decor"
@@ -127,13 +138,13 @@ def test_swap_best_by_category_reordered():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
-    assert item_f in tai.inventory
-    assert item_c in jesse.inventory
-    assert item_f not in jesse.inventory
-    assert item_c not in tai.inventory  
+    assert item_d in tai.inventory
+    assert item_a in jesse.inventory
+    assert item_d not in jesse.inventory
+    assert item_a not in tai.inventory  
 
 #@pytest.mark.skip
-def test_swap_best_by_category_no_inventory_is_false():
+def test_swap_newest_by_category_no_inventory_is_false():
     tai = Vendor(
         inventory=[]
     )
@@ -145,7 +156,7 @@ def test_swap_best_by_category_no_inventory_is_false():
         inventory=[item_a, item_b, item_c]
     )
 
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Clothing",
         their_priority="Decor"
@@ -171,7 +182,7 @@ def test_swap_best_by_category_no_other_inventory_is_false():
         inventory=[]
     )
 
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Decor",
         their_priority="Clothing"
@@ -185,24 +196,24 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     assert item_c in tai.inventory
 
 #@pytest.mark.skip
-def test_swap_best_by_category_no_match_is_false():
+def test_swap_newest_by_category_no_match_is_false():
     # Arrange
-    item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_a, item_b, item_c]
     )
 
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
     jesse = Vendor(
         inventory=[item_d, item_e, item_f]
     )
 
     # Act
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Clothing",
         their_priority="Clothing"
@@ -227,24 +238,24 @@ def test_swap_best_by_category_no_match_is_false():
     assert item_f in jesse.inventory
 
 #@pytest.mark.skip
-def test_swap_best_by_category_no_other_match_is_false():
+def test_swap_newest_by_category_no_other_match_is_false():
     # Arrange
-    item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_c, item_b, item_a]
     )
 
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
     jesse = Vendor(
         inventory=[item_f, item_e, item_d]
     )
 
     # Act
-    result = tai.swap_best_by_category(
+    result = tai.swap_newest_by_category(
         other=jesse,
         my_priority="Electronics",
         their_priority="Decor"
@@ -267,3 +278,4 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert item_d in jesse.inventory
     assert item_e in jesse.inventory
     assert item_f in jesse.inventory
+
