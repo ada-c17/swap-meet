@@ -11,14 +11,11 @@ class Vendor:
             
 
     def add(self, item):
-        # if item exists, append item to inventory
         self.inventory.append(item)
-        # return statment with item added
         return item
 
 
     def remove(self, item):
-        # takes in item and removes matching item 
         if item in self.inventory:
             self.inventory.remove(item)
             return item
@@ -62,46 +59,29 @@ class Vendor:
             return False
         else:
             their_item = friend.inventory[0]
-        
+        # use swap_items method
         self.swap_items(friend, my_item, their_item)
         return True
-        
+
 
     def get_best_by_category(self, category):
-        # create empty list to hold category vender wants
         desired_category = []
-        # iterate through items in self inventory
+
         for item in self.inventory:
-        #     if category != items.category:
-        #         return None
-        # if the category the vender wants is one of the categories
             if category in item.category:
-        #  append the item to the list of desired categories
                 desired_category.append(item)
-        # sort the desired category to get the best condition
-        # use of lambda to sort objects by instance's "condtion" attribute
+        # lambda will sort objects by instance's "condtion" attribute
                 sort_list = sorted(desired_category, key=lambda item: item.condition)
-        # if the list of desired categories is empty, return none
         if desired_category == []:
             return None
-        # if not, return sorted [-1]
-        return sort_list[-1]
+        return sort_list[-1]    
 
-
-        
-    
-        # ? sort so that condition ordered by keys
-    
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         their_desired_item = self.get_best_by_category(their_priority)
         my_desired_item = other.get_best_by_category(my_priority)
         
-        # start with checking if the priorities exist
-        # in both self and other
-        # check to see if swap occured 
         if their_desired_item is None or my_desired_item is None:
             return False
         self.swap_items(other, their_desired_item, my_desired_item)
         return True
-        
