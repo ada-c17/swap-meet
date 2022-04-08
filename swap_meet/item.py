@@ -28,4 +28,4 @@ class Item:
             condition_description = "Like New"
         elif 4 < self.condition <= 5:
             condition_description = "New"
-        return condition_description
+        return condition_description              
