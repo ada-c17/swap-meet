@@ -7,6 +7,7 @@ from swap_meet.item import Item
 def test_integration_wave_01_02_03():
     # make a vendor  
     vendor = Vendor()
+    print(vendor.inventory)
     assert len(vendor.inventory) == 0
 
     # add an item

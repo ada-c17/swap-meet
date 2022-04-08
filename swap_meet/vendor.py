@@ -39,7 +39,6 @@ class Vendor:
 
     def swap_first_item(self, swap_vendor):
         """
-        - method considers the first item in the instance's inventory, and the first item in the friend's inventory
         - removes the first item from its inventory, and adds the friend's first item
         - removes the first item from the friend's inventory, and adds the instances first item
         - returns True

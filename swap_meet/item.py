@@ -8,17 +8,14 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        condition = self.condition
-        if condition >= 0 and condition <= 5:
-            if condition in range(0, 1):
-                return "Yikes..."
-            if condition in range(1, 2):
-                return "Poor"
-            if condition in range(2, 3):
-                return "Mint"
-            if condition in range(3, 4):
-                return "Fine Enough"
-            if condition in range(4, 5):
-                return "Good"
-            if condition == 5:
-                return "Perfect!"
+        condition = int(self.condition)
+        descriptions = {
+            0: 'You should probably pass on this one...', 
+            1: 'Poor', 
+            2: 'Meh', 
+            3: 'Good', 
+            4: 'Great', 
+            5: 'Brand spankin new'
+        }
+        return descriptions[condition]
+
