@@ -1,6 +1,3 @@
-from operator import inv
-
-
 class Vendor:
     def __init__(self, inventory= None):
         if not inventory:
@@ -11,7 +8,7 @@ class Vendor:
     def add(self, item):
         self.inventory.append(item)
         return item
-    
+
 
     def remove(self, item):
         if item in self.inventory:
@@ -19,7 +16,7 @@ class Vendor:
             return item
         else:
             return False
-    
+
 
     def get_by_category(self, category):
         list_items = []
@@ -27,7 +24,7 @@ class Vendor:
             if item.category == category:
                 list_items.append(item)
         return list_items
-    
+
 
     def swap_items(self, vendor, my_item, their_item):
         if my_item not in self.inventory or their_item not in vendor.inventory:
@@ -55,11 +52,13 @@ class Vendor:
                     item_to_return = item
         return item_to_return
 
+
     def swap_best_by_category(self, other, my_priority, their_priority):
         vendor_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
         return self.swap_items(other, vendor_best_item, other_best_item)
-    
+
+
     def swap_by_newest(self, other, category):
         '''The function takes another vendor as "other" 
         and a category of items we'd like to exchange as parameters.
@@ -69,8 +68,6 @@ class Vendor:
         '''
         my_category_list = self.get_by_category(category)
         other_category_list = other.get_by_category(category)
-
         my_newest_item = min(my_category_list, key=lambda x: x.age)
         other_newest_item = min(other_category_list, key=lambda x: x.age)
-        
         return self.swap_items(other, my_newest_item, other_newest_item)
