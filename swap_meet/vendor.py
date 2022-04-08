@@ -66,7 +66,6 @@ class Vendor:
 
     # get item with best age (newest) in a certain category
     def get_newest_by_category(self, category):
-        # using get_by_category method
         best_item_list = self.get_by_category(category)
         if best_item_list:
             return min(best_item_list, key=attrgetter("age"))
@@ -74,9 +73,6 @@ class Vendor:
 
     # swap newest item of certain categories with another vendor's newest item
     def swap_by_newest(self, other, my_priority, their_priority):
-        my_newest_item = self.get_newest_by_category(their_priority) # items from my inventory with their priority category
-        their_newest_item = other.get_newest_by_category(my_priority) # items from their invenroy with my priority category
-        print(my_newest_item)
-        print(their_newest_item)
-        print(self.inventory)
+        my_newest_item = self.get_newest_by_category(their_priority)
+        their_newest_item = other.get_newest_by_category(my_priority)
         return self.swap_items(other, my_newest_item, their_newest_item)

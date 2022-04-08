@@ -25,11 +25,11 @@ class Item:
     # method to describe age in words based on value
     def age_description(self):
         age = {
-            0 : "ancient",
-            1 : "retro",
-            2 : "last season's",
-            3 : "classic",
-            4 : "fresh",
-            5 : "brand new"
+            0 : "brand new",
+            1 : "fresh",
+            2 : "classic",
+            3 : "last season's",
+            4 : "retro",
+            5 : "ancient",
         }
         return age[self.age]
