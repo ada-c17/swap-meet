@@ -23,6 +23,10 @@ def test_get_items_by_category():
     assert item_c in items
     assert item_b not in items
 
+    # *********************************************************************
+    # ****** Complete Assert Portion of this test **********
+    # *********************************************************************
+
 #@pytest.mark.skip
 def test_get_no_matching_items_by_category():
     item_a = Item(category="clothing")
@@ -36,5 +40,5 @@ def test_get_no_matching_items_by_category():
 
     assert len(items) == 0
     assert item_a not in items
-    assert item_c not in items
     assert item_b not in items
+    assert item_c not in items
