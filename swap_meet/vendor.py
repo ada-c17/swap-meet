@@ -39,24 +39,22 @@ class Vendor():
         '''Instance method implement swaping process between vendor and 
         other person'''
 
-        if my_item in self.inventory and friends_item in friend.inventory:
-            # vendor swap his item
-            self.remove(my_item)
-            friend.add(my_item)
-            # friend swap his item
-            friend.remove(friends_item)
-            self.add(friends_item)
-            return True
-        return False
+        if my_item not in self.inventory or friends_item not in friend.inventory:
+            return False
+        self.remove(my_item)
+        friend.add(my_item)
+        friend.remove(friends_item)
+        self.add(friends_item)
+        return True
 
 
     def swap_first_item(self, friend):
         '''Instance method implement swaping process first item'''
 
-        if len(self.inventory) and len(friend.inventory) != 0:
-            self.swap_items(friend,self.inventory[0],friend.inventory[0])
-            return True
-        return False
+        if len(self.inventory) == 0 or len(friend.inventory) == 0:
+            return False
+        self.swap_items(friend,self.inventory[0],friend.inventory[0])
+        return True
 
 
     def get_best_by_category(self, consider_category):
@@ -84,7 +82,7 @@ class Vendor():
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''Instance method will swap the item with the best condition 
         in a certain category'''
-        
+
         if len(self.inventory) and len(other.inventory) != 0:
             best_item_for_friend = self.get_best_by_category(their_priority)
             best_item_for_vendor = other.get_best_by_category(my_priority)
