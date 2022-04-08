@@ -38,10 +38,8 @@ class Vendor:
         if my_item not in self.inventory or their_item not in friend.inventory:
             return False
 
-        self.add(their_item)
-        self.remove(my_item)
-        friend.add(my_item)
-        friend.remove(their_item)
+        self.add(friend.remove(their_item))
+        friend.add(self.remove(my_item))
         
         return True
 
