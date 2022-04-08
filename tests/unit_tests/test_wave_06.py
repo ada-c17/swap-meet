@@ -87,8 +87,8 @@ def test_swap_best_by_category():
     assert result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    assert set(tai.inventory) == set([item_f, item_b, item_a])
-    assert set(jesse.inventory) == set ([item_c, item_e, item_d])
+    assert tai.inventory == [item_a, item_b, item_f]
+    assert jesse.inventory == [item_d, item_e, item_c]
 
 
 def test_swap_best_by_category_reordered():
@@ -125,8 +125,8 @@ def test_swap_best_by_category_reordered():
     assert result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    assert set(tai.inventory) == {item_f, item_b, item_a}
-    assert set(jesse.inventory) == {item_c, item_e, item_d}
+    assert tai.inventory == [item_f, item_b, item_a]
+    assert jesse.inventory == [item_c, item_e, item_d]
 
 
 def test_swap_best_by_category_no_inventory_is_false():
