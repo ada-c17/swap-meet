@@ -3,6 +3,7 @@ class Item:
 
     def __init__(self, category = "", condition = 0.0):
         self.category = category
+
         if condition < 0 or condition > 5: #check that condition is between 0 and 5
             raise ValueError
         self.condition = condition
@@ -11,5 +12,4 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-
         return Item.CONDITION_DESCRIPTIONS[int(self.condition)]
