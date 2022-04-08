@@ -6,18 +6,24 @@ class Item:
         self.condition = condition    
 
 
-    '''Return name of category in the terminal, when instance is assign'''
     def __repr__(self):
+        '''Return name of category in the 
+        terminal, when instance is assign'''
+
         return self.category
 
 
-    '''Return string "Hello World!" if category is not defined'''
     def __str__(self):
+        '''Return string "Hello World!" if
+        category is not defined'''
+
         return "Hello World!"
 
 
-    '''Method assigning specific string-output depends of condition'''
     def condition_description(self):
+        '''Method assigning specific 
+        string-output depends of condition'''
+        
         if 0 < self.condition <= 1:
             condition_description = "Poor"
         elif 1 < self.condition <= 2:
