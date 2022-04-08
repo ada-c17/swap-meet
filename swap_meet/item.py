@@ -1,5 +1,5 @@
 class Item():
-  def __init__ (self, category = "", age =int()):
+  def __init__ (self, category = "", age =0):
     self.category = category
     self.age = age
 

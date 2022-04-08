@@ -1,7 +1,7 @@
 class Vendor():
   def __init__ (self, inventory = None):
     if inventory is None: #do not want mutable object
-      inventory = [] #as a parameter, so I set to None
+      inventory = [] #as a parameter, so set to None
     self.inventory = inventory #empty list
   
   def add(self, item):
@@ -55,9 +55,19 @@ class Vendor():
     best_self_item = self.get_best_by_category(their_priority)
     best_their_item = other.get_best_by_category(my_priority)
     best_item_swapped = self.swap_items(other, best_self_item, best_their_item)
-    return best_item_swapped #should be True
+    return best_item_swapped #is True
 
-  # def swap_by_newest(self, age):
-  #   stored_age = self.get_best_by_category(age)
-  #   print(stored_age.age)
-  #   return stored_age
+  def find_newest_item(self):
+    shortest_age = 100
+    newest_item = None
+    for item in self.inventory:
+      if item.age < shortest_age:
+        shortest_age = item.age 
+        newest_item = item #assigning item of shortest_age to newest_item
+    return newest_item
+
+  def swap_by_newest(self, other):
+    my_newest_item = self.find_newest_item() #age of 2.0 
+    their_newest_item = other.find_newest_item() #age of 1.0
+    swapped_transaction = self.swap_items(other, my_newest_item, their_newest_item)
+    return swapped_transaction
