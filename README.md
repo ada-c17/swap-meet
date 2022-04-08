@@ -5,7 +5,7 @@
 - Following directions and reading comprehension
 - Reading tests
 - Creating classes
-  - Classes have attributes and instance methods
+- Classes have attributes and instance methods
 - Importing modules
 - Working with attributes that are lists of instances
 - Implementing instance methods that interact with other instances and objects
