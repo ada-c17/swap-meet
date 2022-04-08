@@ -114,6 +114,8 @@ class Vendor:
         #returns a list of `Item`s in the inventory with that category
         return itemList
 
+    # using list comprehension, don't have to use append
+    # itemList = [item for item in self.inventory if item.category == category]
     """
     
     To further reduce the amount of repeated code in your project, 
@@ -123,6 +125,7 @@ class Vendor:
     ###To do this, could create default paremeters or is it keyword arguments for my_item and their item in swap items
     then create an if, elif situation in swap items, then replace the expression in the if statement of swap_first_item with
     the swap_items function ???? not sure what the default parameters/keyword args would be tho...
+    update: Oh my gosh I don't know why I thought about this like this, can just use in the other funcs like Hailey and Philomena did....
     
     """    
     
@@ -134,6 +137,7 @@ class Vendor:
         #remove the `my_item` from this `Vendor`'s inventory, and add it to the friend's inventory
         my_removed = self.remove(my_item)
         friend.inventory.append(my_removed)
+
         #remove the `their_item` from the other `Vendor`'s inventory, and add it to this `Vendor`'s inventory
         their_removed = friend.remove(their_item)
         self.inventory.append(their_removed)
@@ -142,13 +146,17 @@ class Vendor:
 
     def swap_first_item(self,friend):
         #If either itself or the friend have an empty `inventory`, the method returns `False`
+
+        #can use not like Anya did because I think empty lists are falsey
+        #if not self.inventory or not friend.inventory:
         if len(self.inventory) == 0 or len(friend.inventory) == 0:
             return False
 
         #remove the first item from its `inventory`, and adds the friend's first item
         #remove the first item from the friend's `inventory`, and adds the instances first item
 
-        #need to add first to both and then remove otherwise it won't work?
+        #need to add first to both and then remove otherwise it won't work...
+        #can just use self.swap_items and pass in the first items of each list
         self.add(friend.inventory[0])
         friend.add(self.inventory[0])
         
@@ -190,6 +198,7 @@ class Vendor:
     #If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False`
 
     #swap the best item of certain categories with another `Vendor`
+    #oh my gosh I made my code so longgggg, could have used get best by category function and then the swap items function.....
     def swap_best_by_category(self, other, my_priority, their_priority):
         myHighestCondition = 0
         theirHighestCondition = 0
@@ -211,6 +220,7 @@ class Vendor:
         if myBestItem is None or theirBestItem is None:
             return False
         
+        #I think I can use swap_items here with theirBestItem and myBestItem as the args.....
         self.inventory.append(theirBestItem)
         self.inventory.remove(myBestItem)
         other.inventory.append(myBestItem)
