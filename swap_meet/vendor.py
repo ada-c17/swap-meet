@@ -74,7 +74,7 @@ class Vendor:
         if (my_item in self.inventory) and (their_item in friend_vendor.inventory):
             # Remove item from this Vendor's inventory
             self.remove(my_item)
-            # # Add to friend's inventory
+            # Add to friend's inventory
             friend_vendor.add(my_item)
 
             # Remove item from friend's inventory
@@ -120,7 +120,7 @@ class Vendor:
         # The highest 'condition' and matching 'category'
 
         """
-        Input: 'item_category': string representing category
+        Input: 'item_category' is a string representing category
 
         Output: 
             1. Item that matches the category
@@ -157,11 +157,11 @@ class Vendor:
             2. Return False if item priorities don't match and swap doesn't happen
         """
         
-        # Category the Vendor wants to receive
+        # My best item in the category the other Vendor wants to receive
         my_best_item_to_swap = self.get_best_by_category(their_priority)
-        # Category the other Vendor wants to receive
+        # Their best item in the category I want to receive
         their_best_item_to_swap = other.get_best_by_category(my_priority)
-        # Returning the best item in those categories
+        # Returning the best item in those categories, in each other's inventories
 
 
         swap_the_best = self.swap_items(other, my_best_item_to_swap, their_best_item_to_swap)

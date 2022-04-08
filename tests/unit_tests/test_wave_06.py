@@ -84,14 +84,11 @@ def test_swap_best_by_category():
         their_priority="Decor"
     )
 
-    # Assertions should check:
-    # - That the results is truthy
+    # Assert
     assert result == True
-    # - That tai and jesse's inventories are the correct length
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    # - That all the correct items are in tai and jesse's inventories, 
-    # including the items which were swapped from one vendor to the other
+
     assert tai.inventory == [item_a, item_b, item_f]
     assert jesse.inventory == [item_d, item_e, item_c]
 
@@ -122,12 +119,9 @@ def test_swap_best_by_category_reordered():
         their_priority="Decor"
     )
 
-    # Assertions should check:
-    # - That result is truthy
+    # Assert
     assert result == True
-    # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) == len(jesse.inventory)
-    # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
+    assert len(tai.inventory) == len(jesse.inventory)    # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
     assert item_a in tai.inventory
     assert item_b in tai.inventory
     assert item_f in tai.inventory
@@ -216,11 +210,7 @@ def test_swap_best_by_category_no_match_is_false():
         their_priority="Clothing"
     )
 
-
-    # Assertions should check:
-    # - That result is falsy
-    # - That tai and jesse's inventories are the correct length
-    # - That all the correct items are in tai and jesse's inventories
+    # Assert
     assert result == False
     assert len(tai.inventory) == len(jesse.inventory)
     assert tai.inventory == [item_a, item_b, item_c]
@@ -252,12 +242,8 @@ def test_swap_best_by_category_no_other_match_is_false():
         their_priority="Decor"
     )
 
-
-    # Assertions should check:
-    # - That result is falsy
+    # Assert
     assert result == False
-    # - That tai and jesse's inventories are the correct length
     assert len(tai.inventory) == len(jesse.inventory)
-    # - That all the correct items are in tai and jesse's inventories
     assert tai.inventory == [item_c, item_b, item_a]
     assert jesse.inventory == [item_f, item_e, item_d]
