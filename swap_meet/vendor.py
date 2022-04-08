@@ -24,14 +24,11 @@ class Vendor:
 
     def swap_items(self, swap_vendor, my_item, their_item):
         """
-        All instances of Vendor will have this method swap_items:
-        - takes 3 arguments; another Vendor, my_item, their_item
         - removes my_item from this Vendor's inventory
         - removes their_item from the other Vendor's inventory
         - returns True if both inventories have the respective items
         - returns False if one of the items is not contained in respective inventories
         """
-
         if my_item in self.inventory and their_item in swap_vendor.inventory:
             self.inventory.remove(my_item)
             swap_vendor.inventory.append(my_item)
@@ -42,8 +39,6 @@ class Vendor:
 
     def swap_first_item(self, swap_vendor):
         """
-        All instances of Vendor will have this method swap_first_items:
-        - takes one argument; another Vendor
         - method considers the first item in the instance's inventory, and the first item in the friend's inventory
         - removes the first item from its inventory, and adds the friend's first item
         - removes the first item from the friend's inventory, and adds the instances first item
@@ -72,4 +67,14 @@ class Vendor:
                 best_item = item
         return best_item
 
-    # def swap_best_by_category()
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """swap the best item of certain categories with another Vendor
+        my_priority = a category that the Vendor wants to receive
+        their_priority = a category that the other wants to receive"""
+        my_best_swap = self.get_best_by_category(their_priority)
+        their_best_swap = other.get_best_by_category(my_priority)
+
+        if my_best_swap and their_best_swap:
+            self.swap_items(other, my_best_swap, their_best_swap)
+            return True
+        return False

@@ -9,7 +9,7 @@ class Item:
 
     def condition_description(self):
         condition = self.condition
-        while condition >= 0 and condition <= 5:
+        if condition >= 0 and condition <= 5:
             if condition in range(0, 1):
                 return "Yikes..."
             if condition in range(1, 2):
@@ -22,6 +22,3 @@ class Item:
                 return "Good"
             if condition == 5:
                 return "Perfect!"
-
-    def __repr__(self):
-        return f"condition description={self.condition_description}"
