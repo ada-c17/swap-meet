@@ -24,7 +24,6 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        condition_int=int(self.condition)
         description={
             0:"You probably want a glove for this one...",
             1:"poor",
@@ -33,5 +32,5 @@ class Item:
             4:"like new",
             5:"new"
         }    
-        return description[condition_int]
+        return description[self.condition]
 
