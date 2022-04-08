@@ -44,14 +44,8 @@ class Vendor:
         if not self.inventory or not friend.inventory:
             return False
         
-        # remove the first item from each inventory 
-        # and append to partner's inventory
-        friend.add(self.inventory[0])
-        self.remove(self.inventory[0])
-        self.add(friend.inventory[0])
-        friend.remove(friend.inventory[0])
-
-        return True
+        # swap first item in each vendor's inventory
+        return self.swap_items(friend, self.inventory[0], friend.inventory[0])
     
     def get_best_by_category(self, category):
         # check for items of given category in inventory
