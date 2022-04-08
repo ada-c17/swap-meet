@@ -2,7 +2,7 @@ from .item import Item
 
 class Clothing(Item):
     '''
-    class that represents a clothing item.
+    Class that represents a clothing item.
     
     ...
 
@@ -25,6 +25,6 @@ class Clothing(Item):
         
     def __str__(self):
         '''
-        Overrides parent str method and returns message.
+        Overrides parent str method and returns new string.
         '''
         return "The finest clothing you could wear."

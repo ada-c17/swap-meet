@@ -1,5 +1,3 @@
-from swap_meet.item import Item
-
 class Vendor:
     '''
     Class that represents a vendor.
@@ -46,7 +44,7 @@ class Vendor:
 
     def get_by_category(self, category):
         '''
-        Returns list of items from inventory whose attribute category == input category string.
+        Returns list of items from inventory whose attribute category == input (category, string).
         '''
         category_list = []
         for item in self.inventory:
@@ -56,14 +54,14 @@ class Vendor:
         
     def swap_items(self, vendor, my_item, their_item):
         '''
-        Swaps (removes/appends) input items (my_item, their_item) from instance inventory and vendor inventory; returns True.
-        If my_item, their_item not in self.inventory and vendor.inventory, respsectively, returns False.
+        Swaps (removes and appends) input items (my_item, their_item) from self inventory and vendor inventory; returns True.
+        If my_item or their_item not in self.inventory and vendor.inventory, respsectively, returns False.
         '''
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
         
-        self.inventory.remove(my_item)   # remove here being applied to a list
-        vendor.inventory.remove(their_item) #add being applied to a list
+        self.inventory.remove(my_item)   
+        vendor.inventory.remove(their_item)
         self.inventory.append(their_item)
         vendor.inventory.append(my_item)
 
@@ -71,22 +69,19 @@ class Vendor:
 
     def swap_first_item(self, vendor):
         '''
-        Swaps (removes/appends) first item from self.inventory and vendor.inventory, returns True
-        If self.inventory or vendory.inventory empty, returns False.'''
+        Swaps (removes/appends) first items from self.inventory and vendor.inventory, returns True
+        If self.inventory or vendor.inventory empty, returns False.
+        '''
         if not self.inventory or not vendor.inventory:
             return False
-        
-        first_item_self = self.inventory.pop(0)  #want to return value here and assign to variable
-        first_item_vendor = vendor.inventory.pop(0)
-        self.inventory.append(first_item_vendor)
-        vendor.inventory.append(first_item_self)
+    
+        return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
 
-        return True
 
     def get_best_by_category(self, category):
         '''
-        Input: category (str), finds items in self.inventory whose category = input,
-        returns item with highest value of attribute condition. 
+        Given input-> category (str), finds items in self.inventory whose attribute category = input,
+        returns item with highest value for attribute condition. 
         If self.inventory has no items with category, return None.
         '''
         category_list = self.get_by_category(category)
@@ -103,9 +98,10 @@ class Vendor:
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
-        Input: other(instance of vendor), my_priority (category ->string), their_priority (category->string),
-        swaps highest condition item from inventory of vendor and other based on priority category, 
-        returns True.  If category not in inventories, return False.
+        Given input-> other(instance of vendor), my_priority (category ->string), their_priority (category->string);
+        swaps item with highest value for attribute condition from self.inventory
+        and other.inventory based on priority categories, returns True.  
+        If category not in inventories, return False.
         
         '''
         best_item_self = self.get_best_by_category(their_priority)

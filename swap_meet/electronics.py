@@ -2,7 +2,7 @@ from .item import Item
 
 class Electronics(Item):
     '''
-    Class that represents an electronic item.
+    Class that represents an electronics item.
 
     ...
 
@@ -25,6 +25,6 @@ class Electronics(Item):
 
     def __str__(self):
         '''
-        Overrides parent str method and returns message.
+        Overrides parent str method and returns new string.
         '''
         return "A gadget full of buttons and secrets."

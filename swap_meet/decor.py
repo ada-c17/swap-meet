@@ -2,7 +2,7 @@ from .item import Item
 
 class Decor(Item):
     '''
-    Class that represents a decorative item.
+    Class that represents a decor item.
     
     ...
 
@@ -26,6 +26,6 @@ class Decor(Item):
 
     def __str__(self):
         '''
-        Overrides parent str method and returns message.
+        Overrides parent str method and returns new string.
         '''
         return "Something to decorate your space."
