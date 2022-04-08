@@ -23,37 +23,24 @@ class Vendor:
         return category_items
 
     def swap_items(self, swap_vendor, my_item, their_item):
-        """
-        - removes my_item from this Vendor's inventory, removes their_item from the other Vendor's inventory
-        - returns True if both inventories have the respective items
-        - returns False if one of the items is not contained in respective inventories
-        """
         if my_item in self.inventory and their_item in swap_vendor.inventory:
-            self.inventory.remove(my_item)
-            swap_vendor.inventory.append(my_item)
-            self.inventory.append(their_item)
-            swap_vendor.inventory.remove(their_item)
+            self.remove(my_item)
+            swap_vendor.add(my_item)
+            self.add(their_item)
+            swap_vendor.remove(their_item)
             return True
         return False
 
-    def swap_first_item(self, swap_vendor):
-        """
-        - removes the first item from its inventory, and adds the friend's first item
-        - removes the first item from the friend's inventory, and adds the instances first item
-        - returns True
-        - either itself or the friend have an empty inventory, the method returns False
-        """
-        while len(self.inventory) >= 1 and len(swap_vendor.inventory) >= 1:
+    def swap_first_item(self, other):
+        if len(self.inventory) >= 1 and len(other.inventory) >= 1:
             self_first_item = self.inventory[0]
-            swap_vendor_first_item = swap_vendor.inventory[0]
-
-            self.inventory[0] = swap_vendor_first_item
-            swap_vendor.inventory[0] = self_first_item
+            other_first_item = other.inventory[0]
+            self.inventory[0] = other_first_item
+            other.inventory[0] = self_first_item
             return True
         return False
 
     def get_best_by_category(self, category_str):
-        """get the item with the best condition in a certain category"""
         category_items = self.get_by_category(category_str)
         if len(category_items) > 1:
             best_item = category_items[0]
@@ -66,9 +53,6 @@ class Vendor:
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
-        """swap the best item of certain categories with another Vendor
-        my_priority = a category that the Vendor wants to receive
-        their_priority = a category that the other wants to receive"""
         my_best_swap = self.get_best_by_category(their_priority)
         their_best_swap = other.get_best_by_category(my_priority)
 
