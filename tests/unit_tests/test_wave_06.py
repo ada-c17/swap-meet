@@ -57,7 +57,6 @@ def test_best_by_category_with_duplicates():
 #@pytest.mark.skip
 def test_swap_best_by_category():
     # Arrange
-    # me
     item_a = Decor(condition=2.0)
     item_b = Electronics(condition=4.0)
     item_c = Decor(condition=4.0)
@@ -65,7 +64,6 @@ def test_swap_best_by_category():
         inventory=[item_a, item_b, item_c]
     )
 
-    # them
     item_d = Clothing(condition=2.0)
     item_e = Decor(condition=4.0)
     item_f = Clothing(condition=4.0)

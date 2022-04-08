@@ -56,9 +56,29 @@ class Vendor:
 
 
     def swap_best_by_category(self, other, my_priority, their_priority):
-        their_item = self.get_best_by_category(their_priority)
         my_item = other.get_best_by_category(my_priority)
+        their_item = self.get_best_by_category(their_priority)
         return self.swap_items(other, their_item, my_item)
+
+
+
+############### Optional Enhancement for Wave 07 ###############
+    def get_newest_item(self):
+        newest_age = 1000
+        newest_item = None 
+        for item in self.inventory:
+            if item.age < newest_age: 
+                newest_age = item.age  
+                newest_item = item
+        return newest_item
+
+
+    def swap_by_newest(self, other, my_item, their_item):
+        their_item = self.get_newest_item()
+        my_item = other.get_newest_item()
+        return self.swap_items(other, their_item, my_item)
+
+        
 
 
 

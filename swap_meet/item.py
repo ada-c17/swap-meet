@@ -1,13 +1,18 @@
 class Item:
-    def __init__(self, category = None, condition = 0.0):
+    def __init__(self, category = None, condition = 0, age = 0):
         if not category:
             category = ""
         self.category = category
         self.condition = condition
-    
+        self.age = age
+        
 
     def __str__(self):
         return "Hello World!"
+
+
+    def age_statement(self):
+        return f"This item was made {self.age} months ago."
     
 
     def condition_description(self):
@@ -24,5 +29,3 @@ class Item:
         elif self.condition == 5:
             description = "exquisite quality"
         return f"This item's condition is {description}"
-
-    
