@@ -33,9 +33,9 @@ class Vendor:
         
         # swap items in each vendor's inventory
         self.add(their_item)
-        friend.remove(their_item)
+        friend.inventory.remove(their_item)
         friend.add(my_item)
-        self.remove(my_item)
+        self.inventory.remove(my_item)
 
         return True
     
