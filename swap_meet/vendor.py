@@ -31,7 +31,8 @@ class Vendor:
 
         if my_item not in self.inventory or their_item not in another_vendor.inventory:    
             return False
-        
+        if my_item == their_item:
+            return True
         another_vendor.inventory.append(my_item)
         self.inventory.append(their_item)
         self.inventory.remove(my_item)
@@ -69,7 +70,7 @@ class Vendor:
             return True
         return False
             
-    def swap_by_newest(self, friend, my_newest_item, friend_newest_item):
+    def swap_by_newest(self, friend):
         """Finding the newest item in my list and in my friend list and then swap them."""
 
         if self.inventory == [] or friend.inventory == []:

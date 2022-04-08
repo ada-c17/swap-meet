@@ -287,8 +287,6 @@ def test_swap_newest_item():
     # Act
     result = tai.swap_by_newest(
         friend=jesse,
-        my_newest_item="Decor",
-        friend_newest_item="Clothing"
     )
     # Assert
     assert len(tai.inventory)==3
@@ -316,8 +314,6 @@ def test_swap_newest_item_no_other_inventory_is_false():
     # Act
     result = tai.swap_by_newest(
         friend=jesse,
-        my_newest_item="Decor",
-        friend_newest_item="Clothing"
     )
     # Assert   
     assert not result
