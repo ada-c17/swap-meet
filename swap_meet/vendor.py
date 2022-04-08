@@ -48,6 +48,30 @@ class Vendor:
 
 
 
+    def get_best_by_category(self, best_category):
+        #iterate through instances inventory (self.inventory)
+        
+        best_item = None
+        highest_condition = 0
+        for item in self.inventory:
+            if item.category == best_category:
+                if item.condition > highest_condition:
+                    highest_condition = item.condition
+                    best_item = item
+            
+        return best_item
+            
+
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        my_swap = self.get_best_by_category(their_priority)
+        their_swap = other.get_best_by_category(my_priority)
+        swap_result = self.swap_items(other, my_swap, their_swap)
+        return swap_result
+        
+
+
+
         
         
 
