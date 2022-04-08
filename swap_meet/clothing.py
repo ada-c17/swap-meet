@@ -4,16 +4,11 @@ from swap_meet.item import Item
 class Clothing(Item):
 
     
-    def __init__(self, condition = 0):
+    def __init__(self, condition = 0, age = None):
         self.category = "Clothing"
         self.condition = condition
+        self.age = age
     
-    """""
-    def __init__(self, category, condition):
-        super(Item, self).__init__(category, condition)
-        self.category = "Clothing"
-        self.condition = condition
-    """""
 
     #override str() for Clothing, returns "The finest clothing you could wear."
     def __str__(self):

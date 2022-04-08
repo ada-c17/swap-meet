@@ -2,6 +2,7 @@ from swap_meet.item import Item
 
 class Vendor:
     def __init__(self, inventory = None):
+        #code on lines 6-7 from https://docs.python-guide.org/writing/gotchas/
         if inventory == None:
             inventory = []
         self.inventory = inventory
@@ -43,19 +44,12 @@ class Vendor:
         if (my_item not in self.inventory) or (their_item not in other_vendor.inventory):
             return False
         
-        #print("********BEFORE***********")
-        #print(len(self.inventory))
-        #print(len(other_vendor.inventory))
-
         self.remove(my_item)
         other_vendor.add(my_item)
         
         other_vendor.remove(their_item)
         self.add(their_item)
         
-        #print("********AFTER***********")
-       # print(len(self.inventory))
-       # print(len(other_vendor.inventory))
 
         return True
 
@@ -64,11 +58,11 @@ class Vendor:
     # adds the other Vendor's first item
     # removes first item from other Vendor's inventory
     # adds this Vendor's first item
-    def swap_first_item(self, vendor):
-        if len(self.inventory) == 0 or len(vendor.inventory) == 0:
+    def swap_first_item(self, other_vendor):
+        if len(self.inventory) == 0 or len(other_vendor.inventory) == 0:
             return False
 
-        self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+        self.swap_items(other_vendor, self.inventory[0], other_vendor.inventory[0])
 
         return True
 
@@ -107,6 +101,39 @@ class Vendor:
         return True
 
         
+
+    def swap_by_newest(self, other):
+        my_newest = self.inventory[0]
+        for item in self.inventory:
+            if not item.age is None:
+                my_newest = item
+                break
+        if my_newest.age is None:
+            return False
+        
+        for item in self.inventory:
+            if not item.age is None:
+                if item.age < my_newest.age:
+                    my_newest = item
+
+        their_newest = other.inventory[0]
+        for item in other.inventory:
+            if not item.age is None:
+                their_newest = item
+                break
+        if their_newest.age is None:
+            return False
+        
+        for item in other.inventory:
+            if not item.age is None:
+                if item.age < their_newest.age:
+                    their_newest = item
+
+        self.swap_items(other, my_newest, their_newest)
+        return True
+
+
+
 
 
 
