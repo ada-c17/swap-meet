@@ -16,14 +16,14 @@ class Item:
         '''
         if self.condition == 0:
             return "I have so many questions"
-        if self.condition == 1:
+        elif self.condition == 1:
             return "You're a good friend"
-        if self.condition == 2:
+        elif self.condition == 2:
             return "You have interesting standards"
-        if self.condition == 3:
+        elif self.condition == 3:
             return "Gently used"
-        if self.condition == 4:
+        elif self.condition == 4:
             return "Like new"
-        if self.condition == 5:
+        elif self.condition == 5:
             return "Brand new in box"
     

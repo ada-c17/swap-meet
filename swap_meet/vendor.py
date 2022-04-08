@@ -31,7 +31,6 @@ class Vendor:
                 list_of_items.append(item)
         return list_of_items
 
-    # g = get_by_category()
 
     def swap_items(self, vendor_friend, my_item, their_item):
         '''
@@ -63,11 +62,6 @@ class Vendor:
         if not self.inventory or not swapping_friend.inventory:
             return False
         else:
-            # self.inventory.append(swapping_friend.inventory[0])
-            # swapping_friend.inventory.append(self.inventory[0])
-            # self.inventory.remove(self.inventory[0])
-            # swapping_friend.inventory.remove(swapping_friend.inventory[0])
-            # return True
             self.add(swapping_friend.inventory[0])
             swapping_friend.add(self.inventory[0])
             self.remove(self.inventory[0])
@@ -79,8 +73,6 @@ class Vendor:
             return item 
             else return None 
         '''
-        if a_category is None:
-            return None
             
         g = self.get_by_category(a_category)
         highest_rating = 0
