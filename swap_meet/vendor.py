@@ -77,7 +77,7 @@ class Vendor:
         Argument - another_vendor: the friend whom I am swapping my item with
         Return: if either the friend or I have an empty inventory, it returns False, otherwise returns True
         '''
-        if another_vendor.inventory == [] or self.inventory == []:
+        if not another_vendor.inventory or not self.inventory:
             return False
         
         self.swap_items(another_vendor, self.inventory[0], another_vendor.inventory[0])
