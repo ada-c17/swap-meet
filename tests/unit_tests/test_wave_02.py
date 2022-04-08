@@ -35,4 +35,4 @@ def test_get_no_matching_items_by_category():
     items = vendor.get_by_category("electronics")
 
     assert len(vendor.inventory) == 3
-    assert items == False
+    assert len(items) == 0

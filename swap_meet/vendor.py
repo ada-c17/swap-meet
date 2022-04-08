@@ -5,8 +5,11 @@ def check_if_empty(lst):
 
 
 class Vendor:
-    def __init__(self, inventory=[]):
-        self.inventory = inventory
+    def __init__(self, inventory=None):
+        if inventory == None:
+            self.inventory = []
+        else:
+            self.inventory = inventory
 
     def add(self, item):
         self.inventory.append(item)
@@ -20,10 +23,7 @@ class Vendor:
         return item
 
     def get_by_category(self, category):
-        list_by_cat = [item for item in self.inventory if item.category == category]
-        if len(list_by_cat) == 0:
-            return False
-        return list_by_cat
+        return [item for item in self.inventory if item.category == category]
 
     def swap_items(self, person, item_to_person, item_to_self):
         '''
@@ -51,16 +51,11 @@ class Vendor:
     def get_best_by_category(self, category):
         list_by_cat = self.get_by_category(category)
 
-        if list_by_cat == False:
+        if list_by_cat == []:
             return None
 
-        max_qual = 0.0
-        best_item = None
-        for item in list_by_cat:
-            if item.condition > max_qual:
-                max_qual = item.condition
-                best_item = item
-        return best_item
+        list_by_cat.sort(key=lambda item:item.condition, reverse=True)
+        return list_by_cat[0]
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         item_to_self = other.get_best_by_category(my_priority)
