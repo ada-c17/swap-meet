@@ -22,23 +22,17 @@ class Vendor:
         return cat_list
     
     def swap_items(self, other, my_item, their_item):
-        if my_item in self.inventory:
-            self.remove(my_item)
-            other.add(my_item)
-        else:
+        try:
+            my_index = self.inventory.index(my_item)
+            their_index = other.inventory.index(their_item)
+            self.inventory[my_index], other.inventory[their_index] = other.inventory[their_index], self.inventory[my_index]
+            return True
+        except:
             return False
-        if their_item in other.inventory:
-            other.remove(their_item)
-            self.add(their_item)
-        else:
-            self.add(my_item)
-            other.remove(my_item)
-            return False
-        return True
     
     def swap_first_item(self, other):
         if len(self.inventory) >= 1 and len(other.inventory) >= 1:
-            self.swap_items(other, self.inventory[0], other.inventory[0])
+            self.inventory[0], other.inventory[0] = other.inventory[0], self.inventory[0]
             return True
         else:
             return False
@@ -47,11 +41,9 @@ class Vendor:
         items_in_category = self.get_by_category(category)
         if len(items_in_category) < 1:
             return None
-        best_condition = 0
-        for item in items_in_category:
-            if item.condition > best_condition:
-                best_condition = item.condition
-                best_item = item
+        elif len(items_in_category) == 1:
+            return items_in_category[0]
+        best_item = max(items_in_category, key=lambda item: item.condition)
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
@@ -65,8 +57,8 @@ class Vendor:
     
     def swap_by_newest(self, other):
         if self.inventory and other.inventory:
-            my_newest_item = min(self.inventory, key=lambda x: x.age)
-            their_newest_item = min(other.inventory, key=lambda x: x.age)
+            my_newest_item = min(self.inventory, key=lambda item: item.age)
+            their_newest_item = min(other.inventory, key=lambda item: item.age)
             self.swap_items(other, my_newest_item, their_newest_item)
         else:
             return None
