@@ -1,9 +1,9 @@
 class Vendor:
     '''
     The Vendor class represents instances of vendors collecting, removing, filtering,
-    and swapping items with other vendors. They can collect items in the inventory attribute.
-    Inventory is a list that instances of Vendors can populate with
-    instances of the Item class in item.py.
+    and swapping items with other vendors. Instances of vendors can collect items
+    in the inventory attribute. Inventory is a list that instances of Vendors
+    can populate with instances of the Item class in item.py.
     '''
 
     def __init__(self, inventory = None):
@@ -43,8 +43,9 @@ class Vendor:
         '''
         Input: category (string)
         Output: list_of_items_per_cat (list)
-        Returns a list of items with the input category.
+        Returns a list of items with input category.
         '''
+
         list_of_items_per_cat = [item for item in self.inventory if item.category == category]
         return list_of_items_per_cat
 
@@ -94,7 +95,7 @@ class Vendor:
         Returns the item with the highest condition in the input category.
         Makes use of the get_by_category instance method to create a
         list of elements whose category values match the input.
-        Stored in the variable items_by_cat.
+        This list is stored in the variable items_by_cat.
         Returns False if there are no items in preferred category.
         '''
 
@@ -121,6 +122,7 @@ class Vendor:
         Return False if such items do not exist (aka if priority category
         does not exist in their collection)
         '''
+
         best_item_other = other.get_best_by_category(my_priority)
         best_item_mine = self.get_best_by_category(their_priority)
 
