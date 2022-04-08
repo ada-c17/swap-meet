@@ -1,13 +1,3 @@
-    # wave 2
-    # attributes: 
-    #   category - an empty string
-
-    # wave 3
-    # stringify returns "Hello World!""
-
-    # wave 5
-    # add condition attribute
-    # add instance method condition_description
 class Item:
     def __init__(self, category="", condition=0):
         self.category = category
@@ -17,6 +7,7 @@ class Item:
         return "Hello World!"
     
     def condition_description(self):
+        '''returns string description of item condition'''
         if self.condition == 0:
             description = "Trash"
         elif self.condition == 1:
