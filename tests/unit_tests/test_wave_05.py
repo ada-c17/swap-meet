@@ -3,25 +3,29 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
-@pytest.mark.skip
+# Test 19
+#@pytest.mark.skip
 def test_clothing_has_default_category_and_to_str():
     cloth = Clothing()
     assert cloth.category == "Clothing"
     assert str(cloth) == "The finest clothing you could wear."
 
-@pytest.mark.skip
+# Test 20
+#@pytest.mark.skip
 def test_decor_has_default_category_and_to_str():
     decor = Decor()
     assert decor.category == "Decor"
     assert str(decor) == "Something to decorate your space."
 
-@pytest.mark.skip
+# Test 21
+#@pytest.mark.skip
 def test_electronics_has_default_category_and_to_str():
     electronics = Electronics()
     assert electronics.category == "Electronics"
     assert str(electronics) == "A gadget full of buttons and secrets."
 
-@pytest.mark.skip
+# Test 22
+#@pytest.mark.skip
 def test_items_have_condition_as_float():
     items = [
         Clothing(condition=3.5),
@@ -31,7 +35,8 @@ def test_items_have_condition_as_float():
     for item in items:
         assert item.condition == pytest.approx(3.5)
 
-@pytest.mark.skip
+# Test 23
+#@pytest.mark.skip
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
     items = [
         Clothing(condition=5),
@@ -52,3 +57,20 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+
+                ####################################
+# Test 43(last)- Check for other condition values to obtain full code coverage
+#@pytest.mark.skip
+def test_condition_description_returns_correct_description_for_that_value():
+    items = [
+        Decor(condition=0),
+        Clothing(condition=1),
+        Electronics(condition=2),
+        Clothing(condition=3),
+        Decor(condition=4),
+        Electronics(condition=5)
+    ]
+    
+    for item in items:
+        assert item.condition_description()
