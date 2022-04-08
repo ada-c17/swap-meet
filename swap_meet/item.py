@@ -5,23 +5,18 @@ CONDITION_DESCRIPTION = {0:"One person's trash is another's treasure.",
 4:"Stored for ages and finally seeing the light.",
 5:"The tag is still on it."}
 
-
-
-# from swap_meet.vendor import Vendor
-
-
 class Item:
 
     def __init__(self, category = "", condition = 0):
             self.category = category
             self.condition = condition
 
+
     def __str__(self):
         return "Hello World!"
 
 
     def condition_description(self):
-        # condition = 0
         for key, value in CONDITION_DESCRIPTION.items():
             if self.condition is key:
                 return value
