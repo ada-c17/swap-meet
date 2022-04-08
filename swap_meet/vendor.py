@@ -87,8 +87,6 @@ class Vendor:
         """
         Removes item from inventory list.
 
-        If the item is not in list, then the list is not changed and return is None.
-
         Parameters
         ----------
         item : str
@@ -108,8 +106,6 @@ class Vendor:
         """
         Creates a list of items from inventory whose category attributes match the input category. 
 
-        If no items from inventory are of the category passed as an argument, returns empty list.
-
         Parameters
         ----------
         category : str
@@ -124,9 +120,7 @@ class Vendor:
 
     def swap_items(self, vendor, my_item, vendor_item):
         """
-        Removes and appends 2nd and 3rd parameters from my inventory respectively.
-
-        Appends and removes 2nd and 3rd parameters from vendor's inventory respectively.
+        Removes and appends 2nd and 3rd parameters from my inventory respectively. Appends and removes 2nd and 3rd parameters from vendor's inventory respectively.
 
         Parameters
         -------
@@ -150,9 +144,7 @@ class Vendor:
 
     def swap_first_item(self, vendor):
         """
-        Removes and appends first item from vendor and first item vendor_to_swap_with from my inventory respectively.
-
-        Removes and appends first item from vendor_to_swap_with and first item vendor from vendor's inventory respectively.
+        Removes and appends first item from vendor and first item vendor_to_swap_with from my inventory respectively.Removes and appends first item from vendor_to_swap_with and first item vendor from vendor's inventory respectively.
 
         Parameters
         -------
@@ -170,7 +162,7 @@ class Vendor:
 
     def get_best_by_category(self, category):
         """
-        Given the category, return the item with the best condition
+        Given the category, return the item with the best condition.
 
         Parameters
         -------
@@ -191,9 +183,7 @@ class Vendor:
 
     def swap_best_by_category(self,other, my_priority,their_priority):
         """
-        Given the other vendor, your item category preference, and the vendor's item category preference, swap items that are the best in each category. Return truthy
-
-        If you or the vendor does not have an item that matches the other's priority, do not swap. Return falsey
+        Given the other vendor, your item category preference, and the vendor's item category preference, swap items that are the best in each category. 
 
         Parameters
         -------
@@ -219,8 +209,7 @@ class Vendor:
 
     def swap_by_newest(self, other):
         """
-        swaps my newest item with other vendor's newest item
-        returns true is swap is successful
+        Swaps my newest item with other vendor's newest item.
 
         Parameters
         -------

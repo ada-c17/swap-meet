@@ -12,7 +12,7 @@ print(string_return)
 
 print(repr(i))
 
-shirt = Clothing()
+shirt = Clothing(4)
 
 print(str(shirt))
 print(repr(shirt))
