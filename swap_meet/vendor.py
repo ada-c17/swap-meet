@@ -35,11 +35,11 @@ class Vendor:
         #remove self's item from self's inventory
         self.remove(selfs_item)
         #add self's item to other's inventory
-        other_vendor.inventory.append(selfs_item)
+        other_vendor.add(selfs_item)
         #remove other's item from other's inventory
         other_vendor.remove(others_item)
         #add other's item to self's inventory
-        self.inventory.append(others_item)
+        self.add(others_item)
         return True
 
     def swap_items(self, other_vendor, selfs_item, others_item):
