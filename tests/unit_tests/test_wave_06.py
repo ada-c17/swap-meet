@@ -261,7 +261,7 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert item_d and item_e and item_f in jesse.inventory
     assert item_a and item_b and item_c in tai.inventory
 
-def test_swap_swap_by_newest_different_ages():
+def test_swap_by_newest_different_ages_returns_true_and_makes_the_swap_correctly():
     # Arrange
     item_a = Decor(condition=2.0, age=3.0)
     item_b = Electronics(condition=4.0, age=5.0)
@@ -289,37 +289,7 @@ def test_swap_swap_by_newest_different_ages():
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3
 
-def test_swap_by_newest_one_all_same_age():
-    # Arrange
-    item_a = Decor(condition=2.0, age=3.0)
-    item_b = Electronics(condition=4.0, age=3.0)
-    item_c = Decor(condition=4.0, age=3.0)
-    tai = Vendor(
-        inventory=[item_c, item_b, item_a]
-    )
-
-    item_d = Clothing(condition=2.0, age=8.0)
-    item_e = Decor(condition=4.0, age=4.0)
-    item_f = Clothing(condition=4.0, age=0.0)
-    jesse = Vendor(
-        inventory=[item_f, item_e, item_d]
-    )
-
-    # Act
-    result = tai.swap_by_newest(
-        other=jesse,
-    )
-
-    # Assert 
-    assert result 
-    assert item_a or item_b or item_c in jesse.inventory
-    assert item_a or item_b or item_c not in tai.inventory
-    assert item_f in tai.inventory 
-    assert len(jesse.inventory) == 3
-    assert len(tai.inventory) == 3
-
-
-def test_swap_by_newest_both_all_same_age_swaps_first_instances():
+def test_swap_by_newest_both_vendors_have_all_their_items_as_same_age_swaps_first_instances():
     # Arrange
     item_a = Decor(condition=2.0, age=3.0)
     item_b = Electronics(condition=4.0, age=3.0)
@@ -349,6 +319,36 @@ def test_swap_by_newest_both_all_same_age_swaps_first_instances():
 
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3    
+
+# Commented out this test because it might be redundant - code coverage is still 100% without it
+# def test_swap_by_newest_one_vendor_has_all_same_age_items_and_swap_is_still_made():
+#     # Arrange
+#     item_a = Decor(condition=2.0, age=3.0)
+#     item_b = Electronics(condition=4.0, age=3.0)
+#     item_c = Decor(condition=4.0, age=3.0)
+#     tai = Vendor(
+#         inventory=[item_a, item_b, item_c]
+#     )
+
+#     item_d = Clothing(condition=2.0, age=8.0)
+#     item_e = Decor(condition=4.0, age=4.0)
+#     item_f = Clothing(condition=4.0, age=0.0)
+#     jesse = Vendor(
+#         inventory=[item_f, item_e, item_d]
+#     )
+
+#     # Act
+#     result = tai.swap_by_newest(
+#         other=jesse,
+#     )
+
+#     # Assert 
+#     assert result 
+#     assert item_a in jesse.inventory
+#     assert item_a not in tai.inventory
+#     assert item_f in tai.inventory 
+#     assert len(jesse.inventory) == 3
+#     assert len(tai.inventory) == 3
 
 def test_swap_by_newest_returns_false_if_either_inventory_is_empty():
     # Arrange
