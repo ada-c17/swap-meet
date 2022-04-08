@@ -1,14 +1,19 @@
 class Item:
-    def __init__(self, category=None, condition = 0):
+    
+    '''Item class is instantiated'''
+    def __init__(self, category=None, condition = 0, age = 0):
         if not category:
             category = ""
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         return "Hello World!"
 
     def condition_description(self):
+        '''Function returns condition description based on quantitative value assigned to condition'''
+        
         if self.condition == 0:
             return f"terrible"
         if self.condition == 1:
