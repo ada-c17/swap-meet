@@ -7,7 +7,7 @@ class Vendor:
 
     Attributes
     - - - - - -
-    inventory: default (None) or empty list
+    inventory: default (None) -> empty list
 
     Methods
     -------
@@ -15,6 +15,7 @@ class Vendor:
     remove()
     get_by_category()
     swap_items()
+    swap_first_item()
     get_best_by_category()
     swap_best_by_category()
     '''
@@ -102,7 +103,10 @@ class Vendor:
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
-        input- other(vendor class), my_priority (category->string), ""
+        Input: other(instance of vendor), my_priority (category ->string), their_priority (category->string),
+        swaps highest condition item from inventory of vendor and other based on priority category, 
+        returns True.  If category not in inventories, return False.
+        
         '''
         best_item_self = self.get_best_by_category(their_priority)
         best_item_other = other.get_best_by_category(my_priority)
