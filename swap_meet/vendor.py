@@ -55,7 +55,7 @@ class Vendor:
         for x in range(len(self.inventory)):
             if category  is self.inventory[x].category:
                 counter_category += 1
-        if counter_category is 0:
+        if counter_category == 0:
             return None
         for x in range(len(self.inventory)):
             if self.inventory[x].category is category:
