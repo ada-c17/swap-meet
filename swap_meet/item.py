@@ -1,5 +1,8 @@
 class Item:
-    def __init__(self, category="",condition=0, age=0): # str and int are immutable, so okay to use as default parameter
+    """
+    Parent class that shares attributes and behaviors with clothing, decor, and electronics classes
+    """
+    def __init__(self, category="",condition=0, age=0): 
         self.category = category
         self.condition = condition
         self.age = age 
