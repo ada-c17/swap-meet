@@ -24,8 +24,7 @@ class Vendor:
 
     def swap_items(self, swap_vendor, my_item, their_item):
         """
-        - removes my_item from this Vendor's inventory
-        - removes their_item from the other Vendor's inventory
+        - removes my_item from this Vendor's inventory, removes their_item from the other Vendor's inventory
         - returns True if both inventories have the respective items
         - returns False if one of the items is not contained in respective inventories
         """
@@ -75,5 +74,29 @@ class Vendor:
 
         if my_best_swap and their_best_swap:
             self.swap_items(other, my_best_swap, their_best_swap)
+            return True
+        return False
+
+    def get_newest_by_category(self, category_str):
+        """optional enhancement: helper function to get newest item by category to pass to swap_by_newest"""
+        category_items = self.get_by_category(category_str)
+        if len(category_items) > 1:
+            newest_item = category_items[0]
+        else: 
+            return None
+        
+        for item in category_items:
+            if item.age < newest_item.age:
+                newest_item = item
+        
+        return newest_item
+
+    def swap_newest_by_category(self, other, my_priority, their_priority):
+        """optional enhancement: swaps newest item of certain categories with another Vendor"""
+        my_newest_swap = self.get_newest_by_category(their_priority)
+        their_newest_swap = other.get_newest_by_category(my_priority)
+
+        if my_newest_swap and their_newest_swap:
+            self.swap_items(other, my_newest_swap, their_newest_swap)
             return True
         return False
