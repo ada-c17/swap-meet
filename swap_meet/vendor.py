@@ -44,10 +44,10 @@ class Vendor:
         
         Parameters
         ----------
-            inventory : list  (optional)
-                Value assigned to the object's 'inventory' attribute. If no 
-                value is passed in, or if the input value is not a list, 
-                defaults to assigning an empty list to 'inventory' attribute.
+        inventory : list  (optional)
+            Value assigned to the object's 'inventory' attribute. If no value
+            is passed in, or if the input value is not a list, defaults to
+            assigning an empty list to 'inventory' attribute.
         '''
 
         if type(inventory) == list:
@@ -69,9 +69,9 @@ class Vendor:
 
         Parameters
         ----------
-            add_value : Item | [list | tuple | set]
-                The Item object(s) to be added to the inventory. Multiple
-                Items must be passed in as either a list, a tuple, or a set.
+        add_value : Item | [list | tuple | set]
+            The Item object(s) to be added to the inventory. Multiple Item
+            objects must be passed in as either a list, a tuple, or a set.
         '''
 
         if hasattr(add_value, '__iter__') and type(add_value) is not str:
@@ -108,9 +108,9 @@ class Vendor:
 
         Parameters
         ----------
-            remove_value : Item | [list | tuple | set]
-                The Item object(s) to be removed from the inventory. Multiple
-                Items must be passed in as either a list, a tuple, or a set.
+        remove_value : Item | [list | tuple | set]
+            The Item object(s) to be removed from the inventory. Multiple Item
+            objects must be passed in as either a list, a tuple, or a set.
         '''
 
         if hasattr(remove_value, '__iter__') and type(remove_value) is not str:
@@ -137,8 +137,8 @@ class Vendor:
         
         Parameters
         ----------
-            category : str
-                The category of item by which to filter inventory.
+        category : str
+            The category of item by which to filter inventory.
         '''
 
         return [item for item in self.inventory 
@@ -152,13 +152,13 @@ class Vendor:
 
         Parameters
         ----------
-            other_vendor : Vendor
-                The other participant in the swap.
-            own_item : Item
-            swap_item : Item
-                The items to be swapped. 'own_item' must be present in the
-                local 'inventory' and 'swap_item' must be present in the 
-                'inventory' attribute of the 'other_vendor' object. 
+        other_vendor : Vendor
+            The other participant in the swap.
+        own_item : Item
+        swap_item : Item
+            The items to be swapped. 'own_item' must be present in the local
+            'inventory' and 'swap_item' must be present in the 'inventory'
+            attribute of the 'other_vendor' object. 
         '''
 
         try:
@@ -179,8 +179,8 @@ class Vendor:
 
         Parameters
         ----------
-            other_vendor : Vendor
-                The other participant in the swap.
+        other_vendor : Vendor
+            The other participant in the swap.
         '''
 
         if not (self.inventory and other_vendor.inventory):
@@ -195,8 +195,8 @@ class Vendor:
         
         Parameters
         ----------
-            category : str
-                The value by which to filter items in the inventory. 
+        category : str
+            The value by which to filter items in the inventory. 
         '''
 
         items = self.get_by_category(category)
@@ -218,11 +218,11 @@ class Vendor:
 
         Parameters
         ----------
-            other : Vendor
-                The other participant in the swap.
-            my_priority : str
-            their_priority : str
-                The two categories by which to filter items
+        other : Vendor
+            The other participant in the swap.
+        my_priority : str
+        their_priority : str
+            The two categories by which to filter items
         '''
         
         own_item = self.get_best_by_category(their_priority)
