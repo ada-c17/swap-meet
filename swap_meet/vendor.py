@@ -47,11 +47,12 @@ class Vendor:
             if item.category == category:
                 category_list.append(item)
 
+        #category_list = [item for item in self.inventory if item.category == category]
         return category_list
 
 
     def swap_items(self, other, my_item, their_item):
-        """Method to passed items of two Vendor Classes"""
+        """Method to pass items of two Vendor Classes"""
         if (not my_item in self.inventory 
             or not their_item in other.inventory):
             return False
@@ -82,11 +83,12 @@ class Vendor:
             return None
         
         best = category_list[0]
-        print(best)
 
         for item in category_list:
             if item.condition > best.condition:
                 best = item
+
+        #unsure if this can be done in one line
 
         return best
         
