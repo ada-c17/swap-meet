@@ -176,7 +176,7 @@ class Vendor:
         inventory_by_category = self.get_by_category(category)
 
         try:
-            return max(inventory_by_category, key = lambda item: item.condition) #max item of sorted items list where we compare number values from the item's condition attribute retreived via lambda function
+            return max(inventory_by_category, key = lambda item: item.condition) #max item of sorted items list where we compare number values from the item's condition attribute retrieved via lambda function
         except ValueError:
             return None
 
