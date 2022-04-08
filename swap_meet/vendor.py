@@ -1,15 +1,18 @@
-# Wave 1
 from curses import beep
 from nis import cat
 from swap_meet.item import Item
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
+
 class Vendor:
+    """Vendor has a relationship with Item class called composition."""
     
+
     # Wave 1
     def __init__(self, inventory = None):
         """Inventory is keyword argument that optionally pass in."""
+        
         # assign empty list to inventory when the if statement is falsy. 
         # Otherwise, assign inventory as value of object's inventory.
         if not inventory:
@@ -18,7 +21,8 @@ class Vendor:
         
         
     def add(self, item):
-        """Adding new item into inventory and returns the added item."""
+        """Adding new item into inventory and returns that item."""
+        
         # make sure input is not empty before adding
         if item:
             self.inventory.append(item)
@@ -26,7 +30,8 @@ class Vendor:
         
 
     def remove(self, item):
-        """Removing item from inventory if it is matching the paramenter pass in and returns that removed item."""
+        """Removing item from inventory if it is matching requirement and returns that removed item."""
+        
         # make sure input is not empty before removing
         if item and item in self.inventory:
             self.inventory.remove(item)
@@ -36,7 +41,11 @@ class Vendor:
 
     # Wave 2
     def get_by_category(self, category):
-        """Returnning list of items if matching the conditions, otherwise, return []"""
+        """
+        - Adding item in a list if it matches category then return that list of item,
+        - Otherwise, return []
+        """
+        
         items_list = []
         # adding item into the new list if the inventory is not empty and matches category
         if category and len(self.inventory) > 0:
@@ -48,34 +57,50 @@ class Vendor:
 
 
     # Wave 3
-    def swap_items(self, vendor, my_item, their_item):
-        """Returning True if item been swapped between both inventories, otherwise, return False"""
-        # make all inputs are not empty before swapping
-        if len(self.inventory) > 0 and len(vendor.inventory) > 0:
+    def swap_items(self, other_vendor, my_item, their_item):
+        """
+        Swapping item based on the priority:
+            - In my inventory, removing my_item and adding their_item
+            - In other inventory, removing their_item and adding my_item
+            - then return True if it been swapped, otherwise return False
+        """
+        
+        # checking validation to make sure all inputs are not empty before swapping
+        if len(self.inventory) > 0 and len(other_vendor.inventory) > 0:
             if my_item and my_item in self.inventory:
-                if their_item and their_item in vendor.inventory:
+                if their_item and their_item in other_vendor.inventory:
                     self.inventory.remove(my_item)
                     self.inventory.append(their_item)
-                    vendor.inventory.append(my_item)
-                    vendor.inventory.remove(their_item)
+                    other_vendor.inventory.append(my_item)
+                    other_vendor.inventory.remove(their_item)
                     return True
         return False
             
 
     # Wave 4
-    def swap_first_item(self, vendor):
-        """Returnning True if the first item of both inventories been swapped, otherwise, return False."""
-        # make sure both inventories are not empty before swapping
-        if len(self.inventory) > 0 and len(vendor.inventory) > 0:
-            self.inventory[0], vendor.inventory[0] = vendor.inventory[0], self.inventory[0]
+    def swap_first_item(self, other_vendor):
+        """ 
+        Swapping the first item of both inventory:
+            - If the first item of both inventories been swapped then return True,
+            - Otherwise, return False.
+        """
+        
+        # checking validation to make sure both inventories are not empty before swapping
+        if len(self.inventory) > 0 and len(other_vendor.inventory) > 0:
+            self.inventory[0], other_vendor.inventory[0] = other_vendor.inventory[0], self.inventory[0]
             return True
         return False
 
 
     # Wave 6
     def get_best_by_category(self, category):
-        """Returning best item if matching requirements, otherwise, return False"""
-        # if inventory and category are not empty then find the highest condition that is matching category for best item
+        """ 
+        Findding best item by category:
+            - If it is highest condition and matches category then return that item
+            - Otherwise, return None
+        """
+        
+        # validating the input and finding the highest condition that matches category for best item
         if category and len(self.inventory) > 0:
             for item in self.inventory:
                 if (isinstance(item.condition, int) or isinstance(item.condition, float)) and item.category == category :
@@ -85,19 +110,28 @@ class Vendor:
 
     
     def swap_best_by_category(self, other, my_priority, their_priority ):
-        """Swapping item by best item and returning invoked function swap_items() at the end."""
-        # invoking method get_best_by_category() to find my best item and other best item base on priority.
+        """
+        Swapping by best item:
+            - invoke function get_best_by_category() to find best item
+            - invoked function swap_items() then it return True if item been swapped, otherwise, return False.
+        """
+        
+        # find my best item and other best item base on each priority.
         my_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
-    
-        # invoking method swap_item() to swap item and it will return True or False
+        # return True or False
         return self.swap_items(other, my_best_item, other_best_item)
         
 
     # Optional Enhancements
     def get_newest_by_category(self, category):
-        """Returning newest item if matching requirements, otherwise, return False"""
-        # if inventory and category are not empty then find the youngest age that is matching category for newest item
+        """ 
+        Findding newest item by category:
+            - If it is youngest age and matches category then return that item
+            - Otherwise, return None
+        """
+        
+        # validate input and find min age that matches category for newest item
         if category and len(self.inventory) > 0:
             for item in self.inventory:
                 if item.category == category and isinstance(item.age, int):
@@ -107,13 +141,16 @@ class Vendor:
 
 
     def swap_newest_by_category(self, other, my_priority, their_priority):
-        """Swapping by newest item of category and returnning invoked function swap_items() at the end."""
+        """
+        Swapping by newest item:
+            - invoke function get_newest_by_category() to find newest item
+            - invoked function swap_items() then it return True if item been swapped, otherwise, return False.
+        """
         
-        # invoking method get_newest_by_category() to find my newest item and other newest item base on priority.
+        # find my newest item and other newest item base on each priority.
         my_newest_item = self.get_newest_by_category(their_priority)
         other_newest_item = other.get_newest_by_category(my_priority)
-
-        # invoking method swap_item() to swap item then return it
+        # return True or False
         return self.swap_items(other, my_newest_item, other_newest_item)
         
 
