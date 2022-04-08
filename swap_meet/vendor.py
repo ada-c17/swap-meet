@@ -33,19 +33,19 @@ class Vendor:
             return False
         if my_item == their_item:
             return True
-        another_vendor.inventory.append(my_item)
-        self.inventory.append(their_item)
-        self.inventory.remove(my_item)
-        another_vendor.inventory.remove(their_item)
+        another_vendor.add(my_item)
+        self.add(their_item)
+        self.remove(my_item)
+        another_vendor.remove(their_item)
         return True
             
     def swap_first_item(self, friend):
         if self.inventory == [] or friend.inventory == []:
             return False
-        self.inventory.append(friend.inventory[0])
-        friend.inventory.append(self.inventory[0])
-        self.inventory.remove(self.inventory[0])
-        friend.inventory.remove(friend.inventory[0])
+        self.add(friend.inventory[0])
+        friend.add(self.inventory[0])
+        self.remove(self.inventory[0])
+        friend.remove(friend.inventory[0])
         return True
 
     def get_best_by_category(self, category):
