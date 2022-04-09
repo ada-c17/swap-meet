@@ -78,6 +78,7 @@ class Vendor:
 
 
     def swap_best_by_category(self, other, my_priority, their_priority):
+        # created variables for self and other to use the get_best_by_category method
         their_desired_item = self.get_best_by_category(their_priority)
         my_desired_item = other.get_best_by_category(my_priority)
         
