@@ -1,6 +1,6 @@
 class Vendor:
     def __init__(self, inventory = None):
-        if not inventory:
+        if not inventory: # or if inventory is None:
             inventory = []
         self.inventory = inventory
 
@@ -34,15 +34,20 @@ class Vendor:
 
 
     def swap_first_item(self,vendor_friend):
+        
         if not self.inventory or not vendor_friend.inventory:
             return False
 
-        my_first_item = self.inventory.pop(0)
-        vendor_friend.add(my_first_item)
-        friend_first_item = vendor_friend.inventory.pop(0)
-        self.add(friend_first_item)
+        return self.swap_items(vendor_friend, self.inventory[0], vendor_friend.inventory[0]) 
+        
+        #Other Option using pop
+        # if not self.inventory or not vendor_friend.inventory:
+        #     return False
+        # my_first_item = self.inventory.pop(0)
+        # vendor_friend.add(my_first_item)
+        # friend_first_item = vendor_friend.inventory.pop(0)
+        # self.add(friend_first_item)
 
-        return True
 
     def get_best_by_category(self, category):
         '''get the item with the best condition
@@ -75,7 +80,22 @@ class Vendor:
         #     return True
         # return False
 
+    #Optional Enhancements
+
+    def get_newest_item(self):
+        current_newest = self.inventory[0]
+        for item in self.inventory:
+            if item.age < current_newest.age:
+                current_newest = item
+        return current_newest
+
+
+    def swap_by_newest(self, vendor_friend):
+        newest_item = self.get_newest_item()
+        friend_newest_item = vendor_friend.get_newest_item()
+        return self.swap_items(vendor_friend, newest_item, friend_newest_item)
         
+
 
 
 

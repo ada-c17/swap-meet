@@ -275,3 +275,20 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert item_d in jesse.inventory
     assert item_e in jesse.inventory
     assert item_f in jesse.inventory
+
+
+def test_item_condition_description():
+    # Arrange
+    item_a = Decor(condition=1.0)
+    item_b = Electronics(condition=2.0)
+    item_c = Decor(condition=3.0)
+    item_d = Decor(condition=4.0)
+    item_e= Decor(condition=5.0)
+
+    assert item_a.condition_description() == "Heavily used"
+    assert item_b.condition_description() == "Used"
+    assert item_c.condition_description() == "Acceptable"
+    assert item_d.condition_description() == "Very good"
+    assert item_e.condition_description() == "Brand new"
+
+        
