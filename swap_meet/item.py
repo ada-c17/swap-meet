@@ -7,15 +7,13 @@ class Item:
         return "Hello World!"
 
     def condition_description(self):
-        if not self.condition:
-            return "This item has been heavily used."
-        elif self.condition == 1:
-            return "This item has been moderately used."
-        elif self.condition == 2:
-            return "This item has been partially used."
-        elif self.condition == 3:
-            return "This item is in good condition."
-        elif self.condition == 4:
-            return "This item is in great condition."
-        elif self.condition == 5:
-            return "This item is brand new!"
+        condition_chart = {
+            0: "This item has been heavily used.",
+            1: "This item has been moderately used.",
+            2: "This item has been partially used.",
+            3: "This item is in good condition.",
+            4: "This item is in great condition.",
+            5: "This item is brand new"
+        }
+
+        return condition_chart[self.condition]

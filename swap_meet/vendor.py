@@ -1,8 +1,6 @@
 class Vendor:
     def __init__(self, inventory=None):
-        if not inventory:
-            inventory = []
-        self.inventory = inventory
+        self.inventory = [] if not inventory else inventory
     
     def add(self, item):
         """Adds an item to the instance's inventory and returns it."""
@@ -17,17 +15,20 @@ class Vendor:
         item (str): Inventory item to be removed.
 
         Returns:
-        bool: True if item is inventory, False otherwise.
+        Instance or bool: False if item is not in inventory, returns item 
+        otherwise.
         """
 
-        if item in self.inventory:
-            self.inventory.remove(item)
-            return item
-        return False
+        if item not in self.inventory:
+            return False
+
+        self.inventory.remove(item)
+        return item
 
     def get_by_category(self, specific_category):
         """
-        Adds the items in the instance's inventory that are of a specific category.
+        Collects the items in the instance's inventory that are of a specific 
+        category.
 
         Parameters: 
         specific_category (str): A category.
@@ -36,11 +37,8 @@ class Vendor:
         category_matches (list): Items in the inventory matching the category.
         """
 
-        category_matches = []
-        for item in self.inventory:
-            if item.category == specific_category:
-                category_matches.append(item)
-        return category_matches
+        return [item for item in self.inventory 
+        if item.category == specific_category]
 
     def swap_items(self, friend, my_item, their_item):
         """
@@ -52,64 +50,69 @@ class Vendor:
         their_item (str): Category friends wants to receive.
 
         Returns:
-        (bool): True if swapping occurs, False if not.
+        (bool): False if swapping does not occurs, True otherwise.
         """
 
-        if my_item in self.inventory and their_item in friend.inventory:
-            friend.inventory.append(my_item)
-            self.inventory.remove(my_item)
+        if my_item not in self.inventory or their_item not in friend.inventory:
+            return False
+        
+        friend.inventory.append(my_item)
+        self.inventory.remove(my_item)
             
-            self.inventory.append(their_item)
-            friend.inventory.remove(their_item)
-            return True
-        return False
+        self.inventory.append(their_item)
+        friend.inventory.remove(their_item)
+        return True
     
     def swap_first_item(self, friend):
         '''
-        Removes first item from a vendor's inventory and a friend's inventory.
+        Swaps the first item from a vendor's inventory and a friend's inventory.
 
         Parameter:
         friend (class): An instance of another Vendor.
 
         Returns: 
-        (bool): True is first items the Vendor and the friend swap items, False otherwise.
+        (bool): False if an item does not exist in the Vendor 
+        or the friend's inventory, 
+        True otherwise.
         '''
-        if self.inventory and friend.inventory:
-            friend.inventory.append(self.inventory[0])
-            self.inventory.remove(self.inventory[0])
-
-            self.inventory.append(friend.inventory[0])
-            friend.inventory.remove(friend.inventory[0])
-            return True
-        return False
+        if not self.inventory or not friend.inventory:
+            return False
+        
+        self.inventory[0], friend.inventory[0] = friend.inventory[0], self.inventory[0]
+        return True
     
     def get_best_by_category(self, specific_category):
         '''
         Returns the item with the best condition in a specific category.
 
         Parameters:
-        specific_category (str): Category.
+        specific_category (str): Represents a category.
 
         Returns: 
-        (instance or bool): Returns instance of an item in a specfic category's best condition or None if not found.
+        (instance or bool): Returns the vendor's instance of an item 
+        in a specfic category's best condition or None if not found.
         '''
         best_by_category = None
         highest_condition = 0
         
         for item in self.inventory:
-            if item.category == specific_category and item.condition > highest_condition:
+            if (item.category == specific_category and 
+                item.condition > highest_condition):
                     best_by_category = item
                     highest_condition = item.condition
+
         return best_by_category
         
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
-        Determines if vendor's item priority and other's item priority exists and swaps items.
+        Determines if vendor's item priority and other's item 
+        priority exists and swaps items.
 
         Parameters: 
         other (class): The other Vendor instance.
         my_priority (str): The category that the Vendor wants to receive.
-        their_priority (str): The category that the other party wants to receive.
+        their_priority (str): The category that the other party wants to 
+        receive.
 
         Returns: 
         (bool): True if items are swapped, False is not.
@@ -121,5 +124,4 @@ class Vendor:
         if not their_best_item or not my_best_item:
             return False
         
-        swapped_items = self.swap_items(other, their_best_item, my_best_item)
-        return swapped_items
+        return self.swap_items(other, their_best_item, my_best_item)

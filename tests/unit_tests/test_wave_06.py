@@ -225,6 +225,7 @@ def test_swap_best_by_category_no_match_is_false():
     # Assertions should check:
     # - That result is falsy
     assert not result
+    assert result == False
     # - That tai and jesse's inventories are the correct length
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
@@ -263,6 +264,7 @@ def test_swap_best_by_category_no_other_match_is_false():
     # Assertions should check:
     # - That result is falsy
     assert not result
+    assert result == False
     # - That tai and jesse's inventories are the correct length
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
