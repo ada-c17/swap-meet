@@ -4,26 +4,78 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
+### OG test code:
+# def test_age_condition_same_across_classes():
+#     items = [
+#         Clothing(age=5),
+#         Decor(age=5),
+#         Electronics(age=5)
+#     ]
+#     five_age_description = items[0].age_description()
+#     assert isinstance(five_age_description, str)
+#     for item in items:
+#         assert item.age_description() == five_age_description
+
+#     items[0].age = 1
+#     one_age_description = items[0].age_description()
+#     assert isinstance(one_age_description, str)
+
+#     for item in items:
+#         item.age = 1
+#         assert item.age_description() == one_age_description
+
+#     assert one_age_description != five_age_description
+
+### Refactored test plus additional tests:
+
 def test_age_condition_same_across_classes():
     items = [
         Clothing(age=5),
         Decor(age=5),
         Electronics(age=5)
     ]
-    five_age_description = items[0].age_description()
-    assert isinstance(five_age_description, str)
-    for item in items:
-        assert item.age_description() == five_age_description
 
-    items[0].age = 1
-    one_age_description = items[0].age_description()
-    assert isinstance(one_age_description, str)
+    clothing_age_description = items[0].age_description()
 
-    for item in items:
-        item.age = 1
-        assert item.age_description() == one_age_description
+    decor_age_description = items[1].age_description()
 
-    assert one_age_description != five_age_description
+    electronics_age_description = items[2].age_description()
+
+    assert type(clothing_age_description) and type(decor_age_description) and type(electronics_age_description) == str
+    assert clothing_age_description and decor_age_description == electronics_age_description
+
+def test_age_description_expected_result():
+    items = [
+        Clothing(age=1),
+        Decor(age=.5),
+        Electronics(age=10),
+        Clothing(age=100),
+        Decor(age=0)
+    ]
+
+    one_year_old = items[0].age_description()
+
+    less_than_one_year_old = items[1].age_description()
+
+    ten_years_old = items[2].age_description()
+
+    one_hundred_years_old = items[3].age_description()
+
+    brand_new_item = items[4].age_description()
+
+    assert one_year_old == "This item is 1 year old."
+    assert less_than_one_year_old == "This item is less than 1 year old."
+    assert ten_years_old == "This item is 10 years old."
+    assert one_hundred_years_old == "This item is 100 years old."
+    assert brand_new_item == "This item is brand new."
+
+def test_none_age_gives_unknown_condition_description():
+    item = Clothing(condition=3)
+
+    none_age_description = item.age_description()
+
+    assert none_age_description == "The age of this item is unknown. Please judge it by its condition."
+
 
 # @pytest.mark.skip
 def test_get_newest_item():

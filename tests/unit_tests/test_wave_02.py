@@ -34,7 +34,10 @@ def test_get_no_matching_items_by_category():
 
     items = vendor.get_by_category("electronics")
 
-    assert len(items) == 0
+    ### Refactoring
+    ### removed below assert as it checks the same thing as items == []
+    # assert len(items) == 0
     assert item_a and item_b and item_c not in items
     assert items == []
-    
+    ### add check that vendor inventory not changed
+    assert item_a and item_b and item_c in vendor.inventory   
