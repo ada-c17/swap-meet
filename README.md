@@ -130,7 +130,6 @@ In Wave 5 we will create three additional modules with three additional classes:
   - Has an attribute `category` that is `"Decor"`
   - Its stringify method returns `"Something to decorate your space."`
 - `Electronics`
-
   - Has an attribute `category` that is `"Electronics"`
   - Its stringify method returns `"A gadget full of buttons and secrets."`
 
