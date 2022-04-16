@@ -49,9 +49,14 @@ class Vendor:
     """
 
     def __init__(self, inventory = None):
-        if inventory is None:
-            inventory = []
-        self.inventory = inventory
+        ### OG code
+        # if inventory is None:
+        #     inventory = []
+        # self.inventory = inventory
+        #### Refactored code:
+        # if inventory parameter is anything but None, assign to self.inventory, else (ie if None) assign empty list
+        # retains ability to pass in empty list for inventory and not rewrite it 
+        self.inventory = inventory if inventory is not None else []
     
     def add(self, new_item):
         """Add provided item to inventory"""
@@ -64,17 +69,21 @@ class Vendor:
 
         if discarded_item not in self.inventory:
             return False
-        else: 
-            self.inventory.remove(discarded_item)
-            return discarded_item
+        ### Refactoring - remove else statements if else contains main logic of function
+        self.inventory.remove(discarded_item)
+        return discarded_item
     
     def get_by_category(self, category_string):
         """Return list of items from inventory of a certain category"""
 
+        ### OG code
         item_list = []
-        for item in self.inventory:
-            if item.category == category_string:
-                item_list.append(item)
+        # for item in self.inventory:
+        #     if item.category == category_string:
+        #         item_list.append(item)
+        ### Refactored to list comprehenstion
+        # [ return element for element in source_list if some_condition(element)]
+        item_list = [item for item in self.inventory if item.category == category_string]
         return item_list
     
     def swap_items(self, other, my_item, their_item):
@@ -83,14 +92,14 @@ class Vendor:
         # check valid input
         if my_item not in self.inventory or their_item not in other.inventory:
             return False
-        else:
-            # remove items from original inventory
-            self.remove(my_item)
-            other.remove(their_item)
-            # add items to new inventory 
-            self.add(their_item)
-            other.add(my_item)
-            return True
+        ### removed unnecessary else statement here
+        # remove items from original inventory
+        self.remove(my_item)
+        other.remove(their_item)
+        # add items to new inventory 
+        self.add(their_item)
+        other.add(my_item)
+        return True
     
     def swap_first_item(self, other):
         """Swaps first item in self and another vendor's inventory"""
@@ -98,11 +107,11 @@ class Vendor:
         # check valid input
         if not self.inventory or not other.inventory:
             return False
-        else:
-            my_first_item = self.inventory[0]
-            vendor_first_item = other.inventory[0]
-            self.swap_items(other, my_first_item, vendor_first_item)
-            return True
+        ### removed unnecessary else statement here
+        my_first_item = self.inventory[0]
+        vendor_first_item = other.inventory[0]
+        self.swap_items(other, my_first_item, vendor_first_item)
+        return True
     
     def get_best_by_category(self, desired_category):
         """Returns item in best condition within a certain category"""
@@ -129,17 +138,21 @@ class Vendor:
         # check validity
         if not my_desired_item or not their_desired_item:
             return False
-        else:
-            # swap items if valid
-            return self.swap_items(other, their_desired_item, my_desired_item)
+        ### removed unnecessary else statement here
+        # swap items if valid
+        return self.swap_items(other, their_desired_item, my_desired_item)
         
     def get_newest_item(self):
         """Returns newest item from inventory items with known ages"""
 
-        potential_items = []
-        for item in self.inventory:
-            if item.age:
-                potential_items.append(item)
+        ### OG Code:
+        # potential_items = []
+        # for item in self.inventory:
+        #     if item.age:
+        #         potential_items.append(item)
+        ### Refactored to list comprehension
+        potential_items = [item for item in self.inventory if item.age]
+
         if not potential_items:
             return None
         elif len(potential_items) == 1:
@@ -156,5 +169,5 @@ class Vendor:
 
         if not my_newest or not their_newest:
             return False
-        else:
-            return self.swap_items(other, my_newest, their_newest)
+        ### removed unnecessary else statement here
+        return self.swap_items(other, my_newest, their_newest)

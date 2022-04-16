@@ -60,7 +60,7 @@ class Item:
             return "The age of this item is unknown. Please judge it by its condition."
         elif self.age == 0:
             return "This item is brand new."
-        elif 0 < self.age < 1:
+        elif self.age < 1:
             return "This item is less than 1 year old."
         elif self.age == 1:
             return "This item is 1 year old."
