@@ -76,8 +76,8 @@ def test_swap_best_by_category():
     # - That the results is truthy
     assert result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
     assert item_a in tai.inventory
     assert item_b in tai.inventory
@@ -115,8 +115,8 @@ def test_swap_best_by_category_reordered():
     # - That result is truthy
     assert result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
     assert item_a in tai.inventory
     assert item_b in tai.inventory
@@ -204,8 +204,8 @@ def test_swap_best_by_category_no_match_is_false():
     # - That result is falsy
     assert not result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories
     assert item_a in tai.inventory
     assert item_b in tai.inventory
@@ -241,8 +241,8 @@ def test_swap_best_by_category_no_other_match_is_false():
     # - That result is falsy
     assert not result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories
     assert item_a in tai.inventory
     assert item_b in tai.inventory
@@ -278,8 +278,8 @@ def test_swap_by_newest():
     # - That the results is truthy
     assert result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
     assert item_a in tai.inventory
     assert item_b in tai.inventory
@@ -318,8 +318,8 @@ def test_swap_by_newest_reordered():
     # - That the results is truthy
     assert result
     # - That tai and jesse's inventories are the correct length
-    assert len(tai.inventory) is 3
-    assert len(jesse.inventory) is 3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     # - That all the correct items are in tai and jesse's inventories, including the items which were swapped from one vendor to the other
     assert item_a in tai.inventory
     assert item_b in tai.inventory
