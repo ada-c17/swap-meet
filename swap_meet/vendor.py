@@ -61,10 +61,7 @@ class Vendor:
                 list of strings representing items in inventory
         """
 
-        if not inventory:
-            self.inventory = []
-        else:
-            self.inventory = inventory
+        self.inventory = inventory if inventory else []
 
 
     def add(self, item):
