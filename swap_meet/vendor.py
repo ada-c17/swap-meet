@@ -130,14 +130,16 @@ class Vendor:
         self.inventory: object
         
         """
-        if my_item in self.inventory and vendor_item in vendor.inventory:
-                self.remove(my_item) 
-                self.add(vendor_item)            
-                vendor.remove(vendor_item)       
-                vendor.add(my_item) 
+        
+        if my_item not in self.inventory or vendor_item not in vendor.inventory:
+            return False
+        
+        self.remove(my_item) 
+        self.add(vendor_item)            
+        vendor.remove(vendor_item)       
+        vendor.add(my_item) 
 
-                return True
-
+        return True
 
     def swap_first_item(self, vendor):
         """
