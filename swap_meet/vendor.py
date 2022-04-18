@@ -155,7 +155,8 @@ class Vendor:
         boolean
         """
         try:
-            return self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
+            vendor.inventory[0], self.inventory[0] = self.inventory[0], vendor.inventory[0]
+            return True
         except IndexError:
             return False
 
