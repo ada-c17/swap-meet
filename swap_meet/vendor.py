@@ -93,12 +93,17 @@ class Vendor:
         if my_item not in self.inventory or their_item not in other.inventory:
             return False
         ### removed unnecessary else statement here
+        ### OG code pre: multi-variable reassignment
         # remove items from original inventory
-        self.remove(my_item)
-        other.remove(their_item)
-        # add items to new inventory 
-        self.add(their_item)
-        other.add(my_item)
+        # self.remove(my_item)
+        # other.remove(their_item)
+        # # add items to new inventory 
+        # self.add(their_item)
+        # other.add(my_item)
+        ### refactored using multi-variable reassignment
+        my_item_index = self.inventory.index(my_item)
+        their_item_index = other.inventory.index(their_item)
+        self.inventory[my_item_index], other.inventory[their_item_index] = other.inventory[their_item_index], self.inventory[my_item_index]
         return True
     
     def swap_first_item(self, other):
@@ -108,9 +113,12 @@ class Vendor:
         if not self.inventory or not other.inventory:
             return False
         ### removed unnecessary else statement here
-        my_first_item = self.inventory[0]
-        vendor_first_item = other.inventory[0]
-        self.swap_items(other, my_first_item, vendor_first_item)
+        ### OG code pre: multi-variable reassignment
+        # my_first_item = self.inventory[0]
+        # vendor_first_item = other.inventory[0]
+        # self.swap_items(other, my_first_item, vendor_first_item)
+        ### refactored using multi-variable reassigment
+        self.inventory[0], other.inventory[0] = other.inventory[0], self.inventory[0]
         return True
     
     def get_best_by_category(self, desired_category):
@@ -121,6 +129,7 @@ class Vendor:
         # account for no items of desired category or only one of desired category
         if not potential_items:
             return None
+        # if only one potential item it is by default the best of desired category
         elif len(potential_items) == 1:
             return potential_items[0]
         # calculate max item condition
@@ -155,6 +164,7 @@ class Vendor:
 
         if not potential_items:
             return None
+        # if only one potential item it is by default the newest
         elif len(potential_items) == 1:
             return potential_items[0]
         else:
