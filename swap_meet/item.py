@@ -17,5 +17,5 @@ class Item:
             5: "like new condition"
         }
 
-        condition = CONDITION_RATING[self.condition]
+        condition = CONDITION_RATING[int(self.condition)]
         return condition

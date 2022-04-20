@@ -32,6 +32,14 @@ def test_items_have_condition_as_float():
         assert item.condition == pytest.approx(3.5)
 
 # @pytest.mark.skip
+def test_condition_desc_works_with_float():
+    item = Clothing(condition=3.5)
+
+    result = item.condition_description()
+    
+    assert result == "good used condition"
+
+# @pytest.mark.skip
 def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type():
     items = [
         Clothing(condition=5),
