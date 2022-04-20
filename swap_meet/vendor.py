@@ -60,10 +60,10 @@ class Vendor:
     
     def get_newest_item(self):
         newest_item = None
-        age = 1000
         for item in self.inventory:
-            if item.age < age:
-                age = item.age
+            if newest_item == None:
+                newest_item = item
+            if item.age < newest_item.age:
                 newest_item = item
         return newest_item
 

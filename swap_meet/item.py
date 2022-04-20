@@ -16,4 +16,4 @@ class Item:
             4: "light blue color",
             5: "has weird smell"
             }
-        return description[self.condition]
+        return description[int(self.condition)]
