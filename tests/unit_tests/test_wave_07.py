@@ -41,8 +41,13 @@ def test_age_condition_same_across_classes():
 
     electronics_age_description = items[2].age_description()
 
-    assert type(clothing_age_description) and type(decor_age_description) and type(electronics_age_description) == str
-    assert clothing_age_description and decor_age_description == electronics_age_description
+    assert all(type(item) == str for item in [clothing_age_description, decor_age_description, electronics_age_description])
+    ### OG test code:
+    # assert type(clothing_age_description) == str
+    # assert type(decor_age_description) == str
+    # assert type(electronics_age_description) == str
+    assert clothing_age_description == decor_age_description 
+    assert decor_age_description == electronics_age_description
 
 def test_age_description_expected_result():
     items = [
@@ -181,9 +186,13 @@ def test_swap_by_newest():
     result = tai.swap_by_newest(jesse)
     # Assert
     assert result
-    assert len(tai.inventory) and len(jesse.inventory) == 3
-    assert item_e and item_b and item_c in tai.inventory
-    assert item_a and item_d and item_f in jesse.inventory
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    ### Refactoring
+    # assert item_e and item_b and item_c in tai.inventory
+    assert all(item in tai.inventory for item in [item_e, item_b, item_c])
+    # assert item_a and item_d and item_f in jesse.inventory
+    assert all(item in jesse.inventory for item in [item_a, item_d, item_f])
     assert item_a not in tai.inventory
     assert item_e not in jesse.inventory
 
@@ -208,7 +217,8 @@ def test_swap_by_newest_self_empty_inventory_returns_false():
     assert not result
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 0
-    assert item_e and item_d and item_f in jesse.inventory
+    assert all(item in jesse.inventory for item in [item_e, item_d, item_f])
+    # assert item_e and item_d and item_f in jesse.inventory
 
 
 # @pytest.mark.skip
@@ -232,7 +242,8 @@ def test_swap_by_newest_other_empty_inventory_returns_false():
     assert not result
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 0
-    assert item_a and item_b and item_c in tai.inventory
+    assert all(item in tai.inventory for item in [item_a, item_b])
+    # assert item_a and item_b and item_c in tai.inventory
 
 
 # @pytest.mark.skip
@@ -258,9 +269,11 @@ def test_swap_by_newest_all_items_age_unknown_returns_false():
     # Assert
 
     assert not result
-    assert len(tai.inventory) and len(jesse.inventory) == 3
-    assert item_a and item_b and item_c in tai.inventory
-    assert item_d and item_e and item_f in jesse.inventory
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    assert all(item in tai.inventory for item in [item_a, item_b, item_c])
+    # assert item_d and item_e and item_f in jesse.inventory
+    assert all(item in jesse.inventory for item in [item_d, item_e, item_f])
 
 
 # @pytest.mark.skip
@@ -286,9 +299,13 @@ def test_swap_by_newest_self_items_age_unknown_returns_false():
     # Assert
 
     assert not result
-    assert len(tai.inventory) and len(jesse.inventory) == 3
-    assert item_a and item_b and item_c in tai.inventory
-    assert item_d and item_e and item_f in jesse.inventory
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    # assert item_a and item_b and item_c in tai.inventory
+    # assert item_d and item_e and item_f in jesse.inventory
+    assert all(item in jesse.inventory for item in [item_d, item_e, item_f])
+    assert all(item in tai.inventory for item in [item_a, item_b, item_c])
+
 
 
 # @pytest.mark.skip
@@ -314,6 +331,9 @@ def test_swap_by_newest_other_items_age_unknown_returns_false():
     # Assert
 
     assert not result
-    assert len(tai.inventory) and len(jesse.inventory) == 3
-    assert item_a and item_b and item_c in tai.inventory
-    assert item_d and item_e and item_f in jesse.inventory
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    # assert item_a and item_b and item_c in tai.inventory
+    # assert item_d and item_e and item_f in jesse.inventory
+    assert all(item in jesse.inventory for item in [item_d, item_e, item_f])
+    assert all(item in tai.inventory for item in [item_a, item_b, item_c])
