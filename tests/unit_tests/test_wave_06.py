@@ -83,33 +83,33 @@ def test_swap_best_by_category():
     # Assertions should check:
     assert result == True
     
-    assert len(tai.inventory)==3
-    assert len(jesse.inventory)==3
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
     assert item_f in tai.inventory
     assert item_c in jesse.inventory
 
 # @pytest.mark.skip
 def test_swap_best_by_category_reordered():
     # Arrange
-    item_a = Decor(condition=2.0)
-    item_b = Electronics(condition=4.0)
-    item_c = Decor(condition=4.0)
+    item_a = Decor(condition = 2.0)
+    item_b = Electronics(condition = 4.0)
+    item_c = Decor(condition = 4.0)
     tai = Vendor(
-        inventory=[item_c, item_b, item_a]
+        inventory = [item_c, item_b, item_a]
     )
 
-    item_d = Clothing(condition=2.0)
-    item_e = Decor(condition=4.0)
-    item_f = Clothing(condition=4.0)
+    item_d = Clothing(condition = 2.0)
+    item_e = Decor(condition = 4.0)
+    item_f = Clothing(condition = 4.0)
     jesse = Vendor(
         inventory=[item_f, item_e, item_d]
     )
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
-        my_priority="Clothing",
-        their_priority="Decor"
+        other = jesse,
+        my_priority = "Clothing",
+        their_priority = "Decor"
     )
 
 # raise Exception("Complete this test according to comments below.")
@@ -206,10 +206,10 @@ def test_swap_best_by_category_no_match_is_false():
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
     # Assertions should check:
-    assert result ==False
-    assert len(tai.inventory) ==3
+    assert result == False
+    assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    assert jesse.inventory==[item_d, item_e, item_f]
+    assert jesse.inventory == [item_d, item_e, item_f]
 
 # @pytest.mark.skip
 def test_swap_best_by_category_no_other_match_is_false():
